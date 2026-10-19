@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap');
+:root{--purple:#30104d;--purple2:#4b1d70;--gold:#d7b45a;--cream:#fffaf0;--ink:#24162c}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'Noto Nastaliq Urdu',serif;line-height:2}
+.topbar{display:flex;align-items:center;justify-content:center;gap:14px;padding:18px;background:var(--purple);color:#fff;text-align:center;border-bottom:4px solid var(--gold)}
+.brand-mark{width:52px;height:52px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:30px}
+h1,h2,h3,p{margin-top:0}
+.topbar h1{font-size:1.5rem;margin:0;color:var(--gold)}
+.topbar p{margin:0;font-size:.95rem}
+.hero{position:relative;overflow:hidden;text-align:center;padding:60px 20px 70px;color:#fff;background:radial-gradient(ellipse at top,#67368b 0%,#30104d 62%,#1d092e 100%)}
+.hero:before,.hero:after{content:"";position:absolute;width:220px;height:220px;border:1px solid rgba(215,180,90,.22);border-radius:50%;pointer-events:none}
+.hero:before{top:-110px;right:-65px}.hero:after{bottom:-130px;left:-70px}
+.ornament{color:var(--gold);font-size:2.3rem;margin-bottom:10px}
+.eyebrow{color:var(--gold);font-size:1rem;margin-bottom:12px}
+.hero h2{font-size:clamp(1.8rem,5vw,3rem);line-height:1.8;margin:0 auto 16px}
+.hero h2 span{color:var(--gold)}
+.intro{max-width:650px;margin:0 auto 24px;font-size:1rem;color:#f5edf9}
+.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.btn{display:inline-block;text-decoration:none;padding:10px 22px;border-radius:9px;font-weight:700;border:2px solid var(--gold);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.whatsapp{background:#167b45;color:#fff;border-color:#167b45}
+.email{background:var(--gold);color:#291238}
+.courses,.contact{max-width:1000px;margin:auto;padding:48px 20px;text-align:center}
+.courses h2,.contact h2{color:var(--purple);font-size:1.7rem;margin-bottom:24px}
+.course-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+.course{background:#fff;border:1px solid #eadcb8;border-top:4px solid var(--gold);border-radius:14px;padding:24px 16px;box-shadow:0 7px 22px rgba(48,16,77,.07)}
+.course span{font-size:2rem;color:var(--gold)}
+.course h3{color:var(--purple);margin:8px 0}
+.course p{margin:0}
+.contact{background:#f3ebf8;border-radius:18px;margin-bottom:35px}
+.contact-details{font-weight:700;direction:ltr;line-height:2.2}
+footer{text-align:center;background:var(--purple);color:#f7e8bd;padding:18px 12px;font-size:.85rem}
+@media(max-width:480px){.hero{padding:42px 16px}.btn{width:100%;max-width:320px}.topbar h1{font-size:1.25rem}}
