@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://farooqi5027.github.io/Jamiafarooqia-/sitemap.xml
