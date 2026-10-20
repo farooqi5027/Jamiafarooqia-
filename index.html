@@ -75,12 +75,22 @@ body{font-family:'Segoe UI',Arial;background:#f8f9f5;color:#333}
 <h2>Islamic Gallery</h2>
 <div class="grid" id="mygallery"></div>
 </div>
-
-<script>
+<script> 
 let box=document.getElementById('mygallery');
 for(let i=1;i<=39;i++){
 let num=String(i).padStart(2,'0');
 http://box.innerHTML+=`<img src="${num}.jpg" style="width:100%;border-radius:12px">`;
+}
+</script>
+  <div class="section">
+<h2>Islamic Gallery</h2>
+<div class="grid" id="mygallery"></div>
+</div>
+<script>
+let box=document.getElementById('mygallery');
+for(let i=1;i<=39;i++){
+let n=String(i).padStart(2,'0');
+http://box.innerHTML+=`<img src="${n}.jpg" style="width:100%;border-radius:12px">`;
 }
 </script>
 <div class="contact">
