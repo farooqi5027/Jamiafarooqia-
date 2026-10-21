@@ -1,80 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jamia Farooqia - Online Quran Academy Lahore</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jamia Farooqia Online Academy</title>
 <style>
-body{font-family:Arial;margin:0;background:#f6fef6}
-.header{background:white;padding:15px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px #ddd}
-.hero{background:#0e5e2f;color:white;padding:40px 20px;text-align:center}
-.btn{display:inline-block;padding:12px 22px;border-radius:25px;margin:8px;text-decoration:none;font-weight:bold}
-.btn-green{background:#25D366;color:white} .btn-gold{background:gold;color:black}
-.section{padding:30px 20px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:15px}
-.card{background:white;padding:15px;border-radius:16px;box-shadow:0 4px 12px #ddd;text-align:center}
-h2{color:#0e5e2f;text-align:center}
-img,video{width:100%;border-radius:12px} audio{width:100%}
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#f5f2e9;
+ color:#222;
+ text-align:center;
+}
+header{
+ background:#064b35;
+ color:white;
+ padding:30px 15px;
+}
+header h1{margin:10px 0;font-size:30px}
+header p{margin:8px 0}
+.hero{
+ padding:45px 15px;
+ background:linear-gradient(135deg,#e8d6a5,#fff9e8);
+}
+.hero h2{color:#064b35;font-size:27px}
+.hero p{font-size:18px;line-height:1.8}
+.section{padding:25px 15px}
+.cards{
+ display:flex;
+ flex-wrap:wrap;
+ justify-content:center;
+ gap:15px;
+}
+.card{
+ background:white;
+ padding:20px;
+ border-radius:12px;
+ width:280px;
+ box-shadow:0 3px 12px #0001;
+}
+.card h3{color:#064b35}
+.btn{
+ display:inline-block;
+ padding:13px 20px;
+ margin:7px;
+ border-radius:8px;
+ color:white;
+ text-decoration:none;
+ font-weight:bold;
+}
+.whatsapp{background:#20a85a}
+.email{background:#b52b2b}
+.zoom{background:#2878e5}
+.meet{background:#168b55}
+footer{
+ background:#064b35;
+ color:white;
+ padding:20px;
+ line-height:1.8;
+}
 </style>
 </head>
 <body>
 
-<div class="header">
-<div><img src="Logo.jpg" style="height:50px;border-radius:50%"><br><b>Jamia Farooqia</b><br><small>Online Quran Academy - Lahore</small></div>
-<div style="text-align:right"><b>+92 302 5280361</b><br><small>Hafiz Abid Hussain Farooqi</small></div>
-</div>
+<header>
+<h1>Jamia Farooqia Online Academy</h1>
+<p>اسلامی تعلیمات اور آن لائن قرآن اکیڈمی</p>
+<p>Learn Quran & Islamic Studies Online</p>
+</header>
 
-<div class="hero">
-<h1>Learn Holy Quran Online</h1>
-<p>Lahore, Pakistan | Worldwide - USA, UK, Canada, Australia</p>
-<a class="btn btn-green" href="https://wa.me/923025280361">WhatsApp Us</a>
-<a class="btn btn-gold" href="tel:+923025280361">Call Now</a>
-</div>
+<section class="hero">
+<h2>Welcome to Jamia Farooqia Online Academy</h2>
+<p>
+اپنے بچوں اور بچیوں کو گھر بیٹھے قرآن پاک اور اسلامی تعلیمات سیکھنے کا موقع دیں۔
+</p>
+<p>Online Quran Classes • Islamic Education • Easy Learning</p>
+<a class="btn whatsapp"
+href="https://wa.me/923025289361">WhatsApp پر رابطہ کریں</a>
+</section>
 
-<div class="section">
-<h2>Our Courses</h2>
-<div class="grid">
-<div class="card"><h3>Noorani Qaida</h3></div>
-<div class="card"><h3>Nazra Quran</h3></div>
-<div class="card"><h3>Hifz-ul-Quran</h3></div>
-<div class="card"><h3>Tajweed</h3></div>
+<section class="section">
+<h2>ہمارے کورسز | Our Courses</h2>
+<div class="cards">
+<div class="card">
+<h3>قرآن پاک</h3>
+<p>قرآن پاک کی ناظرہ تعلیم اور درست تلفظ کے ساتھ پڑھنے کی مشق۔</p>
+</div>
+<div class="card">
+<h3>تجوید القرآن</h3>
+<p>قرآن پاک کو تجوید کے اصولوں کے مطابق پڑھنا سیکھیں۔</p>
+</div>
+<div class="card">
+<h3>اسلامی تعلیمات</h3>
+<p>بنیادی دینی تعلیمات، دعائیں اور اسلامی آداب سیکھیں۔</p>
 </div>
 </div>
+</section>
 
-<div class="section" style="background:white;border-radius:20px;margin:15px">
-<h2>📸 Photo Gallery</h2>
-<div class="grid" id="mygallery"></div>
-</div>
+<section class="section">
+<h2>آن لائن کلاسز | Online Classes</h2>
+<p>اپنی آن لائن کلاس کے لیے درج ذیل ایپس استعمال کریں۔</p>
+<a class="btn zoom" href="https://zoom.us/">Zoom App</a>
+<a class="btn meet" href="https://meet.google.com/">Google Meet</a>
+</section>
 
-<div class="section">
-<h2>🎥 Video Gallery</h2>
-<div class="grid" id="videoBox"></div>
-</div>
+<section class="section">
+<h2>داخلے اور رابطے | Admission & Contact</h2>
+<p>داخلے اور مزید معلومات کے لیے ہم سے رابطہ کریں۔</p>
+<a class="btn whatsapp"
+href="https://wa.me/923025289361">WhatsApp</a>
+<a class="btn email"
+href="mailto:Farooqi79086@gmail.com">Send Gmail</a>
+</section>
 
-<div class="section" style="background:white;border-radius:20px;margin:15px">
-<h2>🎧 Audio Gallery</h2>
-<div class="grid" id="audioBox"></div>
-</div>
-
-<div class="section" style="background:#e8f5e9;border:2px solid #0e5e2f;text-align:center;border-radius:15px;margin:20px">
-<h2>For Sisters - Female Teachers Available</h2>
-<p>Separate qualified female teachers for sisters & kids</p>
-</div>
-
-<script>
-let box=document.getElementById('mygallery');
-for(let i=1;i<=50;i++){
-let num=String(i).padStart(2,'0');
-box.innerHTML+=`<img src="${num}.jpg" onerror="this.style.display='none'">`;
-}
-let vBox=document.getElementById('videoBox');
-for(let i=1;i<=20;i++){
-vBox.innerHTML+=`<video controls src="video${i}.mp4" onerror="this.style.display='none'"></video>`;
-}
-let aBox=document.getElementById('audioBox');
-for(let i=1;i<=20;i++){
-aBox.innerHTML+=`<div class="card"><audio controls src="audio${i}.mp3" onerror="this.parentElement.style.display='none'"></audio><p>Audio ${i}</p></div>`;
-}
-</script>
+<footer>
+<p>Jamia Farooqia Online Academy</p>
+<p>WhatsApp: +92 302 5289361</p>
+<p>Email: Farooqi79086@gmail.com</p>
+<p>© 2026 All Rights Reserved</p>
+</footer>
 
 </body>
 </html>
