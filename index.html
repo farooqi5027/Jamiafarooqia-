@@ -3,122 +3,145 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jamia Farooqia Online Academy</title>
+<title>Jamia Farooqia Online Quran Academy - Learn Quran with Tajweed</title>
+
+<!-- GOOGLE ANALYTICS -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5CRQ9LZ6JF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5CRQ9LZ6JF');
+</script>
+
 <style>
-*{box-sizing:border-box}
-body{
- margin:0;
- font-family:Arial,sans-serif;
- background:#f5f2e9;
- color:#222;
- text-align:center;
-}
-header{
- background:#064b35;
- color:white;
- padding:30px 15px;
-}
-header h1{margin:10px 0;font-size:30px}
-header p{margin:8px 0}
-.hero{
- padding:45px 15px;
- background:linear-gradient(135deg,#e8d6a5,#fff9e8);
-}
-.hero h2{color:#064b35;font-size:27px}
-.hero p{font-size:18px;line-height:1.8}
-.section{padding:25px 15px}
-.cards{
- display:flex;
- flex-wrap:wrap;
- justify-content:center;
- gap:15px;
-}
-.card{
- background:white;
- padding:20px;
- border-radius:12px;
- width:280px;
- box-shadow:0 3px 12px #0001;
-}
-.card h3{color:#064b35}
-.btn{
- display:inline-block;
- padding:13px 20px;
- margin:7px;
- border-radius:8px;
- color:white;
- text-decoration:none;
- font-weight:bold;
-}
-.whatsapp{background:#20a85a}
-.email{background:#b52b2b}
-.zoom{background:#2878e5}
-.meet{background:#168b55}
-footer{
- background:#064b35;
- color:white;
- padding:20px;
- line-height:1.8;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI', sans-serif;}
+body{background:#fdf8e8;}
+.top-bar{background:#0a3d26;color:white;display:flex;justify-content:space-between;align-items:center;padding:8px 15px;flex-wrap:wrap;}
+.top-bar .logo{display:flex;align-items:center;gap:10px;font-weight:bold;color:gold;font-size:18px;}
+.top-bar .contact{font-size:13px;line-height:1.5;}
+.menu{background:#0a3d26;text-align:center;padding:10px;}
+.menu a{color:white;text-decoration:none;margin:5px 10px;background:#1a5c3a;padding:8px 15px;border-radius:20px;display:inline-block;font-size:14px;}
+.menu a.active{background:gold;color:black;}
+.hero{background:linear-gradient(to right, #fff8dc, #e0f7ff);padding:20px;text-align:center;border-bottom:4px solid gold;position:relative;}
+.hero h1{font-size:38px;color:#0a3d26;line-height:1.1;}
+.hero h1 span{font-size:18px;display:block;color:#444;}
+.hero .btns{margin-top:15px;}
+.hero .btns a{padding:10px 20px;border-radius:25px;text-decoration:none;color:white;margin:5px;display:inline-block;font-weight:bold;}
+.wa-btn{background:#25D366;} .email-btn{background:#d4a017;}
+.features{display:flex;flex-wrap:wrap;justify-content:space-around;background:white;padding:10px;border-bottom:2px solid gold;text-align:center;font-size:12px;}
+.features div{flex:1 1 120px;margin:5px;}
+.main{display:flex;flex-wrap:wrap;padding:15px;gap:15px;}
+.courses{flex:3 1 600px;}
+.sidebar{flex:1 1 250px;}
+.courses-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(150px,1fr));gap:12px;}
+.card{background:white;border-radius:12px;overflow:hidden;border:1.5px solid #d4a017;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+.card img{width:100%;height:90px;object-fit:cover;}
+.card h4{font-size:13px;padding:8px 5px;color:#0a3d26;height:40px;}
+.card a{background:#0a3d26;color:white;padding:5px 15px;border-radius:15px;text-decoration:none;font-size:12px;display:inline-block;margin-bottom:10px;}
+.section-title{text-align:center;color:#0a3d26;font-size:22px;margin:15px 0;font-weight:bold;}
+.sidebar-box{background:white;border-radius:12px;border:2px solid gold;padding:12px;margin-bottom:15px;}
+.sidebar-box h3{background:#0a3d26;color:gold;padding:8px;border-radius:8px;text-align:center;margin:-12px -12px 10px -12px;font-size:15px;}
+.sidebar-box ul{list-style:none;font-size:13px;}
+.sidebar-box ul li{margin:6px 0;}
+.quick a{display:block;padding:8px;border-radius:8px;color:white;text-decoration:none;margin:6px 0;font-size:13px;text-align:center;}
+.comments{max-width:100%;background:white;padding:15px;border-radius:12px;border:2px solid gold;margin-top:20px;}
+footer{background:#032e1a;color:white;text-align:center;padding:15px;font-size:13px;margin-top:20px;}
 </style>
 </head>
 <body>
 
-<header>
-<h1>Jamia Farooqia Online Academy</h1>
-<p>اسلامی تعلیمات اور آن لائن قرآن اکیڈمی</p>
-<p>Learn Quran & Islamic Studies Online</p>
-</header>
-
-<section class="hero">
-<h2>Welcome to Jamia Farooqia Online Academy</h2>
-<p>
-اپنے بچوں اور بچیوں کو گھر بیٹھے قرآن پاک اور اسلامی تعلیمات سیکھنے کا موقع دیں۔
-</p>
-<p>Online Quran Classes • Islamic Education • Easy Learning</p>
-<a class="btn whatsapp"
-href="https://wa.me/923025289361">WhatsApp پر رابطہ کریں</a>
-</section>
-
-<section class="section">
-<h2>ہمارے کورسز | Our Courses</h2>
-<div class="cards">
-<div class="card">
-<h3>قرآن پاک</h3>
-<p>قرآن پاک کی ناظرہ تعلیم اور درست تلفظ کے ساتھ پڑھنے کی مشق۔</p>
+<div class="top-bar">
+<div class="logo">🕌 Jamia Farooqia<br><span style="font-size:12px;color:white;">Online Quran ACADEMY</span></div>
+<div class="contact">📱 +92 302 528 9361<br>✉️ Farooqi79086@gmail.com</div>
 </div>
-<div class="card">
-<h3>تجوید القرآن</h3>
-<p>قرآن پاک کو تجوید کے اصولوں کے مطابق پڑھنا سیکھیں۔</p>
-</div>
-<div class="card">
-<h3>اسلامی تعلیمات</h3>
-<p>بنیادی دینی تعلیمات، دعائیں اور اسلامی آداب سیکھیں۔</p>
-</div>
-</div>
-</section>
 
-<section class="section">
-<h2>آن لائن کلاسز | Online Classes</h2>
-<p>اپنی آن لائن کلاس کے لیے درج ذیل ایپس استعمال کریں۔</p>
-<a class="btn zoom" href="https://zoom.us/">Zoom App</a>
-<a class="btn meet" href="https://meet.google.com/">Google Meet</a>
-</section>
+<div class="menu">
+<a class="active" href="#">🏠 Home</a>
+<a href="#courses">📚 Courses</a>
+<a href="#">👥 About Us</a>
+<a href="#">👨‍🏫 Teachers</a>
+<a href="#">🖼️ Gallery</a>
+<a href="#contact">✉️ Contact</a>
+</div>
 
-<section class="section">
-<h2>داخلے اور رابطے | Admission & Contact</h2>
-<p>داخلے اور مزید معلومات کے لیے ہم سے رابطہ کریں۔</p>
-<a class="btn whatsapp"
-href="https://wa.me/923025289361">WhatsApp</a>
-<a class="btn email"
-href="mailto:Farooqi79086@gmail.com">Send Gmail</a>
-</section>
+<div class="hero">
+<h1>Jamia Farooqia<br>Online Quran Academy <span>بسم الله الرحمن الرحيم</span></h1>
+<p style="background:#0a3d26;color:white;display:inline-block;padding:5px 15px;border-radius:20px;margin:10px;font-size:13px;">Learn Quran | Learn Deen | Build Your Future</p>
+<div class="btns">
+<a class="wa-btn" href="https://wa.me/923025289361">WhatsApp Us</a>
+<a class="email-btn" href="mailto:Farooqi79086@gmail.com">Email Us</a>
+</div>
+<p style="margin-top:10px;font-size:12px;font-style:italic;color:#333;">"The best among you are those who learn the Quran and teach it." (Al-Bukhari)</p>
+</div>
 
-<footer>
-<p>Jamia Farooqia Online Academy</p>
-<p>WhatsApp: +92 302 5289361</p>
-<p>Email: Farooqi79086@gmail.com</p>
-<p>© 2026 All Rights Reserved</p>
+<div class="features">
+<div>👤 Qualified Teachers<br>(Male & Female)</div>
+<div>💻 Flexible Learning<br>Anytime, Anywhere</div>
+<div>📜 Certificate<br>Provided</div>
+<div>🛡️ Safe & Secure<br>Environment</div>
+<div>🎬 Video + Audio<br>Learning Material</div>
+<div>📅 3 Days Free Trial<br>Join Now</div>
+</div>
+
+<div class="main">
+<div class="courses" id="courses">
+<div class="section-title">📖 Our Courses & Services</div>
+<div class="courses-grid">
+<div class="card"><div style="background:orange;height:90px;display:flex;align-items:center;justify-content:center;font-size:40px;">📖</div><h4>Noorani Qaidas<br><small>Basic Arabic with Tajweed</small></h4><a href="https://wa.me/923025289361?text=Salam, Noorani Qaida me admission chahiye">Open →</a></div>
+<div class="card"><div style="background:#2196F3;height:90px;display:flex;align-items:center;justify-content:center;font-size:40px;">📘</div><h4>Quran e Pak Tajweed<br><small>Correct Recitation</small></h4><a href="https://wa.me/923025289361?text=Tajweed Course">Open →</a></div>
+<div class="card"><div style="background:green;height:90px;display:flex;align-items:center;justify-content:center;font-size:40px;">🕌</div><h4>Hifz Tajweed<br><small>Memorization of Quran</small></h4><a href="https://wa.me/923025289361?text=Hifz Course">Open →</a></div>
+<div class="card"><div style="background:#4CAF50;height:90px;display:flex;align-items:center;justify-content:center;font-size:40px;">📚</div><h4>Quran Tarjmah Tafseer<br><small>Translation & Tafseer</small></h4><a href="https://wa.me/923025289361?text=Tafseer Course">Open →</a></div>
+<div class="card"><div style="background:#795548;height:90px;display:flex;align-items:center;justify-content:center;font-size:40px;">🙏</div><h4>Namaz<br><small>Learn Step by Step</small></h4><a href="https://wa.me/923025289361?text=Namaz Course">Open →</a></div>
+<div class="card"><div style="background:#FF9800;height:90px;display:flex;align-items:center;justify-content:center;font-size:40px;">🕋</div><h4>6 Kalmas<br><small>With Meaning</small></h4><a href="https://wa.me/923025289361?text=6 Kalmas">Open →</a></div>
+<div class="card"><div style="background:#607D8B;height:90px;display:flex;align-items:center;justify-content:center;font-size:40px;">⚰️</div><h4>Namaz e Janazah<br><small>Complete Method</small></h4><a href="https://wa.me/923025289361?text=Janazah">Open →</a></div>
+<div class="card"><div style="background:#FF5722;height:90px;display:flex;align-items:center;justify-content:center;font-size:40px;">☀️</div><h4>Eman ki Sifaat<br><small>Beliefs of Muslim</small></h4><a href="https://wa.me/923025289361?text=Eman Course">Open →</a></div>
+<div class="card"><div style="background:#9E9E9E;height:90px;display:flex;align-items:center;justify-content:center;font-size:40px;">🤲</div><h4>Wuzu + Ghusal<br><small>Step by Step</small></h4><a href="https://wa.me/923025289361?text=Wuzu Ghusal">Open →</a></div>
+<div class="card"><div style="background:#E91E63;height:90px;display:flex;align-items:center;justify-content:center;font-size:40px;">👩‍🏫</div><h4>Male & Female Teachers<br><small>Both Available</small></h4><a href="https://wa.me/923025289361?text=Female Teacher">Open →</a></div>
+<div class="card"><div style="background:#3F51B5;height:90px;display:flex;align-items:center;justify-content:center;font-size:40px;">🎥</div><h4>Audio | Video | Photos<br><small>Access Anytime</small></h4><a href="https://wa.me/923025289361?text=Material">Open →</a></div>
+<div class="card"><div style="background:gold;height:90px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:bold;">3 DAYS<br>FREE TRIAL</div><h4>3 Days Free Trial Class<br><small>Try Before You Join</small></h4><a href="https://wa.me/923025289361?text=Free Trial">Open →</a></div>
+</div>
+
+<!-- COMMENTS SECTION -->
+<div class="comments">
+<h3 style="text-align:center;color:#0a3d26;">Comments / تبصرے - Apni Raye Dijiye</h3>
+<div class="fb-comments" data-href="https://farooqi5027.github.io/Jamiafarooqia-/" data-width="100%" data-numposts="10"></div>
+</div>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v19.0"></script>
+
+</div>
+
+<div class="sidebar">
+<div class="sidebar-box">
+<h3>Why Choose Us?</h3>
+<ul>
+<li>✅ Quran with Tajweed</li>
+<li>✅ Certified Teachers</li>
+<li>✅ Flexible Timings</li>
+<li>✅ One to One Classes</li>
+<li>✅ All Age Groups</li>
+<li>✅ Complete Islamic Learning</li>
+<li>✅ Certificate Provided</li>
+</ul>
+</div>
+
+<div class="sidebar-box">
+<h3>Quick Access</h3>
+<div class="quick">
+<a style="background:#25D366" href="https://wa.me/923025289361">WhatsApp<br>+92 302 528 9361</a>
+<a style="background:#d93025" href="mailto:Farooqi79086@gmail.com">Email<br>Farooqi79086@gmail.com</a>
+<a style="background:#4285F4" href="https://meet.google.com/">Google Meet<br>Join Online Class</a>
+<a style="background:#0b5cff" href="https://zoom.us/">Zoom<br>Join Online Class</a>
+</div>
+</div>
+</div>
+</div>
+
+<footer id="contact">
+Jamia Farooqia Online Quran Academy<br>
+"Quran Say Roohani Zindagi"<br>
+WhatsApp: +92 302 528 9361 | Email: Farooqi79086@gmail.com
 </footer>
 
 </body>
