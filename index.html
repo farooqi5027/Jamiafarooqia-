@@ -2,32 +2,25 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jamia Farooqia - Online Quran Academy Lahore</title>
 <style>
 body{font-family:Arial;margin:0;background:#f6fef6}
 .header{background:white;padding:15px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px #ddd}
-.hero{background:#065e2f;color:white;padding:40px 20px;text-align:center}
+.hero{background:#0e5e2f;color:white;padding:40px 20px;text-align:center}
 .btn{display:inline-block;padding:12px 22px;border-radius:25px;margin:8px;text-decoration:none;font-weight:bold}
-.btn-green{background:#25D366;color:white}
-.btn-gold{background:gold;color:black}
+.btn-green{background:#25D366;color:white} .btn-gold{background:gold;color:black}
 .section{padding:30px 20px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:15px}
-.card{background:white;padding:20px;border-radius:16px;box-shadow:0 4px 12px #ddd;text-align:center;border-top:5px solid #065e2f}
-.footer{background:#082f1a;color:#c8e6c9;text-align:center;padding:18px}
-.whatsapp-float{position:fixed;bottom:20px;right:20px;background:#25D366;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;text-decoration:none}
+.card{background:white;padding:15px;border-radius:16px;box-shadow:0 4px 12px #ddd;text-align:center}
+h2{color:#0e5e2f;text-align:center}
+img,video{width:100%;border-radius:12px} audio{width:100%}
 </style>
 </head>
 <body>
 
 <div class="header">
-<div>
-<img src="Logo.jpg" style="height:50px;border-radius:50%">
-<h3>Jamia Farooqia</h3>
-<small>Online Quran Academy - Lahore</small>
-</div>
-<div style="text-align:right">
-<b>+92 302 5280361</b><br>
-<small>Hafiz Abid Hussain Farooqi</small>
-</div>
+<div><img src="Logo.jpg" style="height:50px;border-radius:50%"><br><b>Jamia Farooqia</b><br><small>Online Quran Academy - Lahore</small></div>
+<div style="text-align:right"><b>+92 302 5280361</b><br><small>Hafiz Abid Hussain Farooqi</small></div>
 </div>
 
 <div class="hero">
@@ -40,54 +33,48 @@ body{font-family:Arial;margin:0;background:#f6fef6}
 <div class="section">
 <h2>Our Courses</h2>
 <div class="grid">
-<div class="card"><h3>Noorani Qaida</h3><p>Basic Arabic alphabets</p></div>
-<div class="card"><h3>Nazra Quran</h3><p>Fluent Quran reading</p></div>
-<div class="card"><h3>Hifz-ul-Quran</h3><p>Memorization of Holy Quran</p></div>
-<div class="card"><h3>Tajweed Course</h3><p>Learn with Tajweed rules</p></div>
-<div class="card"><h3>Translation & Tafseer</h3><p>Understand Quran meaning</p></div>
-<div class="card"><h3>Namaz, Kalmas & Duas</h3><p>Essential Islamic education</p></div>
+<div class="card"><h3>Noorani Qaida</h3></div>
+<div class="card"><h3>Nazra Quran</h3></div>
+<div class="card"><h3>Hifz-ul-Quran</h3></div>
+<div class="card"><h3>Tajweed</h3></div>
 </div>
 </div>
 
-<div class="section" style="background:white;border-radius:20px">
-<h2>Why Jamia Farooqia?</h2>
-<div class="grid">
-<div class="card"><h3>✅ Experienced Teachers</h3><p>Hafiz Abid Hussain Farooqi - Qualified</p></div>
-<div class="card"><h3>⏰ Flexible Timing</h3><p>24/7 classes per your country time</p></div>
-<div class="card"><h3>👨‍👩‍👧‍👦 For All Ages</h3><p>Kids, Adults, Sisters - Separate female teachers available</p></div>
-<div class="card"><h3>💻 One-to-One</h3><p>Individual attention on Zoom / WhatsApp</p></div>
-</div>
+<div class="section" style="background:white;border-radius:20px;margin:15px">
+<h2>📸 Photo Gallery</h2>
+<div class="grid" id="mygallery"></div>
 </div>
 
 <div class="section">
-<h2>Islamic Gallery</h2>
-<div class="grid" id="mygallery"></div>
+<h2>🎥 Video Gallery</h2>
+<div class="grid" id="videoBox"></div>
 </div>
-<script>
-let box=document.getElementById('mygallery');
-for(let i=1;i<=38;i++){
-let num=String(i).padStart(2,'0');
-box.innerHTML+= '<img src="'+num+'.jpg" style="width:100%;border-radius:12px;border:2px solid #eee">';
-}
-</script>
 
-<div class="section" style="background:#e8f5e9;border:2px solid #065e2f;text-align:center;border-radius:15px;margin:20px">
-<h2 style="color:#065e2f">🧕 For Sisters - Female Teachers Available</h2>
+<div class="section" style="background:white;border-radius:20px;margin:15px">
+<h2>🎧 Audio Gallery</h2>
+<div class="grid" id="audioBox"></div>
+</div>
+
+<div class="section" style="background:#e8f5e9;border:2px solid #0e5e2f;text-align:center;border-radius:15px;margin:20px">
+<h2>For Sisters - Female Teachers Available</h2>
 <p>Separate qualified female teachers for sisters & kids</p>
 </div>
 
-<div class="section" style="background:#0b5e2f;color:white;text-align:center">
-<h2 style="color:#ffd700">Contact Us</h2>
-<p>📍 Jamia Farooqia, Lahore, Pakistan<br>
-👨‍🏫 Hafiz Abid Hussain Farooqi<br>
-📱 WhatsApp / Call: +92 302 5280361<br>
-📧 Email: hafiz1981farooqi@gmail.com<br>
-🌍 USA | UK | Canada | Australia | UAE | Pakistan</p>
-<a class="btn btn-green" href="https://wa.me/923025280361">Start Free Trial Class</a>
-</div>
-
-<div class="footer">© 2026 Jamia Farooqia Online Quran Academy - Lahore | All Rights Reserved</div>
-<a class="whatsapp-float" href="https://wa.me/923025280361">💬</a>
+<script>
+let box=document.getElementById('mygallery');
+for(let i=1;i<=50;i++){
+let num=String(i).padStart(2,'0');
+box.innerHTML+=`<img src="${num}.jpg" onerror="this.style.display='none'">`;
+}
+let vBox=document.getElementById('videoBox');
+for(let i=1;i<=20;i++){
+vBox.innerHTML+=`<video controls src="video${i}.mp4" onerror="this.style.display='none'"></video>`;
+}
+let aBox=document.getElementById('audioBox');
+for(let i=1;i<=20;i++){
+aBox.innerHTML+=`<div class="card"><audio controls src="audio${i}.mp3" onerror="this.parentElement.style.display='none'"></audio><p>Audio ${i}</p></div>`;
+}
+</script>
 
 </body>
 </html>
