@@ -3,189 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jamia Farooqia Online Quran Academy - Hafiz Abid Husain</title>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Jamia Farooqia Online Quran Academy Lahore Pakistan</title>
+<meta name="description" content="Jamia Farooqia Online Quran Academy - Quran Pak, Namaz, 6 Kalmas, Eman Ki Sifaat, Ayat ul Kursi, Masnoon Duain, Aazan, Wudu Ghusl">
+<meta name="keywords" content="jamia, farooqia, online, quran, academy, teacher, noorani, Quaida, Ayat ul kursi, namaz, kalme, Dua e Qunoot, Namaz Janazah, Duaee, Ramadan, islam, Hafiz Abid Hussain">
+<meta property="og:title" content="Jamia Farooqia Online Quran Academy #jamia #farooqia #online #quran">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;background:#fdf8e8;color:#222}
-a{text-decoration:none}
-.top{background:linear-gradient(90deg,#042e1a,#0a5a33);color:#ffdf8a;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:10px 15px;font-size:13px;border-bottom:3px solid #f1c232}
-.top b{color:#fff}
-.nav{background:#032e1a;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:10px;position:sticky;top:0;z-index:999;box-shadow:0 4px 12px rgba(0,0,0,.3)}
-.nav a{color:#ffdf8a;padding:8px 14px;border-radius:20px;font-weight:600;font-size:13px;border:1px solid #1a5a33;transition:.3s}
-.nav a:hover,.nav a.active{background:#f1c232;color:#000}
-.hero{position:relative;background:url('Banner.jpg') center/cover;min-height:420px;display:flex;align-items:center;padding:20px}
-.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,26,16,.85) 0%,rgba(2,26,16,.3) 60%,rgba(2,26,16,.2) 100%)}
-.hero-content{position:relative;z-index:2;max-width:700px;color:white}
-.hero h1{font-size:38px;line-height:1.1;color:#ffdf8a;text-shadow:0 2px 8px #000;font-family:'Amiri',serif}
-.hero h1 span{color:white;font-size:22px;display:block}
-.hero p{margin:10px 0 18px;color:#e8ffe8}
-.btn{display:inline-block;padding:12px 22px;border-radius:30px;font-weight:700;margin:5px;box-shadow:0 4px 10px rgba(0,0,0,.3);transition:.3s;cursor:pointer;border:none}
-.btn:hover{transform:translateY(-2px) scale(1.03)}
-.btn-green{background:#0a5a33;color:white;border:2px solid #1e7a4a}
-.btn-gold{background:linear-gradient(180deg,#ffe27a,#f1c232);color:#000}
-.btn-wa{background:#25D366;color:white}
-.features{display:flex;flex-wrap:wrap;background:#fffdf0;border-top:3px solid #f1c232;border-bottom:3px solid #f1c232}
-.features div{flex:1 1 150px;text-align:center;padding:12px 5px;border-right:1px solid #eee;font-size:12px;font-weight:600}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;padding:15px;background:#fdf8e8}
-.card{background:white;border-radius:14px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.12);border:2px solid #e6d9a8;transition:.3s;display:flex;flex-direction:column}
-.card:hover{transform:translateY(-4px);box-shadow:0 10px 20px rgba(0,0,0,.2);border-color:#f1c232}
-.card img{width:100%;height:130px;object-fit:cover}
-.card-body{padding:10px;flex:1;display:flex;flex-direction:column;text-align:center}
-.card-body h3{font-size:14px;color:#032e1a}
-.card-body p{font-size:11px;color:#666;margin:4px 0 10px;flex:1}
-.card-body .open{background:#0a5a33;color:white;padding:7px 14px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;border:none}
-.card-body .open:hover{background:#f1c232;color:black}
-.sidebar{background:#032e1a;color:white;padding:15px;border-radius:14px;margin:15px}
-.sidebar h3{background:#0a5a33;padding:10px;border-radius:8px;text-align:center;color:#ffdf8a;margin-bottom:10px;border:1px solid #f1c232}
-.sidebar ul{list-style:none;font-size:13px}
-.sidebar ul li{padding:7px 0;border-bottom:1px dotted #1a5a33}
-.sidebar ul li::before{content:"✔ ";color:#f1c232;font-weight:bold}
-.qcontact a{display:flex;align-items:center;gap:10px;background:#fff;color:#000;margin:8px 0;padding:10px;border-radius:10px;font-size:13px;font-weight:600;transition:.3s}
-.qcontact a:hover{transform:translateX(5px);background:#f1c232}
-.layout{display:grid;grid-template-columns:1fr 300px;gap:0}
-@media(max-width:800px){.layout{grid-template-columns:1fr} .hero h1{font-size:26px} .hero{min-height:300px}}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;align-items:center;justify-content:center;padding:15px}
-.modal.active{display:flex}
-.modal-box{background:white;border-radius:16px;max-width:500px;width:100%;padding:20px;border:3px solid #f1c232;position:relative;animation:pop .3s}
-@keyframes pop{from{transform:scale(.8)} to{transform:scale(1)}}
-.close{position:absolute;top:10px;right:15px;font-size:22px;cursor:pointer;color:#900}
-footer{background:#021a10;color:#c9e9c9;text-align:center;padding:18px;font-size:12px;border-top:3px solid #f1c232}
+body{margin:0;background:#000;font-family:Arial}
+.main{max-width:1200px;margin:auto;background:#000}
+.banner{position:relative;width:100%}
+.banner img{width:100%;display:block;border:5px solid #d4af37;box-sizing:border-box}
+a.link{position:absolute;display:block;z-index:10;text-indent:-9999px}
+a.link:hover{background:rgba(212,175,55,0.2);border:2px solid #d4af37;border-radius:8px}
+/* Top Contact Bar */
+.top-wa{top:1%;left:3%;width:22%;height:5%}
+.top-email{top:1%;left:29%;width:25%;height:5%}
+.top-zoom{top:1%;left:57%;width:15%;height:5%}
+.top-meet{top:1%;left:77%;width:20%;height:5%}
+/* 10 Books - 5x2 Grid */
+.book{width:18.5%;height:38%;position:absolute;display:block;z-index:10;text-indent:-9999px}
+.book:hover{background:rgba(212,175,55,0.2);border:2px solid #d4af37;border-radius:10px}
+.r1{top:9%} .r2{top:54%}
+.c1{left:0.8%} .c2{left:20.6%} .c3{left:40.5%} .c4{left:60.3%} .c5{left:80.1%}
+.tags{background:#111;color:#d4af37;padding:12px;text-align:center;font-size:13px;line-height:1.8;word-spacing:6px;border-top:2px solid #d4af37}
+.tags span{margin:0 4px}
+.hide{position:absolute;left:-9999px}
 </style>
 </head>
 <body>
+<div class="main">
+<div class="banner">
 
-<div class="top">
-<div>🕌 Jamia Farooqia - Hafiz Abid Husain | Quran Say Roohani Zindagi</div>
-<div><a href="https://wa.me/923025289361" style="color:white"><b>📱 +92 302 528 9361</b></a> | <a href="mailto:Farooqi79086@gmail.com" style="color:#ffdf8a"><b>✉️ Farooqi79086@gmail.com</b></a></div>
-</div>
+<h1 class="hide">Jamia Farooqia Online Quran Academy #jamia #farooqia #online #quran #academy #teacher</h1>
+<h2 class="hide">#noorani #Quaida #Ayat ul kursi #namaz #kalme #Dua e Qunoot #Namaz Janazah #Duaee #Ramadan #islam</h2>
 
-<div class="nav">
-<a class="active" href="#home">🏠 Home</a>
-<a href="#courses">📚 Courses</a>
-<a href="#about">👥 About Us</a>
-<a href="#teachers" onclick="openModal('teachers');return false;">🧑‍🏫 Teachers</a>
-<a href="#gallery" onclick="openModal('gallery');return false;">🖼️ Gallery</a>
-<a href="#contact">✉️ Contact</a>
-<a href="https://wa.me/923025289361" style="background:#25D366;color:white">WhatsApp</a>
-</div>
+<img src="jamia-farooqia-banner.jpg" alt="Jamia Farooqia Banner">
 
-<div class="hero" id="home">
-<div class="hero-content">
-<div style="font-family:Amiri;font-size:22px;color:#ffe27a">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
-<h1>Jamia Farooqia<br>Online Quran Academy <span>Global | Online | Certified Quran Learning for All Ages</span></h1>
-<p>Learn Quran | Learn Deen | Build Your Future - "The best among you are those who learn the Quran and teach it." (Al-Bukhari)</p>
-<button class="btn btn-wa" onclick="openWhatsApp('General Inquiry')">▶ WhatsApp Us</button>
-<button class="btn btn-gold" onclick="openModal('intro')">▶ Email Us</button>
-<button class="btn btn-green" onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})">📖 Our Courses</button>
-</div>
-</div>
+<!-- Top 4 Contacts -->
+<a class="link top-wa" href="https://wa.me/923025289361" target="_blank" title="WhatsApp +92 302 528 9361">WhatsApp</a>
+<a class="link top-email" href="mailto:Farooqi7908@gmail.com" title="Email">Email</a>
+<a class="link top-zoom" href="https://zoom.us/join" target="_blank" title="Zoom">Zoom</a>
+<a class="link top-meet" href="https://meet.google.com/" target="_blank" title="Google Meet">Meet</a>
 
-<div class="features">
-<div>👤 Qualified Teachers (Male & Female)</div>
-<div>💻 Flexible Learning</div>
-<div>📜 Certificate Provided</div>
-<div>🛡️ Safe & Secure</div>
-<div>🎬 Video + Audio + Photos</div>
-<div>📅 3 Days Free Trial</div>
+<!-- Row 1 - 5 Books -->
+<a class="book r1 c1" href="quran-pak-jamia-farooqia.pdf" target="_blank" title="Quran Pak">Quran Pak</a>
+<a class="book r1 c2" href="namaz-jamia-farooqia.pdf" target="_blank" title="Namaz">Namaz</a>
+<a class="book r1 c3" href="6-kalmas-jamia-farooqia.pdf" target="_blank" title="6 Kalmas">6 Kalmas</a>
+<a class="book r1 c4" href="eman-ki-sifaat-jamia-farooqia.pdf" target="_blank" title="Eman Ki Sifaat">Eman Ki Sifaat</a>
+<a class="book r1 c5" href="ayat-ul-kursi-jamia-farooqia.pdf" target="_blank" title="Ayat ul Kursi">Ayat ul Kursi</a>
+
+<!-- Row 2 - 5 Books -->
+<a class="book r2 c1" href="masnoon-duain-jamia-farooqia.pdf" target="_blank" title="Masnoon Duain">Masnoon Duain</a>
+<a class="book r2 c2" href="aazan-jamia-farooqia.pdf" target="_blank" title="Aazan">Aazan</a>
+<a class="book r2 c3" href="aasmani-kutub-jamia-farooqia.pdf" target="_blank" title="Divine Scripture">Aasmani Kutub</a>
+<a class="book r2 c4" href="wudu-ghusl-jamia-farooqia.pdf" target="_blank" title="Wudu Ghusl">Wudu Ghusl</a>
+<a class="book r2 c5" href="mutafarriq-jamia-farooqia.pdf" target="_blank" title="Miscellaneous">Mutafarriq</a>
+
 </div>
 
-<div class="layout">
-<div>
-<div class="section-title" id="courses" style="text-align:center;padding:25px 10px 10px">
-<h2 style="color:#032e1a">📖 Our Courses & Services</h2>
-<p style="font-size:13px;color:#666">Click on any button - sab clickable hai!</p>
-</div>
-<div class="grid">
-<div class="card"><img src="1-Noorani-Qaida.jpg"><div class="card-body"><h3>Noorani Qaida</h3><p>Basic Arabic</p></div></div>
-<div class="card"><img src="2-6-Kalme.jpg"><div class="card-body"><h3>6 Kalme</h3><p>With Meaning</p></div></div>
-<div class="card"><img src="3-Ayat-ul-Kursi.jpg"><div class="card-body"><h3>Ayat-ul-Kursi</h3><p>Memorization</p></div></div>
-<div class="card"><img src="4-Eman-ki-Sifaat.jpg"><div class="card-body"><h3>Eman ki Sifaat</h3><p>Beliefs</p></div></div>
-<div class="card"><img src="5-Namaz.jpg"><div class="card-body"><h3>Namaz</h3><p>Step by Step</p></div></div>
-<div class="card"><img src="6-Quran-Pak-30-Pare.jpg"><div class="card-body"><h3>Quran Pak 30 Pare</h3><p>With Tajweed</p></div></div>
-<div class="card"><img src="7-Namaz-e-Janazah.jpg"><div class="card-body"><h3>Namaz e Janazah</h3><p>Complete Method</p></div></div>
-<div class="card"><img src="8-Wuzu-Gusl-Ka-Tareeqa.jpg"><div class="card-body"><h3>Wuzu Gusl</h3><p>Complete Method</p></div></div>
-<div class="card"><img src="9-Quran-Pak-Tarjuma-Tafseer.jpg"><div class="card-body"><h3>Quran Tarjuma Tafseer</h3><p>Translation</p></div></div>
-<div class="card"><img src="Banner.jpg"><div class="card-body"><h3>3 Days Free Trial</h3><p>Try Before Join</p></div></div>
+<div class="tags">
+<span>#jamia</span> <span>#farooqia</span> <span>#online</span> <span>#quran</span> <span>#academy</span> <span>#teacher</span> <span>#noorani</span> <span>#Quaida</span> <span>#Ayat ul kursi</span> <span>#namaz</span> <span>#kalme</span> <span>#Dua e Qunoot</span> <span>#Namaz Janazah</span> <span>#Duaee</span> <span>#Ramadan</span> <span>#islam</span>
 </div>
 
-<div>
-<div class="sidebar" id="about">
-<h3>⭐ Why Choose Us?</h3>
-<ul>
-<li>1-on-1 Live Classes</li>
-<li>Certified Teachers</li>
-<li>Flexible Timings</li>
-<li>All Age Groups</li>
-<li>Complete Online Learning</li>
-<li>Certificate Provided</li>
-</ul>
-<div style="background:#fff3cd;color:#000;padding:10px;border-radius:8px;margin:12px 0;font-size:12px;text-align:center">Small Steps Toward a Greater Hereafter</div>
-<h3>⚡ Quick Access</h3>
-<div class="qcontact">
-<a href="https://wa.me/923025289361" target="_blank">📱 WhatsApp: +92 302 528 9361</a>
-<a href="mailto:Farooqi79086@gmail.com">✉️ Email: Farooqi79086@gmail.com</a>
-<a href="#" onclick="openModal('gallery');return false;">🖼️ Gallery: View Photos</a>
-<a href="https://meet.google.com/" target="_blank">🎥 Google Meet: Join Class</a>
-<a href="https://zoom.us/join" target="_blank">🎥 Zoom: Join Class</a>
-<a href="#" onclick="openModal('media');return false;">🎵 Audio | Video | Gallery</a>
-<a href="https://farooqi5027.github.io/Jamiafarooqia-/" target="_blank">🌐 Website</a>
-</div>
-</div>
-</div>
+<div style="text-align:center;color:#d4af37;background:#111;padding:10px;font-size:12px">
+Jamia Farooqia Online Quran Academy Lahore | Hafiz Abid Hussain | WhatsApp +92 302 528 9361 | Email: Farooqi7908@gmail.com
 </div>
 
-<div class="modal" id="modalBox">
-<div class="modal-box">
-<span class="close" onclick="closeModal()">✖</span>
-<h2 id="modalTitle" style="color:#032e1a"></h2>
-<p id="modalText" style="margin:12px 0;font-size:14px;line-height:1.6"></p>
-<div id="modalActions"></div>
 </div>
-</div>
-
-<footer>
-📖 Jamia Farooqia Online Quran Academy - Hafiz Abid Husain<br>
-"Quran Say Roohani Zindagi"<br>
-WhatsApp: +92 302 528 9361 | Email: Farooqi79086@gmail.com | Website: farooqi5027.github.io/Jamiafarooqia-
-</footer>
-
-<script>
-function openWhatsApp(course){
-let msg=`Assalam-o-Alaikum! I want to join ${course} course at Jamia Farooqia Online Quran Academy. Please give me details.`;
-window.open(`https://wa.me/923025289361?text=${encodeURIComponent(msg)}`,'_blank');
-}
-function openCourse(name){openModal('course',name);}
-function openModal(type,data){
-const box=document.getElementById('modalBox');
-const title=document.getElementById('modalTitle');
-const text=document.getElementById('modalText');
-const actions=document.getElementById('modalActions');
-box.classList.add('active');
-if(type==='course'){
-title.innerText=data;
-text.innerHTML=`<b>${data}</b> - Jamia Farooqia me ${data} ki complete taleem di jati hai. Qualified Male & Female teachers, Flexible timing, 3 Days Free Trial.`;
-actions.innerHTML=`<button class='btn btn-wa' onclick="openWhatsApp('${data}')">WhatsApp par Join Karein</button> <button class='btn btn-gold' onclick="window.location='mailto:Farooqi79086@gmail.com?subject=${data} Course Inquiry'">Email Karein</button> <a class='btn btn-green' href='https://farooqi5027.github.io/Jamiafarooqia-/' target='_blank'>Website Dekhein</a>`;
-}else if(type==='media'){
-title.innerText='Audio | Video | Photo Gallery';
-text.innerHTML='Yahan aap ki sari Audio, Video aur Photo files hongi. Gallery button se Mosque aur Banner ki photos dekhein.';
-actions.innerHTML=`<a class='btn btn-green' href='https://drive.google.com/' target='_blank'>📁 Audio Files</a> <a class='btn btn-gold' href='https://www.youtube.com/' target='_blank'>🎥 Video Files</a> <a class='btn btn-green' href='#' onclick="openModal('gallery')">🖼️ Photo Gallery</a> <a class='btn btn-wa' href='https://wa.me/923025289361'>WhatsApp par Mangwain</a>`;
-}else if(type==='gallery'){
-title.innerText='Gallery';
-text.innerHTML=`<img src='Banner.jpg' style='width:100%;border-radius:10px'>'><p style='margin-top:10px'>Aap ki Mosque aur Banner ki tasveerein</p>`;
-actions.innerHTML=`<a class='btn btn-wa' href='https://wa.me/923025289361'>More Photos on WhatsApp</a>`;
-}else if(type==='teachers'){
-title.innerText='Male & Female Teachers';
-text.innerHTML='Hamare paas Qualified Male aur Female Qaris available hain. Aap apni pasand ke mutabiq teacher select kar sakte hain.';
-actions.innerHTML=`<button class='btn btn-wa' onclick="openWhatsApp('Teacher Selection')">Teacher Select Karein</button>`;
-}else if(type==='intro'){
-title.innerText='Contact Us';
-text.innerHTML='Email: Farooqi79086@gmail.com<br>WhatsApp: +92 302 528 9361<br>Website: farooqi5027.github.io/Jamiafarooqia-';
-actions.innerHTML=`<a class='btn btn-gold' href='mailto:Farooqi79086@gmail.com'>Email Karein</a> <a class='btn btn-wa' href='https://wa.me/923025289361'>WhatsApp Karein</a> <a class='btn btn-green' href='https://farooqi5027.github.io/Jamiafarooqia-/' target='_blank'>Website Open Karein</a>`;
-}
-}
-function closeModal(){document.getElementById('modalBox').classList.remove('active');}
-window.onclick=function(e){if(e.target.id==='modalBox') closeModal();}
-</script>
 </body>
 </html>
