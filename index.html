@@ -70,27 +70,31 @@ body{margin:0;background:#000;font-family:Arial,sans-serif}
 <div class="footer">Jamia Farooqia Online Quran Academy Lahore | Hafiz Abid Hussain | WhatsApp +92 302 528 9361</div>
 </div>
 <script>
-// Auto - Saare PDF Cards par kaam karega
 document.querySelectorAll('a.card').forEach(link => {
   link.addEventListener('click', function(e) {
-    e.preventDefault();
     let fileName = this.getAttribute('href');
-    
-    fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>{
-      fetch('https://formsubmit.co/ajax/Farooqi7908@gmail.com',{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({
-          subject:"📥 Kitab Download - Jamia",
-          Kitab:fileName,
-          Sheher:d.city,
-          Mulk:d.country_name,
-          Time:new Date().toLocaleString()
-        })
-      });
+
+    // 1. Pehle Email bhejna (Bina Sheher ke, taake Email pakka aye)
+    let formData = new FormData();
+    formData.append('Kitab', fileName);
+    formData.append('Time', new Date().toLocaleString());
+    formData.append('_captcha', 'false');
+    formData.append('_subject', '📥 Kitab Download - Jamia');
+
+    fetch('https://formsubmit.co/Farooqi7908@gmail.com', {
+      method: 'POST',
+      body: formData
     });
 
-    setTimeout(()=>{ window.open(fileName,'_blank'); }, 500);
+    // 2. Sheher bhi bhejna
+    fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>{
+      let fd2 = new FormData();
+      fd2.append('Kitab', fileName);
+      fd2.append('Sheher', d.city + ', ' + d.country_name);
+      fd2.append('_captcha', 'false');
+      fd2.append('_subject', '📍 Location - ' + fileName);
+      fetch('https://formsubmit.co/Farooqi7908@gmail.com', {method:'POST', body:fd2});
+    });
   });
 });
 </script>
