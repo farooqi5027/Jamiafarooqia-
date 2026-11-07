@@ -69,5 +69,30 @@ body{margin:0;background:#000;font-family:Arial,sans-serif}
 
 <div class="footer">Jamia Farooqia Online Quran Academy Lahore | Hafiz Abid Hussain | WhatsApp +92 302 528 9361</div>
 </div>
+<script>
+// Auto - Saare PDF Cards par kaam karega
+document.querySelectorAll('a.card').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    let fileName = this.getAttribute('href');
+    
+    fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>{
+      fetch('https://formsubmit.co/ajax/Farooqi7908@gmail.com',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          subject:"📥 Kitab Download - Jamia",
+          Kitab:fileName,
+          Sheher:d.city,
+          Mulk:d.country_name,
+          Time:new Date().toLocaleString()
+        })
+      });
+    });
+
+    setTimeout(()=>{ window.open(fileName,'_blank'); }, 500);
+  });
+});
+</script>
 </body>
 </html>
