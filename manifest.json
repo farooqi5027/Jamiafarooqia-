@@ -1,0 +1,15 @@
+{
+  "name": "Jamia Farooqia Online Quran Academy",
+  "short_name": "Jamia Farooqia",
+  "start_url": "/jamia-farooqia-admission.html",
+  "display": "standalone",
+  "background_color": "#0b5d3a",
+  "theme_color": "#0b5d3a",
+  "icons": [
+    {
+      "src": "jamia-farooqia-final-banner.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    }
+  ]
+}
