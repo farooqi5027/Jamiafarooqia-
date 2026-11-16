@@ -2,20 +2,22 @@
   "name": "Jamia Farooqia Online Quran Academy",
   "short_name": "Jamia Farooqia",
   "description": "Online Quran Academy for Students, Parents and Teachers - Learn Quran Online",
-  "start_url": "/jamia-farooqia-admission.html",
+  "start_url": "jamia-farooqia-admission.html",
   "display": "standalone",
   "background_color": "#0b5d3a",
   "theme_color": "#0b5d3a",
   "icons": [
     {
-      "src": "https://hafizabid.com/icon-192.png",
+      "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "https://hafizabid.com/icon-512.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
