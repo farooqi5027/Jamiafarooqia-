@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher Registration - Jamia Farooqia</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f5f2;
+  margin: 0;
+  padding: 20px;
+}
+.container {
+  max-width: 550px;
+  margin: auto;
+  background: white;
+  padding: 22px;
+  border-radius: 12px;
+}
+h1, h2 {
+  text-align: center;
+  color: #17633b;
+}
+label {
+  display: block;
+  margin-top: 14px;
+  font-weight: bold;
+}
+input, select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px;
+  margin-top: 6px;
+}
+button {
+  width: 100%;
+  padding: 13px;
+  margin-top: 22px;
+  background: #17633b;
+  color: white;
+  border: 0;
+  border-radius: 6px;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Jamia Farooqia</h1>
+<h2>Teacher Registration Form</h2>
+
+<form>
+<label>Teacher Photo:</label>
+<input type="file" accept="image/*" required>
+
+<label>Job Type:</label>
+<select required>
+<option value="">Select Job Type</option>
+<option>Part Time</option>
+<option>Full Time</option>
+</select>
+
+<label>Teacher Name:</label>
+<input type="text" required>
+
+<label>NIC Number:</label>
+<input type="text" required>
+
+<label>Mobile Number:</label>
+<input type="tel" required>
+
+<label>WhatsApp Number:</label>
+<input type="tel" required>
+
+<label>Gmail:</label>
+<input type="email" required>
+
+<label>City:</label>
+<input type="text" required>
+
+<label>Country:</label>
+<input type="text" required>
+
+<label>Teaching Experience:</label>
+<input type="text" required>
+
+<label>Date of Joining:</label>
+<input type="date" required>
+
+<label>Expected Monthly Salary:</label>
+<input type="number" min="0" required>
+
+<label>Salary Payment Method:</label>
+<select required>
+<option value="">Select Payment Method</option>
+<option>JazzCash</option>
+<option>EasyPaisa</option>
+<option>Bank Transfer</option>
+<option>Cash</option>
+</select>
+
+<button type="submit">Submit Registration</button>
+
+</form>
+</div>
+</body>
+</html>
