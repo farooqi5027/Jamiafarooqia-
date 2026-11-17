@@ -1,110 +1,251 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Teacher Registration - Jamia Farooqia</title>
+
 <style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f2f5f2;
-  margin: 0;
-  padding: 20px;
+*{box-sizing:border-box}
+body{
+ font-family:Arial,sans-serif;
+ background:#f2f5f2;
+ margin:0;
+ padding:15px;
+ color:#222;
 }
-.container {
-  max-width: 550px;
-  margin: auto;
-  background: white;
-  padding: 22px;
-  border-radius: 12px;
+.container{
+ max-width:600px;
+ margin:auto;
+ background:white;
+ padding:22px;
+ border-radius:12px;
+ border:2px solid #17633b;
 }
-h1, h2 {
-  text-align: center;
-  color: #17633b;
+h1,h2{
+ text-align:center;
+ color:#17633b;
 }
-label {
-  display: block;
-  margin-top: 14px;
-  font-weight: bold;
+h1{font-size:25px}
+h2{font-size:21px}
+.subtitle{text-align:center;color:#555}
+label{
+ display:block;
+ margin-top:15px;
+ font-weight:bold;
+ color:#17633b;
 }
-input, select {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 11px;
-  margin-top: 6px;
+input,select{
+ width:100%;
+ box-sizing:border-box;
+ padding:12px;
+ margin-top:6px;
+ border:1px solid #aaa;
+ border-radius:6px;
+ font-size:15px;
+ background:#fff;
 }
-button {
-  width: 100%;
-  padding: 13px;
-  margin-top: 22px;
-  background: #17633b;
-  color: white;
-  border: 0;
-  border-radius: 6px;
-  font-size: 16px;
+.date-row{
+ display:grid;
+ grid-template-columns:1fr 1fr 1.3fr;
+ gap:8px;
+}
+.date-part label{
+ font-size:13px;
+ color:#444;
+ margin-top:8px;
+}
+.date-part input{text-align:center}
+.note{
+ font-size:13px;
+ color:#555;
+ line-height:1.6;
+}
+.section{
+ margin-top:20px;
+ padding:12px;
+ border:1px solid #17633b;
+ border-radius:8px;
+}
+button{
+ width:100%;
+ padding:14px;
+ margin-top:22px;
+ background:#17633b;
+ color:white;
+ border:0;
+ border-radius:6px;
+ font-size:17px;
+ font-weight:bold;
+ cursor:pointer;
+}
+.agree{
+ line-height:1.7;
+}
+.agree label{
+ color:#222;
+ font-weight:normal;
+}
+.agree input{
+ width:auto;
+}
+@media(max-width:380px){
+ .container{padding:14px}
+ .date-row{gap:5px}
+ .date-part label{font-size:11px}
 }
 </style>
 </head>
+
 <body>
 <div class="container">
 
-<h1>Jamia Farooqia</h1>
+<h1>جامعہ فاروقیہ</h1>
 <h2>Teacher Registration Form</h2>
+<h2>اساتذہ کا رجسٹریشن فارم</h2>
+<p class="subtitle">Online Quran Academy — Lahore, Pakistan</p>
 
-<form>
-<label>Teacher Photo:</label>
-<input type="file" accept="image/*" required>
+<form id="teacherForm">
 
-<label>Job Type:</label>
-<select required>
-<option value="">Select Job Type</option>
-<option>Part Time</option>
-<option>Full Time</option>
+<!-- Registration Date -->
+<label>Registration Date / تاریخِ رجسٹریشن *</label>
+<div class="date-row">
+ <div class="date-part">
+  <label>Day / دن</label>
+  <input type="number" id="regDay" min="1" max="31" placeholder="15" required>
+ </div>
+ <div class="date-part">
+  <label>Month / مہینہ</label>
+  <input type="number" id="regMonth" min="1" max="12" placeholder="12" required>
+ </div>
+ <div class="date-part">
+  <label>Year / سال</label>
+  <input type="number" id="regYear" min="1900" max="2100" placeholder="2026" required>
+ </div>
+</div>
+
+<label>Teacher Photo / استاد کی تصویر *</label>
+<input type="file" id="teacherPhoto" accept="image/*" required>
+
+<label>Job Type / ملازمت کی قسم *</label>
+<select id="jobType" required>
+ <option value="">Select Job Type / ملازمت منتخب کریں</option>
+ <option value="Part Time">Part Time / جز وقتی</option>
+ <option value="Full Time">Full Time / کل وقتی</option>
 </select>
 
-<label>Teacher Name:</label>
-<input type="text" required>
+<label>Teacher Name / استاد کا نام *</label>
+<input type="text" id="teacherName" maxlength="100" required>
 
-<label>NIC Number:</label>
-<input type="text" required>
+<!-- Date of Birth -->
+<label>Date of Birth / تاریخِ پیدائش *</label>
+<div class="date-row">
+ <div class="date-part">
+  <label>Day / دن</label>
+  <input type="number" id="dobDay" min="1" max="31" placeholder="15" required>
+ </div>
+ <div class="date-part">
+  <label>Month / مہینہ</label>
+  <input type="number" id="dobMonth" min="1" max="12" placeholder="12" required>
+ </div>
+ <div class="date-part">
+  <label>Year / سال</label>
+  <input type="number" id="dobYear" min="1900" max="2100" placeholder="1990" required>
+ </div>
+</div>
 
-<label>Mobile Number:</label>
-<input type="tel" required>
+<label>NIC Number / قومی شناختی کارڈ نمبر *</label>
+<input type="text" id="nic" maxlength="30" required>
 
-<label>WhatsApp Number:</label>
-<input type="tel" required>
+<label>Father Name / والد کا نام *</label>
+<input type="text" id="fatherName" maxlength="100" required>
 
-<label>Gmail:</label>
-<input type="email" required>
+<!-- Date of Joining -->
+<label>Date of Joining / تاریخِ ملازمت *</label>
+<div class="date-row">
+ <div class="date-part">
+  <label>Day / دن</label>
+  <input type="number" id="joinDay" min="1" max="31" placeholder="15" required>
+ </div>
+ <div class="date-part">
+  <label>Month / مہینہ</label>
+  <input type="number" id="joinMonth" min="1" max="12" placeholder="12" required>
+ </div>
+ <div class="date-part">
+  <label>Year / سال</label>
+  <input type="number" id="joinYear" min="1900" max="2100" placeholder="2026" required>
+ </div>
+</div>
 
-<label>City:</label>
-<input type="text" required>
+<label>City / شہر *</label>
+<input type="text" id="city" maxlength="80" required>
 
-<label>Country:</label>
-<input type="text" required>
+<label>Country / ملک *</label>
+<input type="text" id="country" maxlength="80" required>
 
-<label>Teaching Experience:</label>
-<input type="text" required>
+<label>Gmail / ای میل *</label>
+<input type="email" id="gmail" maxlength="120" required>
 
-<label>Date of Joining:</label>
-<input type="date" required>
+<label>Mobile Number / موبائل نمبر *</label>
+<input type="tel" id="mobile" maxlength="25" required>
 
-<label>Expected Monthly Salary:</label>
-<input type="number" min="0" required>
+<label>WhatsApp Number / واٹس ایپ نمبر *</label>
+<input type="tel" id="whatsapp" maxlength="25" required>
 
-<label>Salary Payment Method:</label>
-<select required>
-<option value="">Select Payment Method</option>
-<option>JazzCash</option>
-<option>EasyPaisa</option>
-<option>Bank Transfer</option>
-<option>Cash</option>
+<label>Teaching Experience / تدریسی تجربہ *</label>
+<input type="text" id="experience" maxlength="100" required>
+
+<label>Expected Monthly Salary / متوقع ماہانہ تنخواہ *</label>
+<input type="number" id="salary" min="0" max="10000000" required>
+
+<label>Salary Payment Method / تنخواہ وصول کرنے کا طریقہ *</label>
+<select id="paymentMethod" required>
+ <option value="">Select Payment Method / طریقہ منتخب کریں</option>
+ <option value="JazzCash">JazzCash</option>
+ <option value="EasyPaisa">EasyPaisa</option>
+ <option value="Bank">Bank / بینک</option>
 </select>
 
-<button type="submit">Submit Registration</button>
+<div class="section agree">
+ <label>
+  <input type="checkbox" id="agreement" required>
+  I Agree / میں اتفاق کرتا ہوں ✓
+ </label>
+
+ <p>
+ I am filling out this form voluntarily, and all the information I have provided is true and correct.
+ </p>
+
+ <p dir="rtl">
+ میں اپنی مرضی سے یہ فارم پُر کر رہا/رہی ہوں، اور میری فراہم کردہ تمام معلومات درست ہیں۔
+ </p>
+</div>
+
+<button type="submit">
+Submit Registration / رجسٹریشن جمع کروائیں
+</button>
 
 </form>
 </div>
+
+<script>
+function setToday(){
+ const d = new Date();
+ document.getElementById("regDay").value = d.getDate();
+ document.getElementById("regMonth").value = d.getMonth()+1;
+ document.getElementById("regYear").value = d.getFullYear();
+}
+setToday();
+
+document.getElementById("teacherForm").addEventListener("submit",function(e){
+ e.preventDefault();
+
+ if(!this.reportValidity()) return;
+
+ alert("آپ کی معلومات درست طریقے سے پُر ہوگئی ہیں۔ Firebase submission ابھی منسلک نہیں ہے۔");
+});
+</script>
+
 </body>
 </html>
