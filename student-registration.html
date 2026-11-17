@@ -9,82 +9,65 @@
 <style>
 *{box-sizing:border-box}
 body{
- margin:0;
- padding:15px;
- background:#080d09;
- color:#fff;
+ margin:0;padding:15px;background:#080d09;color:#fff;
  font-family:Arial,sans-serif;
 }
 .container{
- max-width:700px;
- margin:auto;
- background:#111b14;
- border:2px solid #d4af37;
- border-radius:12px;
- padding:20px;
+ max-width:700px;margin:auto;background:#111b14;
+ border:2px solid #d4af37;border-radius:12px;padding:20px;
 }
 h1,h2{text-align:center;color:#e2c15a}
 h1{font-size:25px}
 h2{font-size:21px}
 .subtitle{text-align:center;color:#ddd}
 label{
- display:block;
- margin:15px 0 6px;
- font-weight:bold;
- color:#f0d77e;
+ display:block;margin:15px 0 6px;
+ font-weight:bold;color:#f0d77e;
 }
 input,select{
- width:100%;
- padding:12px;
- border:1px solid #b99a39;
- border-radius:6px;
- font-size:15px;
- background:#fff;
- color:#111;
+ width:100%;padding:12px;border:1px solid #b99a39;
+ border-radius:6px;font-size:15px;background:#fff;color:#111;
 }
+.date-row{
+ display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px;
+}
+.date-part label{
+ font-size:13px;color:#ddd;margin:7px 0 5px;
+}
+.date-part input{text-align:center}
 .section{
- margin-top:22px;
- padding:12px;
- border:1px solid #806b2b;
- border-radius:8px;
+ margin-top:22px;padding:12px;
+ border:1px solid #806b2b;border-radius:8px;
 }
 .section h3{color:#e2c15a;margin-top:3px}
 .course{
- padding:8px;
- margin:5px 0;
- background:#1b2b20;
- border-radius:5px;
+ padding:10px;margin:6px 0;background:#1b2b20;
+ border-radius:5px;line-height:1.8;
 }
-.course input,.agree input{
- width:auto;
- margin-right:8px;
-}
+.course input,.agree input{width:auto;margin-right:8px}
 .course label,.agree label{
- display:inline;
- color:white;
- font-weight:normal;
+ display:inline;color:white;font-weight:normal;margin:0;
+}
+.course .english{
+ display:block;color:#d6d6d6;font-size:14px;
 }
 button{
- width:100%;
- padding:14px;
- margin-top:18px;
- background:#17633b;
- color:white;
- border:0;
- border-radius:7px;
- font-size:18px;
- font-weight:bold;
- cursor:pointer;
+ width:100%;padding:14px;margin-top:18px;
+ background:#17633b;color:white;border:0;border-radius:7px;
+ font-size:18px;font-weight:bold;cursor:pointer;
 }
 button:disabled{opacity:.6;cursor:not-allowed}
 .agree{margin-top:20px;line-height:1.7}
 #message{
- margin-top:15px;
- text-align:center;
- font-weight:bold;
+ margin-top:15px;text-align:center;font-weight:bold;
  overflow-wrap:anywhere;
 }
 .note{color:#ddd;font-size:13px;line-height:1.7}
+@media(max-width:380px){
+ .container{padding:13px}
+ .date-row{gap:5px}
+ .date-part label{font-size:11px}
+}
 </style>
 </head>
 
@@ -95,75 +78,187 @@ button:disabled{opacity:.6;cursor:not-allowed}
 <p class="subtitle">Online Quran Academy — Lahore, Pakistan</p>
 
 <h2>Student / Parents Registration Form</h2>
+<h2>طلبہ / والدین کا داخلہ فارم</h2>
 
 <form id="studentForm">
 
-<label>Registration Date *</label>
-<input type="date" id="registrationDate" required>
+<!-- Registration Date -->
+<label>Registration Date / تاریخِ رجسٹریشن *</label>
+<div class="date-row">
+ <div class="date-part">
+  <label>Day / دن</label>
+  <input type="number" id="regDay" min="1" max="31" placeholder="15" required>
+ </div>
+ <div class="date-part">
+  <label>Month / مہینہ</label>
+  <input type="number" id="regMonth" min="1" max="12" placeholder="12" required>
+ </div>
+ <div class="date-part">
+  <label>Year / سال</label>
+  <input type="number" id="regYear" min="1900" max="2100" placeholder="2026" required>
+ </div>
+</div>
 
-<label>Student Image *</label>
+<label>Student Image / طالب علم کی تصویر *</label>
 <input type="file" id="studentPhoto" accept="image/*" required>
 <p class="note">تصویر JPG، PNG یا دوسری عام Image ہونی چاہیے۔ تصویر خودکار طور پر چھوٹی کی جائے گی۔</p>
 
-<label>Student Name *</label>
+<label>Student Name / طالب علم کا نام *</label>
 <input type="text" id="studentName" maxlength="100" required>
 
-<label>Date of Birth *</label>
-<input type="date" id="dateOfBirth" required>
-
-<label>Father / Guardian Name *</label>
-<input type="text" id="guardianName" maxlength="100" required>
-
-<label>Date of Joining *</label>
-<input type="date" id="joiningDate" required>
-
-<label>City *</label>
-<input type="text" id="city" maxlength="80" required>
-
-<label>Country *</label>
-<input type="text" id="country" maxlength="80" required>
-
-<label>Parents Gmail *</label>
-<input type="email" id="parentEmail" maxlength="120" required>
-
-<label>Parents WhatsApp Number *</label>
-<input type="tel" id="parentWhatsApp" maxlength="25" required>
-
-<label>Student WhatsApp Number *</label>
-<input type="tel" id="studentWhatsApp" maxlength="25" required>
-
-<label>Monthly Fee (Parents Choose According to Their Ability) *</label>
-<input type="number" id="monthlyFee" min="1" max="1000000" step="1" required>
-
-<div class="section">
-<h3>تمام طلبہ کے لازمی مضامین</h3>
-<p class="note">یہ تمام مضامین ایک ہی ماہانہ فیس میں شامل ہیں۔ طالب علم کو تمام مضامین پڑھائے جائیں گے۔</p>
-
-<div class="course">1. نورانی قاعدہ (تجوید)</div>
-<div class="course">2. ناظرہ قرآن (تجوید)</div>
-<div class="course">3. نماز کا طریقہ</div>
-<div class="course">4. غسل کا طریقہ</div>
-<div class="course">5. غسل کے فرائض</div>
-<div class="course">6. وضو کا طریقہ</div>
-<div class="course">7. وضو کے فرائض</div>
-<div class="course">8. نماز</div>
-<div class="course">9. 6 کلمے</div>
-<div class="course">10. آیت الکرسی</div>
-<div class="course">11. نماز جنازہ</div>
-<div class="course">12. دعائے قنوت</div>
-<div class="course">13. ایمان کی صفات</div>
-<div class="course">14. آذان</div>
-<div class="course">15. مسنون دعائیں</div>
+<!-- Date of Birth -->
+<label>Date of Birth / تاریخِ پیدائش *</label>
+<div class="date-row">
+ <div class="date-part">
+  <label>Day / دن</label>
+  <input type="number" id="dobDay" min="1" max="31" placeholder="15" required>
+ </div>
+ <div class="date-part">
+  <label>Month / مہینہ</label>
+  <input type="number" id="dobMonth" min="1" max="12" placeholder="12" required>
+ </div>
+ <div class="date-part">
+  <label>Year / سال</label>
+  <input type="number" id="dobYear" min="1900" max="2100" placeholder="1990" required>
+ </div>
 </div>
 
+<label>Father / Guardian Name / والد یا سرپرست کا نام *</label>
+<input type="text" id="guardianName" maxlength="100" required>
+
+<!-- Date of Joining -->
+<label>Date of Joining / تاریخِ داخلہ *</label>
+<div class="date-row">
+ <div class="date-part">
+  <label>Day / دن</label>
+  <input type="number" id="joinDay" min="1" max="31" placeholder="15" required>
+ </div>
+ <div class="date-part">
+  <label>Month / مہینہ</label>
+  <input type="number" id="joinMonth" min="1" max="12" placeholder="12" required>
+ </div>
+ <div class="date-part">
+  <label>Year / سال</label>
+  <input type="number" id="joinYear" min="1900" max="2100" placeholder="2026" required>
+ </div>
+</div>
+
+<label>City / شہر *</label>
+<input type="text" id="city" maxlength="80" required>
+
+<label>Country / ملک *</label>
+<input type="text" id="country" maxlength="80" required>
+
+<label>Parents Gmail / والدین کا Gmail *</label>
+<input type="email" id="parentEmail" maxlength="120" required>
+
+<label>Parents WhatsApp Number / والدین کا واٹس ایپ نمبر *</label>
+<input type="tel" id="parentWhatsApp" maxlength="25" required>
+
+<label>Student WhatsApp Number / طالب علم کا واٹس ایپ نمبر *</label>
+<input type="tel" id="studentWhatsApp" maxlength="25" required>
+
+<label>Monthly Fee / ماہانہ فیس (والدین اپنی استطاعت کے مطابق منتخب کریں) *</label>
+<input type="number" id="monthlyFee" min="1" max="1000000" step="1" required>
+
+<!-- Standard Courses -->
 <div class="section">
-<h3>اختیاری اضافی کورسز</h3>
-<p class="note">ان کورسز کی اضافی فیس Main Admin مقرر کرے گا۔ والدین اپنی درخواست میں انتخاب کر سکتے ہیں۔</p>
+<h3>تمام طلبہ کے لازمی مضامین / Compulsory Courses for All Students</h3>
+<p class="note">
+یہ تمام مضامین ایک ہی ماہانہ فیس میں شامل ہیں۔
+All students will study all these courses under one monthly fee.
+</p>
+
+<div class="course">
+1. نورانی قاعدہ (تجوید)
+<span class="english">Noorani Qaida (Tajweed)</span>
+</div>
+
+<div class="course">
+2. ناظرہ قرآن (تجوید)
+<span class="english">Nazra Quran (Tajweed)</span>
+</div>
+
+<div class="course">
+3. نماز کا طریقہ
+<span class="english">How to Perform Salah</span>
+</div>
+
+<div class="course">
+4. غسل کا طریقہ
+<span class="english">How to Perform Ghusl</span>
+</div>
+
+<div class="course">
+5. غسل کے فرائض
+<span class="english">Obligations of Ghusl</span>
+</div>
+
+<div class="course">
+6. وضو کا طریقہ
+<span class="english">How to Perform Wudu</span>
+</div>
+
+<div class="course">
+7. وضو کے فرائض
+<span class="english">Obligations of Wudu</span>
+</div>
+
+<div class="course">
+8. نماز
+<span class="english">Salah (Prayer)</span>
+</div>
+
+<div class="course">
+9. 6 کلمے
+<span class="english">Six Kalimas</span>
+</div>
+
+<div class="course">
+10. آیت الکرسی
+<span class="english">Ayat-ul-Kursi</span>
+</div>
+
+<div class="course">
+11. نماز جنازہ
+<span class="english">Funeral Prayer</span>
+</div>
+
+<div class="course">
+12. دعائے قنوت
+<span class="english">Dua-e-Qunoot</span>
+</div>
+
+<div class="course">
+13. ایمان کی صفات
+<span class="english">Qualities of Faith</span>
+</div>
+
+<div class="course">
+14. آذان
+<span class="english">Adhan (Call to Prayer)</span>
+</div>
+
+<div class="course">
+15. مسنون دعائیں
+<span class="english">Masnoon Duas</span>
+</div>
+</div>
+
+<!-- Optional Courses -->
+<div class="section">
+<h3>اختیاری اضافی کورسز / Optional Additional Courses</h3>
+
+<p class="note">
+ان کورسز کی اضافی فیس Main Admin مقرر کرے گا۔
+Additional fees will be decided by the Main Admin.
+</p>
 
 <div class="course">
 <label>
 <input type="checkbox" id="optionalHifz">
 حفظ قرآن (تجوید)
+<span class="english">Hifz-ul-Quran (Tajweed)</span>
 </label>
 </div>
 
@@ -171,23 +266,33 @@ button:disabled{opacity:.6;cursor:not-allowed}
 <label>
 <input type="checkbox" id="optionalTranslation">
 قرآن مجید ترجمہ، تفسیر
+<span class="english">Quran Translation & Tafseer</span>
 </label>
 </div>
 
-<p class="note">قرآن مجید ترجمہ و تفسیر کے لیے الگ خاتون ٹیچر مقرر ہوگی۔</p>
+<p class="note">
+قرآن مجید ترجمہ و تفسیر کے لیے الگ خاتون ٹیچر مقرر ہوگی۔
+A separate female teacher will teach Quran Translation & Tafseer.
+</p>
 </div>
 
+<!-- Agreement -->
 <div class="section agree">
 <label>
 <input type="checkbox" id="agreement" required>
-I Agree ✓
+I Agree / میں اتفاق کرتا ہوں ✓
 </label>
 <p>
 I am filling out this form voluntarily, and all the information I have provided is true and correct.
 </p>
+<p dir="rtl">
+میں اپنی مرضی سے یہ فارم پُر کر رہا/رہی ہوں، اور میری فراہم کردہ تمام معلومات درست ہیں۔
+</p>
 </div>
 
-<button type="submit" id="submitBtn">Submit Registration</button>
+<button type="submit" id="submitBtn">
+Submit Registration / داخلہ درخواست جمع کروائیں
+</button>
 
 <div id="message" role="status"></div>
 
@@ -211,13 +316,38 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-function localDate(){
- const d = new Date();
- const offset = d.getTimezoneOffset();
- return new Date(d.getTime() - offset * 60000).toISOString().slice(0,10);
+function setToday(){
+ const now = new Date();
+ document.getElementById("regDay").value = now.getDate();
+ document.getElementById("regMonth").value = now.getMonth()+1;
+ document.getElementById("regYear").value = now.getFullYear();
 }
+setToday();
 
-document.getElementById("registrationDate").value = localDate();
+// Convert Day / Month / Year into YYYY-MM-DD
+function getDateValue(dayId, monthId, yearId){
+ const day = Number(document.getElementById(dayId).value);
+ const month = Number(document.getElementById(monthId).value);
+ const year = Number(document.getElementById(yearId).value);
+
+ if(!day || !month || !year){
+  throw new Error("براہ کرم تاریخ کے تینوں خانے مکمل کریں۔");
+ }
+
+ const date = new Date(Date.UTC(year,month-1,day));
+
+ if(
+  date.getUTCFullYear() !== year ||
+  date.getUTCMonth() !== month-1 ||
+  date.getUTCDate() !== day
+ ){
+  throw new Error("تاریخ درست نہیں۔ براہ کرم Day، Month اور Year چیک کریں۔");
+ }
+
+ return String(year).padStart(4,"0")+"-"+
+        String(month).padStart(2,"0")+"-"+
+        String(day).padStart(2,"0");
+}
 
 function compressImage(file){
  return new Promise((resolve,reject)=>{
@@ -280,20 +410,24 @@ form.addEventListener("submit", async function(e){
  if(!form.reportValidity()) return;
 
  submitBtn.disabled = true;
- submitBtn.textContent = "Submitting...";
+ submitBtn.textContent = "Submitting... / جمع ہو رہا ہے...";
  message.textContent = "";
 
  try{
+  const registrationDate = getDateValue("regDay","regMonth","regYear");
+  const dateOfBirth = getDateValue("dobDay","dobMonth","dobYear");
+  const joiningDate = getDateValue("joinDay","joinMonth","joinYear");
+
   const file = document.getElementById("studentPhoto").files[0];
   const photo = await compressImage(file);
 
   const application = {
-   registrationDate: document.getElementById("registrationDate").value,
+   registrationDate: registrationDate,
    studentPhoto: photo,
    studentName: document.getElementById("studentName").value.trim(),
-   dateOfBirth: document.getElementById("dateOfBirth").value,
+   dateOfBirth: dateOfBirth,
    guardianName: document.getElementById("guardianName").value.trim(),
-   joiningDate: document.getElementById("joiningDate").value,
+   joiningDate: joiningDate,
    city: document.getElementById("city").value.trim(),
    country: document.getElementById("country").value.trim(),
    parentEmail: document.getElementById("parentEmail").value.trim(),
@@ -315,7 +449,7 @@ form.addEventListener("submit", async function(e){
   message.textContent = "الحمدللہ! آپ کی درخواست کامیابی سے جمع ہوگئی ہے۔ Admin کی منظوری کا انتظار کریں۔";
 
   form.reset();
-  document.getElementById("registrationDate").value = localDate();
+  setToday();
 
  }catch(error){
   console.error(error);
@@ -323,7 +457,7 @@ form.addEventListener("submit", async function(e){
   message.textContent = "درخواست جمع نہیں ہوئی: " + (error.message || "براہ کرم دوبارہ کوشش کریں۔");
  }finally{
   submitBtn.disabled = false;
-  submitBtn.textContent = "Submit Registration";
+  submitBtn.textContent = "Submit Registration / داخلہ درخواست جمع کروائیں";
  }
 });
 </script>
