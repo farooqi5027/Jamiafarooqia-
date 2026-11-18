@@ -772,14 +772,14 @@ document.getElementById("teacherForm").addEventListener(
 
     } catch (error) {
 
-      console.error(error);
+  console.error(error);
 
-      showMessage(
-        "Registration could not be submitted. Please try again. / رجسٹریشن جمع نہیں ہو سکی۔ براہ کرم دوبارہ کوشش کریں۔",
-        "error"
-      );
+  showMessage(
+    "Firebase Error: " + error.message,
+    "error"
+  );
 
-    } finally {
+} finally {
 
       submitBtn.disabled = false;
     }
