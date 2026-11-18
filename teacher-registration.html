@@ -1,250 +1,792 @@
-
 <!DOCTYPE html>
-<html lang="ur">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Teacher Registration - Jamia Farooqia</title>
 
 <style>
-*{box-sizing:border-box}
-body{
- font-family:Arial,sans-serif;
- background:#f2f5f2;
- margin:0;
- padding:15px;
- color:#222;
+* {
+  box-sizing: border-box;
 }
-.container{
- max-width:600px;
- margin:auto;
- background:white;
- padding:22px;
- border-radius:12px;
- border:2px solid #17633b;
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f8f4;
+  color: #222;
 }
-h1,h2{
- text-align:center;
- color:#17633b;
+
+.container {
+  max-width: 700px;
+  margin: 25px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.12);
 }
-h1{font-size:25px}
-h2{font-size:21px}
-.subtitle{text-align:center;color:#555}
-label{
- display:block;
- margin-top:15px;
- font-weight:bold;
- color:#17633b;
+
+.logo {
+  text-align: center;
+  margin-bottom: 10px;
 }
-input,select{
- width:100%;
- box-sizing:border-box;
- padding:12px;
- margin-top:6px;
- border:1px solid #aaa;
- border-radius:6px;
- font-size:15px;
- background:#fff;
+
+.logo img {
+  width: 95px;
+  height: 95px;
+  object-fit: contain;
 }
-.date-row{
- display:grid;
- grid-template-columns:1fr 1fr 1.3fr;
- gap:8px;
+
+h1 {
+  text-align: center;
+  color: #087f23;
+  margin-bottom: 5px;
 }
-.date-part label{
- font-size:13px;
- color:#444;
- margin-top:8px;
+
+.subtitle {
+  text-align: center;
+  color: #555;
+  margin-bottom: 25px;
 }
-.date-part input{text-align:center}
-.note{
- font-size:13px;
- color:#555;
- line-height:1.6;
+
+.section-title {
+  background: #087f23;
+  color: white;
+  padding: 10px;
+  border-radius: 7px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  text-align: center;
 }
-.section{
- margin-top:20px;
- padding:12px;
- border:1px solid #17633b;
- border-radius:8px;
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 6px;
 }
-button{
- width:100%;
- padding:14px;
- margin-top:22px;
- background:#17633b;
- color:white;
- border:0;
- border-radius:6px;
- font-size:17px;
- font-weight:bold;
- cursor:pointer;
+
+input,
+select {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  font-size: 15px;
 }
-.agree{
- line-height:1.7;
+
+.date-row {
+  display: flex;
+  gap: 8px;
 }
-.agree label{
- color:#222;
- font-weight:normal;
+
+.date-row input {
+  flex: 1;
 }
-.agree input{
- width:auto;
+
+.help {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
 }
-@media(max-width:380px){
- .container{padding:14px}
- .date-row{gap:5px}
- .date-part label{font-size:11px}
+
+.agreement {
+  margin-top: 25px;
+  padding: 15px;
+  background: #f0f7f1;
+  border: 1px solid #c7dfca;
+  border-radius: 8px;
+  line-height: 1.7;
+}
+
+.agreement label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.agreement input {
+  width: auto;
+}
+
+button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 13px;
+  background: #087f23;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #05661c;
+}
+
+button:disabled {
+  background: #888;
+  cursor: not-allowed;
+}
+
+.message {
+  display: none;
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 7px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.success {
+  background: #d9f3df;
+  color: #116b27;
+}
+
+.error {
+  background: #fde0e0;
+  color: #a30000;
+}
+
+.required {
+  color: red;
 }
 </style>
 </head>
 
 <body>
+
 <div class="container">
 
-<h1>جامعہ فاروقیہ</h1>
-<h2>Teacher Registration Form</h2>
-<h2>اساتذہ کا رجسٹریشن فارم</h2>
-<p class="subtitle">Online Quran Academy — Lahore, Pakistan</p>
+  <div class="logo">
+    <!-- Apni academy logo file ka naam yahan rakhein -->
+    <img src="logo.png" alt="Jamia Farooqia Logo">
+  </div>
 
-<form id="teacherForm">
+  <h1>جامعہ فاروقیہ</h1>
+  <div class="subtitle">
+    Online Quran Academy — Lahore, Pakistan
+  </div>
 
-<!-- Registration Date -->
-<label>Registration Date / تاریخِ رجسٹریشن *</label>
-<div class="date-row">
- <div class="date-part">
-  <label>Day / دن</label>
-  <input type="number" id="regDay" min="1" max="31" placeholder="15" required>
- </div>
- <div class="date-part">
-  <label>Month / مہینہ</label>
-  <input type="number" id="regMonth" min="1" max="12" placeholder="12" required>
- </div>
- <div class="date-part">
-  <label>Year / سال</label>
-  <input type="number" id="regYear" min="1900" max="2100" placeholder="2026" required>
- </div>
+  <div class="section-title">
+    Teacher Registration / استاد رجسٹریشن
+  </div>
+
+  <form id="teacherForm">
+
+    <!-- Registration Date -->
+    <label>
+      Registration Date / رجسٹریشن کی تاریخ
+      <span class="required">*</span>
+    </label>
+
+    <div class="date-row">
+      <input type="number" id="regDay" placeholder="Day / دن"
+             min="1" max="31" required>
+
+      <input type="number" id="regMonth" placeholder="Month / ماہ"
+             min="1" max="12" required>
+
+      <input type="number" id="regYear" placeholder="Year / سال"
+             min="1900" max="2100" required>
+    </div>
+
+    <!-- Teacher Image -->
+    <label>
+      Teacher Image / استاد کی تصویر
+      <span class="required">*</span>
+    </label>
+
+    <input type="file"
+           id="teacherImage"
+           accept="image/jpeg,image/png,image/webp"
+           required>
+
+    <div class="help">
+      JPG, PNG or WEBP — clear teacher photo
+    </div>
+
+    <!-- Job Type -->
+    <label>
+      Job Type / ملازمت کی قسم
+      <span class="required">*</span>
+    </label>
+
+    <select id="jobType" required>
+      <option value="">Select / منتخب کریں</option>
+      <option value="Part Time">Part Time / جز وقتی</option>
+      <option value="Full Time">Full Time / کل وقتی</option>
+    </select>
+
+    <!-- Teacher Name -->
+    <label>
+      Teacher Name / استاد کا نام
+      <span class="required">*</span>
+    </label>
+
+    <input type="text"
+           id="teacherName"
+           maxlength="100"
+           required>
+
+    <!-- Date of Birth -->
+    <label>
+      Date of Birth / تاریخ پیدائش
+      <span class="required">*</span>
+    </label>
+
+    <div class="date-row">
+      <input type="number" id="dobDay" placeholder="Day / دن"
+             min="1" max="31" required>
+
+      <input type="number" id="dobMonth" placeholder="Month / ماہ"
+             min="1" max="12" required>
+
+      <input type="number" id="dobYear" placeholder="Year / سال"
+             min="1900" max="2100" required>
+    </div>
+
+    <!-- NIC -->
+    <label>
+      NIC / شناختی کارڈ نمبر
+      <span class="required">*</span>
+    </label>
+
+    <input type="text"
+           id="nic"
+           maxlength="25"
+           placeholder="e.g. 35202-1234567-1"
+           required>
+
+    <!-- Father Name -->
+    <label>
+      Father Name / والد کا نام
+      <span class="required">*</span>
+    </label>
+
+    <input type="text"
+           id="fatherName"
+           maxlength="100"
+           required>
+
+    <!-- Joining Date -->
+    <label>
+      Date of Joining / شمولیت کی تاریخ
+      <span class="required">*</span>
+    </label>
+
+    <div class="date-row">
+      <input type="number" id="joinDay" placeholder="Day / دن"
+             min="1" max="31" required>
+
+      <input type="number" id="joinMonth" placeholder="Month / ماہ"
+             min="1" max="12" required>
+
+      <input type="number" id="joinYear" placeholder="Year / سال"
+             min="1900" max="2100" required>
+    </div>
+
+    <!-- City -->
+    <label>
+      City / شہر
+      <span class="required">*</span>
+    </label>
+
+    <input type="text"
+           id="city"
+           maxlength="80"
+           required>
+
+    <!-- Country -->
+    <label>
+      Country / ملک
+      <span class="required">*</span>
+    </label>
+
+    <input type="text"
+           id="country"
+           maxlength="80"
+           value="Pakistan"
+           required>
+
+    <!-- Gmail -->
+    <label>
+      Gmail / جی میل
+      <span class="required">*</span>
+    </label>
+
+    <input type="email"
+           id="gmail"
+           maxlength="120"
+           required>
+
+    <!-- Mobile -->
+    <label>
+      Mobile Number / موبائل نمبر
+      <span class="required">*</span>
+    </label>
+
+    <input type="tel"
+           id="mobile"
+           maxlength="25"
+           required>
+
+    <!-- WhatsApp -->
+    <label>
+      WhatsApp / واٹس ایپ
+      <span class="required">*</span>
+    </label>
+
+    <input type="tel"
+           id="whatsapp"
+           maxlength="25"
+           required>
+
+    <!-- Experience -->
+    <label>
+      Teaching Experience / تدریسی تجربہ
+      <span class="required">*</span>
+    </label>
+
+    <input type="text"
+           id="experience"
+           maxlength="100"
+           placeholder="e.g. 5 Years"
+           required>
+
+    <!-- Salary -->
+    <label>
+      Monthly Salary / ماہانہ تنخواہ
+      <span class="required">*</span>
+    </label>
+
+    <input type="number"
+           id="monthlySalary"
+           min="1"
+           max="1000000"
+           required>
+
+    <!-- Payment Method -->
+    <label>
+      Salary Payment Method / تنخواہ وصول کرنے کا طریقہ
+      <span class="required">*</span>
+    </label>
+
+    <select id="paymentMethod" required>
+      <option value="">Select / منتخب کریں</option>
+      <option value="JazzCash">JazzCash</option>
+      <option value="EasyPaisa">EasyPaisa</option>
+      <option value="Bank">Bank</option>
+    </select>
+
+    <!-- Agreement -->
+    <div class="agreement">
+
+      <strong>
+        Agreement / اقرار
+      </strong>
+
+      <p>
+        I am filling out this form voluntarily, and all the information
+        I have provided is true and correct.
+      </p>
+
+      <p dir="rtl">
+        میں یہ فارم اپنی رضامندی سے پُر کر رہا/رہی ہوں، اور میری فراہم کردہ
+        تمام معلومات درست اور صحیح ہیں۔
+      </p>
+
+      <label>
+        <input type="checkbox" id="agreement" required>
+        I Agree ✓ / میں اتفاق کرتا/کرتی ہوں ✓
+      </label>
+
+    </div>
+
+    <button type="submit" id="submitBtn">
+      Submit Registration / رجسٹریشن جمع کریں
+    </button>
+
+    <div id="message" class="message"></div>
+
+  </form>
+
 </div>
 
-<label>Teacher Photo / استاد کی تصویر *</label>
-<input type="file" id="teacherPhoto" accept="image/*" required>
 
-<label>Job Type / ملازمت کی قسم *</label>
-<select id="jobType" required>
- <option value="">Select Job Type / ملازمت منتخب کریں</option>
- <option value="Part Time">Part Time / جز وقتی</option>
- <option value="Full Time">Full Time / کل وقتی</option>
-</select>
-
-<label>Teacher Name / استاد کا نام *</label>
-<input type="text" id="teacherName" maxlength="100" required>
-
-<!-- Date of Birth -->
-<label>Date of Birth / تاریخِ پیدائش *</label>
-<div class="date-row">
- <div class="date-part">
-  <label>Day / دن</label>
-  <input type="number" id="dobDay" min="1" max="31" placeholder="15" required>
- </div>
- <div class="date-part">
-  <label>Month / مہینہ</label>
-  <input type="number" id="dobMonth" min="1" max="12" placeholder="12" required>
- </div>
- <div class="date-part">
-  <label>Year / سال</label>
-  <input type="number" id="dobYear" min="1900" max="2100" placeholder="1990" required>
- </div>
-</div>
-
-<label>NIC Number / قومی شناختی کارڈ نمبر *</label>
-<input type="text" id="nic" maxlength="30" required>
-
-<label>Father Name / والد کا نام *</label>
-<input type="text" id="fatherName" maxlength="100" required>
-
-<!-- Date of Joining -->
-<label>Date of Joining / تاریخِ ملازمت *</label>
-<div class="date-row">
- <div class="date-part">
-  <label>Day / دن</label>
-  <input type="number" id="joinDay" min="1" max="31" placeholder="15" required>
- </div>
- <div class="date-part">
-  <label>Month / مہینہ</label>
-  <input type="number" id="joinMonth" min="1" max="12" placeholder="12" required>
- </div>
- <div class="date-part">
-  <label>Year / سال</label>
-  <input type="number" id="joinYear" min="1900" max="2100" placeholder="2026" required>
- </div>
-</div>
-
-<label>City / شہر *</label>
-<input type="text" id="city" maxlength="80" required>
-
-<label>Country / ملک *</label>
-<input type="text" id="country" maxlength="80" required>
-
-<label>Gmail / ای میل *</label>
-<input type="email" id="gmail" maxlength="120" required>
-
-<label>Mobile Number / موبائل نمبر *</label>
-<input type="tel" id="mobile" maxlength="25" required>
-
-<label>WhatsApp Number / واٹس ایپ نمبر *</label>
-<input type="tel" id="whatsapp" maxlength="25" required>
-
-<label>Teaching Experience / تدریسی تجربہ *</label>
-<input type="text" id="experience" maxlength="100" required>
-
-<label>Expected Monthly Salary / متوقع ماہانہ تنخواہ *</label>
-<input type="number" id="salary" min="0" max="10000000" required>
-
-<label>Salary Payment Method / تنخواہ وصول کرنے کا طریقہ *</label>
-<select id="paymentMethod" required>
- <option value="">Select Payment Method / طریقہ منتخب کریں</option>
- <option value="JazzCash">JazzCash</option>
- <option value="EasyPaisa">EasyPaisa</option>
- <option value="Bank">Bank / بینک</option>
-</select>
-
-<div class="section agree">
- <label>
-  <input type="checkbox" id="agreement" required>
-  I Agree / میں اتفاق کرتا ہوں ✓
- </label>
-
- <p>
- I am filling out this form voluntarily, and all the information I have provided is true and correct.
- </p>
-
- <p dir="rtl">
- میں اپنی مرضی سے یہ فارم پُر کر رہا/رہی ہوں، اور میری فراہم کردہ تمام معلومات درست ہیں۔
- </p>
-</div>
-
-<button type="submit">
-Submit Registration / رجسٹریشن جمع کروائیں
-</button>
-
-</form>
-</div>
+<!-- Firebase Compat SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
 
 <script>
-function setToday(){
- const d = new Date();
- document.getElementById("regDay").value = d.getDate();
- document.getElementById("regMonth").value = d.getMonth()+1;
- document.getElementById("regYear").value = d.getFullYear();
+
+/* Firebase Configuration */
+const firebaseConfig = {
+  apiKey: "AIzaSyBCckWkgz1TJIhsIYTojdRf9BJ4MQ8v0Ho",
+  authDomain: "jamia-farooqia-academy.firebaseapp.com",
+  databaseURL: "https://jamia-farooqia-academy-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "jamia-farooqia-academy",
+  storageBucket: "jamia-farooqia-academy.firebasestorage.app",
+  messagingSenderId: "125948984898",
+  appId: "1:125948984898:web:54586c1467f0ec131f37db"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const database = firebase.database();
+
+
+/* Today's Date */
+const today = new Date();
+
+document.getElementById("regDay").value = today.getDate();
+document.getElementById("regMonth").value = today.getMonth() + 1;
+document.getElementById("regYear").value = today.getFullYear();
+
+
+/* Create YYYY-MM-DD Date */
+function makeDate(day, month, year) {
+
+  const d = String(day).padStart(2, "0");
+  const m = String(month).padStart(2, "0");
+
+  return `${year}-${m}-${d}`;
 }
-setToday();
 
-document.getElementById("teacherForm").addEventListener("submit",function(e){
- e.preventDefault();
 
- if(!this.reportValidity()) return;
+/* Validate Date */
+function validDate(day, month, year) {
 
- alert("آپ کی معلومات درست طریقے سے پُر ہوگئی ہیں۔ Firebase submission ابھی منسلک نہیں ہے۔");
-});
+  const date = new Date(year, month - 1, day);
+
+  return (
+    date.getFullYear() == year &&
+    date.getMonth() == month - 1 &&
+    date.getDate() == day
+  );
+}
+
+
+/* Compress Teacher Image */
+function compressImage(file) {
+
+  return new Promise((resolve, reject) => {
+
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+
+      const img = new Image();
+
+      img.onload = function() {
+
+        const canvas = document.createElement("canvas");
+
+        const maxWidth = 700;
+        const maxHeight = 700;
+
+        let width = img.width;
+        let height = img.height;
+
+        if (width > maxWidth || height > maxHeight) {
+
+          const ratio = Math.min(
+            maxWidth / width,
+            maxHeight / height
+          );
+
+          width = Math.round(width * ratio);
+          height = Math.round(height * ratio);
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext("2d");
+
+        ctx.drawImage(img, 0, 0, width, height);
+
+        const base64 = canvas.toDataURL(
+          "image/jpeg",
+          0.65
+        );
+
+        resolve(base64);
+      };
+
+      img.onerror = reject;
+
+      img.src = event.target.result;
+    };
+
+    reader.onerror = reject;
+
+    reader.readAsDataURL(file);
+  });
+}
+
+
+/* Message */
+function showMessage(text, type) {
+
+  const message = document.getElementById("message");
+
+  message.textContent = text;
+
+  message.className = "message " + type;
+
+  message.style.display = "block";
+}
+
+
+/* Form Submit */
+document.getElementById("teacherForm").addEventListener(
+  "submit",
+  async function(event) {
+
+    event.preventDefault();
+
+    const submitBtn = document.getElementById("submitBtn");
+
+    submitBtn.disabled = true;
+
+    showMessage(
+      "Please wait... / براہ کرم انتظار کریں...",
+      "success"
+    );
+
+
+    try {
+
+      /* Dates */
+      const regDay =
+        Number(document.getElementById("regDay").value);
+
+      const regMonth =
+        Number(document.getElementById("regMonth").value);
+
+      const regYear =
+        Number(document.getElementById("regYear").value);
+
+
+      const dobDay =
+        Number(document.getElementById("dobDay").value);
+
+      const dobMonth =
+        Number(document.getElementById("dobMonth").value);
+
+      const dobYear =
+        Number(document.getElementById("dobYear").value);
+
+
+      const joinDay =
+        Number(document.getElementById("joinDay").value);
+
+      const joinMonth =
+        Number(document.getElementById("joinMonth").value);
+
+      const joinYear =
+        Number(document.getElementById("joinYear").value);
+
+
+      /* Date Validation */
+
+      if (!validDate(regDay, regMonth, regYear)) {
+        throw new Error(
+          "Registration date is invalid."
+        );
+      }
+
+      if (!validDate(dobDay, dobMonth, dobYear)) {
+        throw new Error(
+          "Date of birth is invalid."
+        );
+      }
+
+      if (!validDate(joinDay, joinMonth, joinYear)) {
+        throw new Error(
+          "Joining date is invalid."
+        );
+      }
+
+
+      /* Image */
+      const imageFile =
+        document.getElementById("teacherImage").files[0];
+
+      if (!imageFile) {
+        throw new Error(
+          "Teacher image is required."
+        );
+      }
+
+
+      /* Image Size */
+      if (imageFile.size > 5 * 1024 * 1024) {
+        throw new Error(
+          "Image size must be less than 5 MB."
+        );
+      }
+
+
+      /* Compress Image */
+      const teacherPhoto =
+        await compressImage(imageFile);
+
+
+      /* Create Application */
+      const application = {
+
+        registrationDate:
+          makeDate(regDay, regMonth, regYear),
+
+        teacherPhoto:
+          teacherPhoto,
+
+        jobType:
+          document.getElementById("jobType").value,
+
+        teacherName:
+          document.getElementById("teacherName").value.trim(),
+
+        dateOfBirth:
+          makeDate(dobDay, dobMonth, dobYear),
+
+        nic:
+          document.getElementById("nic").value.trim(),
+
+        fatherName:
+          document.getElementById("fatherName").value.trim(),
+
+        joiningDate:
+          makeDate(joinDay, joinMonth, joinYear),
+
+        city:
+          document.getElementById("city").value.trim(),
+
+        country:
+          document.getElementById("country").value.trim(),
+
+        gmail:
+          document.getElementById("gmail").value.trim(),
+
+        mobile:
+          document.getElementById("mobile").value.trim(),
+
+        whatsapp:
+          document.getElementById("whatsapp").value.trim(),
+
+        teachingExperience:
+          document.getElementById("experience").value.trim(),
+
+        monthlySalary:
+          Number(
+            document.getElementById("monthlySalary").value
+          ),
+
+        salaryPaymentMethod:
+          document.getElementById("paymentMethod").value,
+
+        agreement:
+          document.getElementById("agreement").checked,
+
+        status:
+          "Pending",
+
+        submittedAt:
+          firebase.database.ServerValue.TIMESTAMP
+      };
+
+
+      /* Basic Checks */
+
+      if (!application.teacherName) {
+        throw new Error("Teacher name is required.");
+      }
+
+      if (!application.fatherName) {
+        throw new Error("Father name is required.");
+      }
+
+      if (!application.city) {
+        throw new Error("City is required.");
+      }
+
+      if (!application.gmail) {
+        throw new Error("Gmail is required.");
+      }
+
+      if (!application.mobile) {
+        throw new Error("Mobile number is required.");
+      }
+
+      if (!application.whatsapp) {
+        throw new Error("WhatsApp number is required.");
+      }
+
+      if (!application.agreement) {
+        throw new Error(
+          "Please accept the agreement."
+        );
+      }
+
+
+      /* Firebase Database */
+
+      const newApplication =
+        database.ref("teacherApplications").push();
+
+      await newApplication.set(application);
+
+
+      /* Success */
+
+      showMessage(
+        "Teacher Registration submitted successfully. Your application is Pending Admin Approval. / استاد کی رجسٹریشن کامیابی سے جمع ہوگئی ہے۔ آپ کی درخواست Admin کی منظوری کے لیے Pending ہے۔",
+        "success"
+      );
+
+
+      document.getElementById("teacherForm").reset();
+
+
+      /* Restore Country */
+      document.getElementById("country").value =
+        "Pakistan";
+
+
+      /* Restore Registration Date */
+      document.getElementById("regDay").value =
+        today.getDate();
+
+      document.getElementById("regMonth").value =
+        today.getMonth() + 1;
+
+      document.getElementById("regYear").value =
+        today.getFullYear();
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      showMessage(
+        "Registration could not be submitted. Please try again. / رجسٹریشن جمع نہیں ہو سکی۔ براہ کرم دوبارہ کوشش کریں۔",
+        "error"
+      );
+
+    } finally {
+
+      submitBtn.disabled = false;
+    }
+
+  }
+);
+
 </script>
 
 </body>
