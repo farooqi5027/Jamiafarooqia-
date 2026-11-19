@@ -1,45 +1,52 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Login - Jamia Farooqia</title>
 
 <style>
 * {
     box-sizing: border-box;
 }
+
 body {
     margin: 0;
     padding: 20px;
     font-family: Arial, sans-serif;
     background: #f2f5f2;
 }
+
 .container {
     max-width: 450px;
     margin: 60px auto;
     padding: 25px;
-    background: white;
+    background: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.12);
 }
+
 h1, h2 {
     text-align: center;
     color: #17633b;
 }
+
 label {
     display: block;
     margin-top: 18px;
     font-weight: bold;
 }
+
 input {
     width: 100%;
     padding: 12px;
     margin-top: 7px;
     border: 1px solid #ccc;
     border-radius: 6px;
+    font-size: 15px;
 }
+
 button {
     width: 100%;
     margin-top: 25px;
@@ -51,33 +58,93 @@ button {
     font-size: 17px;
     cursor: pointer;
 }
+
+button:disabled {
+    background: #999;
+    cursor: not-allowed;
+}
+
 .back {
     display: block;
     text-align: center;
     margin-top: 20px;
     color: #17633b;
+    text-decoration: none;
+}
+
+#message {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
 }
 </style>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
 </head>
 
 <body>
+
 <div class="container">
 
-<h1>Jamia Farooqia</h1>
-<h2>Account Login</h2>
+    <h1>Jamia Farooqia</h1>
+    <h2>Admin Login</h2>
 
-<form>
-<label>Academy Email / ID:</label>
-<input type="email" placeholder="Enter your Academy Email" required>
+    <form id="loginForm">
 
-<label>Password / Code:</label>
-<input type="password" placeholder="Enter your Password / Code" required>
+        <label for="email">
+            Academy Email / ID:
+        </label>
 
-<button type="submit">Login</button>
-</form>
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter Academy Email"
+            autocomplete="username"
+            required
+        >
 
-<a class="back" href="jamia-farooqia-admission.html">Back to Admission Page</a>
+        <label for="password">
+            Password:
+        </label>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter Password"
+            autocomplete="current-password"
+            required
+        >
+
+        <button type="submit" id="loginButton">
+            Login
+        </button>
+
+        <div id="message"></div>
+
+    </form>
+
+    <a class="back" href="jamia-farooqia-admission.html">
+        Back to Admission Page
+    </a>
 
 </div>
-</body>
-</html>
+
+
+<script>
+
+/* =====================================================
+   FIREBASE CONFIG
+   Firebase Console → Project Settings → Your apps
+   سے اپنی اصل config یہاں paste کریں
+   ===================================================== */
+
+const firebaseConfig = {
+
+    apiKey: "YOUR_API_KEY",
+
+    authDomain: "YOUR
