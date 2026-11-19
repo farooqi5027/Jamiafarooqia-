@@ -22,12 +22,13 @@ body {
     max-width: 450px;
     margin: 60px auto;
     padding: 25px;
-    background: #fff;
+    background: white;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.12);
 }
 
-h1, h2 {
+h1,
+h2 {
     text-align: center;
     color: #17633b;
 }
@@ -80,7 +81,7 @@ button:disabled {
 }
 </style>
 
-<!-- Firebase -->
+<!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
@@ -92,6 +93,7 @@ button:disabled {
 <div class="container">
 
     <h1>Jamia Farooqia</h1>
+
     <h2>Admin Login</h2>
 
     <form id="loginForm">
@@ -128,7 +130,10 @@ button:disabled {
 
     </form>
 
-    <a class="back" href="jamia-farooqia-admission.html">
+    <a
+        class="back"
+        href="jamia%20Farooqia%20admissions.html"
+    >
         Back to Admission Page
     </a>
 
@@ -139,12 +144,280 @@ button:disabled {
 
 /* =====================================================
    FIREBASE CONFIG
-   Firebase Console → Project Settings → Your apps
-   سے اپنی اصل config یہاں paste کریں
    ===================================================== */
 
 const firebaseConfig = {
 
-    apiKey: "YOUR_API_KEY",
+    apiKey:
+        "AIzaSyBCckWkgz1TJIhsIYTojdRf9BJ4MQ8v0Ho",
 
-    authDomain: "YOUR
+    authDomain:
+        "jamia-farooqia-academy.firebaseapp.com",
+
+    databaseURL:
+        "https://jamia-farooqia-academy-default-rtdb.asia-southeast1.firebasedatabase.app",
+
+    projectId:
+        "jamia-farooqia-academy",
+
+    storageBucket:
+        "jamia-farooqia-academy.firebasestorage.app",
+
+    messagingSenderId:
+        "125948984898",
+
+    appId:
+        "1:125948984898:web:54586c1467f0ec131f37db"
+};
+
+
+/* =====================================================
+   INITIALIZE FIREBASE
+   ===================================================== */
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+
+const db = firebase.database();
+
+
+/* =====================================================
+   ELEMENTS
+   ===================================================== */
+
+const loginForm =
+    document.getElementById("loginForm");
+
+const loginButton =
+    document.getElementById("loginButton");
+
+const message =
+    document.getElementById("message");
+
+
+/* =====================================================
+   LOGIN
+   ===================================================== */
+
+loginForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+        const email =
+            document.getElementById("email")
+            .value
+            .trim();
+
+        const password =
+            document.getElementById("password")
+            .value;
+
+
+        if (!email || !password) {
+
+            showMessage(
+                "Please enter Email and Password.",
+                "red"
+            );
+
+            return;
+        }
+
+
+        loginButton.disabled = true;
+
+        loginButton.innerText =
+            "Checking...";
+
+        showMessage(
+            "Login checking...",
+            "#17633b"
+        );
+
+
+        try {
+
+            /* =========================================
+               FIREBASE AUTHENTICATION
+               ========================================= */
+
+            const userCredential =
+                await auth.signInWithEmailAndPassword(
+                    email,
+                    password
+                );
+
+
+            const user =
+                userCredential.user;
+
+
+            /* =========================================
+               ADMIN UID CHECK
+               ========================================= */
+
+            const adminSnapshot =
+                await db
+                    .ref("admins/" + user.uid)
+                    .once("value");
+
+
+            const isAdmin =
+                adminSnapshot.val() === true;
+
+
+            /* =========================================
+               MAIN ADMIN
+               ========================================= */
+
+            if (isAdmin === true) {
+
+                showMessage(
+                    "Login successful. Opening Admin Panel...",
+                    "green"
+                );
+
+
+                setTimeout(function() {
+
+                    window.location.href =
+                        "Admin.html";
+
+                }, 800);
+
+            }
+
+
+            /* =========================================
+               NOT ADMIN
+               ========================================= */
+
+            else {
+
+                await auth.signOut();
+
+                showMessage(
+                    "Access Denied. This account is not Main Admin.",
+                    "red"
+                );
+
+                loginButton.disabled = false;
+
+                loginButton.innerText =
+                    "Login";
+            }
+
+        }
+
+
+        /* =============================================
+           LOGIN ERROR
+           ============================================= */
+
+        catch (error) {
+
+            console.error(
+                "Firebase Login Error:",
+                error
+            );
+
+
+            let errorMessage =
+                "Login failed. Please try again.";
+
+
+            if (
+                error.code ===
+                "auth/invalid-credential"
+            ) {
+
+                errorMessage =
+                    "Email or Password is incorrect.";
+
+            }
+
+            else if (
+                error.code ===
+                "auth/user-not-found"
+            ) {
+
+                errorMessage =
+                    "This Academy account does not exist.";
+
+            }
+
+            else if (
+                error.code ===
+                "auth/wrong-password"
+            ) {
+
+                errorMessage =
+                    "Password is incorrect.";
+
+            }
+
+            else if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                errorMessage =
+                    "Please enter a valid Email.";
+
+            }
+
+            else if (
+                error.code ===
+                "auth/too-many-requests"
+            ) {
+
+                errorMessage =
+                    "Too many login attempts. Please try again later.";
+
+            }
+
+            else if (
+                error.code ===
+                "auth/network-request-failed"
+            ) {
+
+                errorMessage =
+                    "Internet connection problem.";
+
+            }
+
+
+            showMessage(
+                errorMessage,
+                "red"
+            );
+
+
+            loginButton.disabled = false;
+
+            loginButton.innerText =
+                "Login";
+        }
+
+    }
+);
+
+
+/* =====================================================
+   MESSAGE FUNCTION
+   ===================================================== */
+
+function showMessage(text, color) {
+
+    message.innerText = text;
+
+    message.style.color = color;
+}
+
+</script>
+
+</body>
+</html>
