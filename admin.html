@@ -1,64 +1,856 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Admin - Jamia Farooqia</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Panel - Jamia Farooqia</title>
+
 <style>
-body{font-family:Arial;background:#f2f7f3;margin:0}
-.header{background:#0b5d3a;color:white;padding:15px;text-align:center;font-weight:bold}
-.card{background:white;margin:15px;padding:15px;border-radius:15px;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
-.btn{background:#0b5d3a;color:white;padding:8px 15px;border:none;border-radius:8px}
-table{width:100%;border-collapse:collapse} td,th{border:1px solid #ddd;padding:8px;font-size:14px}
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f2f7f3;
+  color:#222;
+}
+
+.header{
+  background:#0b5d3a;
+  color:white;
+  padding:18px 15px;
+  text-align:center;
+}
+
+.header h2{
+  margin:0 0 5px;
+}
+
+.header small{
+  opacity:.9;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:15px;
+}
+
+.card{
+  background:white;
+  margin-bottom:20px;
+  padding:18px;
+  border-radius:14px;
+  box-shadow:0 2px 10px rgba(0,0,0,.10);
+}
+
+.card h3{
+  margin-top:0;
+  color:#0b5d3a;
+}
+
+.info{
+  background:#eef7f1;
+  padding:12px;
+  border-radius:8px;
+  margin-bottom:15px;
+}
+
+button{
+  border:0;
+  padding:8px 12px;
+  border-radius:7px;
+  cursor:pointer;
+  font-weight:bold;
+  margin:2px;
+}
+
+.approve{
+  background:#198754;
+  color:white;
+}
+
+.reject{
+  background:#dc3545;
+  color:white;
+}
+
+.logout{
+  background:#ffffff;
+  color:#0b5d3a;
+  float:right;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+
+th,td{
+  border:1px solid #ddd;
+  padding:9px;
+  text-align:left;
+  font-size:14px;
+  vertical-align:top;
+}
+
+th{
+  background:#0b5d3a;
+  color:white;
+}
+
+.status{
+  font-weight:bold;
+}
+
+.pending{
+  color:#d39e00;
+}
+
+.approved{
+  color:#198754;
+}
+
+.rejected{
+  color:#dc3545;
+}
+
+.empty{
+  text-align:center;
+  padding:20px;
+  color:#777;
+}
+
+.loading{
+  text-align:center;
+  padding:15px;
+}
+
+@media(max-width:700px){
+
+  .container{
+    padding:8px;
+  }
+
+  .card{
+    padding:10px;
+  }
+
+  table{
+    display:block;
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+
+  th,td{
+    font-size:12px;
+  }
+}
 </style>
+
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
 </head>
+
 <body>
-<div class="header">Jamia Farooqia - ADMIN PANEL<br><small>All Admissions Data</small></div>
 
-<div class="card">
-<h3>Students Registration Data</h3>
-<table id="studentTable"><tr><th>Name</th><th>Father</th><th>Mobile</th><th>Course</th><th>Date</th></tr></table>
+<div class="header">
+
+  <button class="logout" onclick="logout()">Logout</button>
+
+  <h2>Jamia Farooqia - ADMIN PANEL</h2>
+
+  <small>
+    Main Admin Dashboard
+  </small>
+
 </div>
 
-<div class="card">
-<h3>Teachers Registration Data</h3>
-<table id="teacherTable"><tr><th>Name</th><th>Mobile</th><th>Qualification</th><th>Date</th></tr></table>
+
+<div class="container">
+
+  <!-- Admin Information -->
+  <div class="card">
+
+    <h3>Admin Information</h3>
+
+    <div class="info">
+      <b>Logged in as:</b>
+      <span id="adminEmail">Checking...</span>
+    </div>
+
+  </div>
+
+
+  <!-- Student Applications -->
+  <div class="card">
+
+    <h3>Student / Parents Applications</h3>
+
+    <div id="studentLoading" class="loading">
+      Loading student applications...
+    </div>
+
+    <div style="overflow-x:auto;">
+
+      <table id="studentTable" style="display:none;">
+
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Father / Guardian</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Parents Gmail</th>
+            <th>WhatsApp</th>
+            <th>Course</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody id="studentBody"></tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <!-- Teacher Applications -->
+  <div class="card">
+
+    <h3>Teacher Applications</h3>
+
+    <div id="teacherLoading" class="loading">
+      Loading teacher applications...
+    </div>
+
+    <div style="overflow-x:auto;">
+
+      <table id="teacherTable" style="display:none;">
+
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Father Name</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Gmail</th>
+            <th>WhatsApp</th>
+            <th>Experience</th>
+            <th>Salary</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody id="teacherBody"></tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
 </div>
+
 
 <script>
-// Yahan apna Firebase Config lagao (Project Settings se)
+
+/* ================================
+   FIREBASE CONFIG
+================================ */
+
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abc123"
+
+  apiKey: "AIzaSyBCckWkgz1TJIhsIYTojdRf9BJ4MQ8v0Ho",
+
+  authDomain:
+    "jamia-farooqia-academy.firebaseapp.com",
+
+  databaseURL:
+    "https://jamia-farooqia-academy-default-rtdb.asia-southeast1.firebasedatabase.app",
+
+  projectId:
+    "jamia-farooqia-academy",
+
+  storageBucket:
+    "jamia-farooqia-academy.firebasestorage.app",
+
+  messagingSenderId:
+    "125948984898",
+
+  appId:
+    "1:125948984898:web:54586c1467f0ec131f37db"
+
 };
 
+
+/* Initialize Firebase */
+
 firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
 
-// Student Data Lana
-db.collection("students").orderBy("timestamp","desc").onSnapshot(snapshot => {
-  let html = "<tr><th>Name</th><th>Father</th><th>Mobile</th><th>Course</th><th>Date</th></tr>";
-  snapshot.forEach(doc => {
-    let d = doc.data();
-    html += `<tr><td>${d.studentName||''}</td><td>${d.fatherName||''}</td><td>${d.mobile||''}</td><td>${d.course||''}</td><td>${d.date||''}</td></tr>`;
-  });
-  document.getElementById("studentTable").innerHTML = html;
+const auth = firebase.auth();
+
+const db = firebase.database();
+
+
+/* ================================
+   SECURITY CHECK
+================================ */
+
+auth.onAuthStateChanged(async function(user){
+
+  if(!user){
+
+    window.location.href = "login.html";
+
+    return;
+  }
+
+  document.getElementById("adminEmail").textContent =
+    user.email || "Admin";
+
+
+  try{
+
+    const snapshot =
+      await db.ref("admins/" + user.uid).once("value");
+
+    const isAdmin = snapshot.val() === true;
+
+
+    if(!isAdmin){
+
+      alert("Access denied. You are not Main Admin.");
+
+      await auth.signOut();
+
+      window.location.href = "login.html";
+
+      return;
+    }
+
+
+    /* Admin verified */
+
+    loadStudents();
+
+    loadTeachers();
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Admin verification failed.\n\n" +
+      error.message
+    );
+
+    await auth.signOut();
+
+    window.location.href = "login.html";
+  }
+
 });
 
-// Teacher Data Lana
-db.collection("teachers").orderBy("timestamp","desc").onSnapshot(snapshot => {
-  let html = "<tr><th>Name</th><th>Mobile</th><th>Qualification</th><th>Date</th></tr>";
-  snapshot.forEach(doc => {
-    let d = doc.data();
-    html += `<tr><td>${d.teacherName||''}</td><td>${d.mobile||''}</td><td>${d.qualification||''}</td><td>${d.date||''}</td></tr>`;
+
+/* ================================
+   SAFE HTML
+================================ */
+
+function safe(value){
+
+  if(value === null || value === undefined){
+    return "";
+  }
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+/* ================================
+   STATUS CLASS
+================================ */
+
+function statusClass(status){
+
+  status = String(status || "Pending").toLowerCase();
+
+  if(status === "approved"){
+    return "approved";
+  }
+
+  if(status === "rejected"){
+    return "rejected";
+  }
+
+  return "pending";
+}
+
+
+/* ================================
+   STUDENT APPLICATIONS
+================================ */
+
+function loadStudents(){
+
+  const ref = db.ref("studentApplications");
+
+  ref.on("value", function(snapshot){
+
+    const body =
+      document.getElementById("studentBody");
+
+    const table =
+      document.getElementById("studentTable");
+
+    const loading =
+      document.getElementById("studentLoading");
+
+
+    body.innerHTML = "";
+
+
+    if(!snapshot.exists()){
+
+      loading.textContent =
+        "No student applications found.";
+
+      table.style.display = "none";
+
+      return;
+    }
+
+
+    loading.style.display = "none";
+
+    table.style.display = "table";
+
+
+    const data = snapshot.val();
+
+    const rows = [];
+
+
+    Object.keys(data).forEach(function(id){
+
+      const d = data[id] || {};
+
+      rows.push({
+
+        id:id,
+        data:d
+
+      });
+
+    });
+
+
+    /* Newest first */
+
+    rows.reverse();
+
+
+    rows.forEach(function(item){
+
+      const id = item.id;
+
+      const d = item.data;
+
+
+      const name =
+        d.studentName ||
+        d.name ||
+        "";
+
+      const father =
+        d.fatherName ||
+        d.guardianName ||
+        "";
+
+      const city =
+        d.city || "";
+
+      const country =
+        d.country || "";
+
+      const gmail =
+        d.parentsGmail ||
+        d.parentGmail ||
+        "";
+
+      const whatsapp =
+        d.parentsWhatsApp ||
+        d.parentWhatsApp ||
+        d.studentWhatsApp ||
+        "";
+
+      const course =
+        d.course ||
+        d.courses ||
+        "Quran Course";
+
+
+      const status =
+        d.status ||
+        "Pending";
+
+
+      const tr =
+        document.createElement("tr");
+
+
+      tr.innerHTML = `
+
+        <td>${safe(name)}</td>
+
+        <td>${safe(father)}</td>
+
+        <td>${safe(city)}</td>
+
+        <td>${safe(country)}</td>
+
+        <td>${safe(gmail)}</td>
+
+        <td>${safe(whatsapp)}</td>
+
+        <td>${safe(course)}</td>
+
+        <td class="status ${statusClass(status)}">
+          ${safe(status)}
+        </td>
+
+        <td>
+
+          <button
+            class="approve"
+            onclick="updateStudentStatus('${safe(id)}','Approved')">
+            Approve
+          </button>
+
+          <button
+            class="reject"
+            onclick="updateStudentStatus('${safe(id)}','Rejected')">
+            Reject
+          </button>
+
+        </td>
+
+      `;
+
+
+      body.appendChild(tr);
+
+    });
+
+  }, function(error){
+
+    document.getElementById("studentLoading").textContent =
+      "Unable to load student applications.";
+
+    console.error(error);
+
   });
-  document.getElementById("teacherTable").innerHTML = html;
-});
+
+}
+
+
+/* ================================
+   UPDATE STUDENT STATUS
+================================ */
+
+function updateStudentStatus(id,status){
+
+  if(!id){
+    return;
+  }
+
+
+  const confirmText =
+    status === "Approved"
+      ? "Approve this student application?"
+      : "Reject this student application?";
+
+
+  if(!confirm(confirmText)){
+    return;
+  }
+
+
+  db.ref("studentApplications/" + id + "/status")
+    .set(status)
+    .then(function(){
+
+      alert(
+        "Student application " +
+        status +
+        " successfully."
+      );
+
+    })
+    .catch(function(error){
+
+      alert(
+        "Status update failed:\n" +
+        error.message
+      );
+
+    });
+
+}
+
+
+/* ================================
+   TEACHER APPLICATIONS
+================================ */
+
+function loadTeachers(){
+
+  const ref = db.ref("teacherApplications");
+
+  ref.on("value", function(snapshot){
+
+    const body =
+      document.getElementById("teacherBody");
+
+    const table =
+      document.getElementById("teacherTable");
+
+    const loading =
+      document.getElementById("teacherLoading");
+
+
+    body.innerHTML = "";
+
+
+    if(!snapshot.exists()){
+
+      loading.textContent =
+        "No teacher applications found.";
+
+      table.style.display = "none";
+
+      return;
+    }
+
+
+    loading.style.display = "none";
+
+    table.style.display = "table";
+
+
+    const data = snapshot.val();
+
+    const rows = [];
+
+
+    Object.keys(data).forEach(function(id){
+
+      rows.push({
+
+        id:id,
+
+        data:data[id] || {}
+
+      });
+
+    });
+
+
+    rows.reverse();
+
+
+    rows.forEach(function(item){
+
+      const id = item.id;
+
+      const d = item.data;
+
+
+      const name =
+        d.teacherName ||
+        d.name ||
+        "";
+
+      const father =
+        d.fatherName ||
+        "";
+
+      const city =
+        d.city || "";
+
+      const country =
+        d.country || "";
+
+      const gmail =
+        d.gmail ||
+        d.email ||
+        "";
+
+      const whatsapp =
+        d.whatsapp ||
+        d.mobile ||
+        "";
+
+      const experience =
+        d.teachingExperience ||
+        "";
+
+      const salary =
+        d.monthlySalary ||
+        "";
+
+
+      const status =
+        d.status ||
+        "Pending";
+
+
+      const tr =
+        document.createElement("tr");
+
+
+      tr.innerHTML = `
+
+        <td>${safe(name)}</td>
+
+        <td>${safe(father)}</td>
+
+        <td>${safe(city)}</td>
+
+        <td>${safe(country)}</td>
+
+        <td>${safe(gmail)}</td>
+
+        <td>${safe(whatsapp)}</td>
+
+        <td>${safe(experience)}</td>
+
+        <td>${safe(salary)}</td>
+
+        <td class="status ${statusClass(status)}">
+          ${safe(status)}
+        </td>
+
+        <td>
+
+          <button
+            class="approve"
+            onclick="updateTeacherStatus('${safe(id)}','Approved')">
+            Approve
+          </button>
+
+          <button
+            class="reject"
+            onclick="updateTeacherStatus('${safe(id)}','Rejected')">
+            Reject
+          </button>
+
+        </td>
+
+      `;
+
+
+      body.appendChild(tr);
+
+    });
+
+  }, function(error){
+
+    document.getElementById("teacherLoading").textContent =
+      "Unable to load teacher applications.";
+
+    console.error(error);
+
+  });
+
+}
+
+
+/* ================================
+   UPDATE TEACHER STATUS
+================================ */
+
+function updateTeacherStatus(id,status){
+
+  if(!id){
+    return;
+  }
+
+
+  const confirmText =
+    status === "Approved"
+      ? "Approve this teacher application?"
+      : "Reject this teacher application?";
+
+
+  if(!confirm(confirmText)){
+    return;
+  }
+
+
+  db.ref("teacherApplications/" + id + "/status")
+    .set(status)
+    .then(function(){
+
+      alert(
+        "Teacher application " +
+        status +
+        " successfully."
+      );
+
+    })
+    .catch(function(error){
+
+      alert(
+        "Status update failed:\n" +
+        error.message
+      );
+
+    });
+
+}
+
+
+/* ================================
+   LOGOUT
+================================ */
+
+function logout(){
+
+  auth.signOut()
+    .then(function(){
+
+      window.location.href = "login.html";
+
+    })
+    .catch(function(error){
+
+      alert(
+        "Logout failed:\n" +
+        error.message
+      );
+
+    });
+
+}
+
 </script>
+
 </body>
 </html>
