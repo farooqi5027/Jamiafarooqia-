@@ -1,1 +1,118 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jamia Farooqia H/Abid Speak Translator</title>
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+body{margin:0;background:#f0f7f0;padding:12px}
+.header{background:#0b6e4f;color:white;text-align:center;padding:20px 10px;border-radius:15px}
+.header h1{margin:5px 0;font-size:24px;line-height:1.3}
+.header p{margin:0;font-size:14px;opacity:.9}
+.card{background:white;margin:12px 0;padding:15px;border-radius:15px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+label{font-weight:bold;font-size:14px}
+textarea{width:100%;height:90px;padding:12px;font-size:18px;border:2px solid #0b6e4f;border-radius:10px;margin-top:6px;direction:rtl}
+textarea.en{direction:ltr}
+.btn{width:100%;padding:14px;border:none;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer;margin-top:8px;color:white}
+.btn-mic{background:#d32f2f}
+.btn-trans{background:#0b6e4f}
+.btn-speak{background:#ff9800;color:#000}
+.btn-jumla{background:#e8f5e9;color:#0b6e4f;border:1px solid #0b6e4f;width:100%;padding:12px;border-radius:10px;margin-top:8px;font-size:16px;text-align:left;cursor:pointer}
+.btn-jumla b{color:#d32f2f}
+.result{background:#fff8e1;padding:12px;border-radius:10px;font-size:18px;min-height:60px;margin-top:8px;border:1px dashed #ff9800}
+.small{font-size:12px;color:#666;text-align:center;margin-top:10px}
+select{width:100%;padding:10px;border-radius:8px;margin-top:6px}
+</style>
+</head>
+<body>
 
+<div class="header">
+<div style="font-size:40px">🕌</div>
+<h1>Jamia Farooqia<br>H/Abid<br>Speak Translator</h1>
+<p>Urdu ↔ English - Bolo aur Suno - For Quran Teachers</p>
+</div>
+
+<div class="card">
+<label>1. Kya Translate Karna Hai?</label>
+<select id="mode">
+<option value="ur-en">Urdu ➜ English (Qari Sahab Boly Ga)</option>
+<option value="en-ur">English ➜ Urdu (Student Boly Ga)</option>
+</select>
+</div>
+
+<div class="card">
+<label>🎤 Mic Se Bolo</label>
+<button class="btn btn-mic" onclick="startListen()">🎤 MIC DABAO AUR BOLO</button>
+<textarea id="inputText" placeholder="Yahan likho ya mic se bolo... مثال: بیٹا سبق سناؤ"></textarea>
+<button class="btn btn-trans" onclick="translateText()">🔄 TRANSLATE KARO</button>
+<label style="margin-top:12px;display:block">Result / Tarjuma:</label>
+<div class="result" id="outputText">Yahan tarjuma aaye ga...</div>
+<button class="btn btn-speak" onclick="speakResult()">🔊 OONCHI AWAZ ME SUNAO</button>
+</div>
+
+<div class="card">
+<h2 style="margin:0;font-size:19px">📖 Class Wale Jumlay - Dabao, Khud Bol Dega</h2>
+<p style="font-size:13px;color:#666">Ye Qari Sahab ke liye hain - Student ko English me sunai dega</p>
+
+<button class="btn-jumla" onclick="speakPreset('Son, recite your lesson','en-US')">Beta, Sabak Sunao <b>▶️ SUNAO</b></button>
+<button class="btn-jumla" onclick="speakPreset('Read again, you made a mistake','en-US')">Dobara Parho, Galti Hui Hai <b>▶️ SUNAO</b></button>
+<button class="btn-jumla" onclick="speakPreset('MashAllah, you read very well','en-US')">MashAllah, Bohat Acha Parha <b>▶️ SUNAO</b></button>
+<button class="btn-jumla" onclick="speakPreset('Come after memorizing tomorrow lesson','en-US')">Kal Ka Sabak Yaad Kar Ke Aana <b>▶️ SUNAO</b></button>
+<button class="btn-jumla" onclick="speakPreset('Wait, let me tell you','en-US')">Ruko, Main Batata Hoon <b>▶️ SUNAO</b></button>
+<button class="btn-jumla" onclick="speakPreset('Your class will be tomorrow at 5 o clock','en-US')">Class Kal 5 Baje Hogi <b>▶️ SUNAO</b></button>
+<button class="btn-jumla" onclick="speakPreset('Please open your Quran on page number 10','en-US')">Quran Ka Page 10 Kholo <b>▶️ SUNAO</b></button>
+<button class="btn-jumla" onclick="speakPreset('May Allah bless you','en-US')">Allah Aapko Khush Rakhe <b>▶️ SUNAO</b></button>
+</div>
+
+<div class="card">
+<h2 style="margin:0;font-size:19px">🎓 Student Bole To - Urdu Me Samjho</h2>
+<button class="btn-jumla" onclick="speakPreset('مجھے سمجھ نہیں آئی','ur-PK')">I don't understand - <b>URDU ME SUNO</b></button>
+<button class="btn-jumla" onclick="speakPreset('براہ کرم دوبارہ کہیں','ur-PK')">Please repeat - <b>URDU ME SUNO</b></button>
+</div>
+
+<div class="small">Made By Jamia Farooqia H/Abid - Sadqa-e-Jariya<br>https://www.hafizabid.com</div>
+
+<script>
+let lastTranslated = "";
+function startListen(){
+  let mode = document.getElementById('mode').value;
+  let lang = mode==='ur-en' ? 'ur-PK' : 'en-US';
+  if(!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)){ alert('Mic Chrome me chalega, Safari me nahi.'); return; }
+  let SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  let rec = new SR();
+  rec.lang = lang;
+  rec.onresult = function(e){ document.getElementById('inputText').value = e.results[0][0].transcript; translateText(); };
+  rec.start();
+}
+async function translateText(){
+  let text = document.getElementById('inputText').value.trim();
+  if(!text){ alert('Pehle kuch likho ya bolo'); return; }
+  let mode = document.getElementById('mode').value;
+  let from = mode==='ur-en' ? 'ur' : 'en';
+  let to = mode==='ur-en' ? 'en' : 'ur';
+  document.getElementById('outputText').innerText = 'Tarjuma ho raha hai...';
+  try{
+    let res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${from}|${to}`);
+    let data = await res.json();
+    lastTranslated = data.responseData.translatedText;
+    document.getElementById('outputText').innerText = lastTranslated;
+    speakResult();
+  }catch(e){ document.getElementById('outputText').innerText = 'Internet nahi hai, dobara koshish karo'; }
+}
+function speakResult(){
+  if(!lastTranslated) return;
+  let mode = document.getElementById('mode').value;
+  let lang = mode==='ur-en' ? 'en-US' : 'ur-PK';
+  speakPreset(lastTranslated, lang);
+}
+function speakPreset(text, lang){
+  let u = new SpeechSynthesisUtterance(text);
+  u.lang = lang;
+  u.rate = 0.9;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+</script>
+</body>
+</html>
