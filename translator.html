@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="ur">
 <head>
+<script>
+if(localStorage.getItem("jamia_activated") !== "yes"){
+  window.location.href = "app-activation.html";
+}
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jamia Farooqia H/Abid Speak Translator</title>
@@ -28,6 +33,7 @@ textarea.en{direction:ltr}
 .result{background:#fff8e1;padding:12px;border-radius:10px;font-size:18px;min-height:60px;margin-top:8px;border:1px dashed #ff9800}
 .small{font-size:12px;color:#666;text-align:center;margin-top:10px}
 select{width:100%;padding:10px;border-radius:8px;margin-top:6px}
+.admission-btn{display:block;text-align:center;background:#087f23;color:white;padding:14px;border-radius:10px;text-decoration:none;font-weight:bold;font-size:17px;margin:12px 0}
 </style>
 </head>
 <body>
@@ -37,6 +43,8 @@ select{width:100%;padding:10px;border-radius:8px;margin-top:6px}
 <h1>Jamia Farooqia<br>H/Abid<br>Speak Translator</h1>
 <p>Urdu ↔ English - Bolo aur Suno - For Quran Teachers</p>
 </div>
+
+<a class="admission-btn" href="jamia-farooqia-admission.html">📚 ADMISSION / داخلہ</a>
 
 <div class="card">
 <label>1. Kya Translate Karna Hai?</label>
@@ -116,6 +124,12 @@ function speakPreset(text, lang){
   u.rate = 0.9;
   window.speechSynthesis.cancel();
   window.speechSynthesis.speak(u);
+}
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
 }
 </script>
 </body>
