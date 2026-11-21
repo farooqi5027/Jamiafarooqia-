@@ -1,465 +1,1803 @@
-
 <!DOCTYPE html>
-<html lang="ur">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Student Registration - Jamia Farooqia</title>
+
+<title>Student / Parents Registration | Jamia Farooqia</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+}
+
 body{
- margin:0;padding:15px;background:#080d09;color:#fff;
- font-family:Arial,sans-serif;
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#eef5f0;
+    color:#1f2933;
 }
-.container{
- max-width:700px;margin:auto;background:#111b14;
- border:2px solid #d4af37;border-radius:12px;padding:20px;
+
+.page{
+    min-height:100vh;
+    padding:25px 15px;
 }
-h1,h2{text-align:center;color:#e2c15a}
-h1{font-size:25px}
-h2{font-size:21px}
-.subtitle{text-align:center;color:#ddd}
+
+.card{
+    width:100%;
+    max-width:760px;
+    margin:auto;
+    background:#ffffff;
+    border-radius:18px;
+    box-shadow:0 8px 30px rgba(0,0,0,.10);
+    overflow:hidden;
+}
+
+/* HEADER */
+
+.header{
+    background:linear-gradient(135deg,#075e2d,#0a8a3a);
+    color:white;
+    text-align:center;
+    padding:30px 20px;
+}
+
+.logo{
+    width:90px;
+    height:90px;
+    object-fit:contain;
+    background:white;
+    border-radius:50%;
+    padding:6px;
+    margin-bottom:12px;
+}
+
+.header h1{
+    margin:0;
+    font-size:28px;
+}
+
+.header h2{
+    margin:8px 0 0;
+    font-size:19px;
+    font-weight:normal;
+}
+
+.header p{
+    margin:8px 0 0;
+    font-size:14px;
+    opacity:.9;
+}
+
+/* FORM */
+
+.form-area{
+    padding:28px;
+}
+
+.section-title{
+    margin:25px 0 18px;
+    padding:11px 14px;
+    background:#087f23;
+    color:white;
+    border-radius:8px;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.section-title:first-child{
+    margin-top:0;
+}
+
 label{
- display:block;margin:15px 0 6px;
- font-weight:bold;color:#f0d77e;
+    display:block;
+    margin:16px 0 7px;
+    font-weight:bold;
+    font-size:14px;
 }
-input,select{
- width:100%;padding:12px;border:1px solid #b99a39;
- border-radius:6px;font-size:15px;background:#fff;color:#111;
+
+.required{
+    color:#d00000;
 }
+
+input,
+select{
+    width:100%;
+    padding:12px 13px;
+    border:1px solid #c9d2cc;
+    border-radius:8px;
+    font-size:15px;
+    outline:none;
+    background:#fff;
+    transition:.2s;
+}
+
+input:focus,
+select:focus{
+    border-color:#087f23;
+    box-shadow:0 0 0 3px rgba(8,127,35,.10);
+}
+
 .date-row{
- display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px;
+    display:grid;
+    grid-template-columns:1fr 1fr 1.2fr;
+    gap:9px;
 }
-.date-part label{
- font-size:13px;color:#ddd;margin:7px 0 5px;
+
+/* CAMERA */
+
+.photo-box{
+    border:1px solid #d6ded8;
+    border-radius:12px;
+    padding:16px;
+    background:#f8fbf9;
+    text-align:center;
 }
-.date-part input{text-align:center}
-.section{
- margin-top:22px;padding:12px;
- border:1px solid #806b2b;border-radius:8px;
+
+#camera{
+    display:none;
+    width:100%;
+    max-width:420px;
+    margin:auto;
+    border-radius:10px;
+    background:#111;
 }
-.section h3{color:#e2c15a;margin-top:3px}
-.course{
- padding:10px;margin:6px 0;background:#1b2b20;
- border-radius:5px;line-height:1.8;
+
+#photoPreview{
+    display:none;
+    width:180px;
+    height:180px;
+    object-fit:cover;
+    border-radius:12px;
+    border:3px solid #087f23;
+    margin:10px auto;
 }
-.course input,.agree input{width:auto;margin-right:8px}
-.course label,.agree label{
- display:inline;color:white;font-weight:normal;margin:0;
+
+.camera-buttons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:12px;
 }
-.course .english{
- display:block;color:#d6d6d6;font-size:14px;
+
+.camera-btn{
+    width:auto;
+    margin:0;
+    padding:10px 15px;
+    border:0;
+    border-radius:7px;
+    color:white;
+    background:#087f23;
+    cursor:pointer;
+    font-weight:bold;
 }
-button{
- width:100%;padding:14px;margin-top:18px;
- background:#17633b;color:white;border:0;border-radius:7px;
- font-size:18px;font-weight:bold;cursor:pointer;
+
+.camera-btn.secondary{
+    background:#555;
 }
-button:disabled{opacity:.6;cursor:not-allowed}
-.agree{margin-top:20px;line-height:1.7}
-#message{
- margin-top:15px;text-align:center;font-weight:bold;
- overflow-wrap:anywhere;
+
+.camera-btn.danger{
+    background:#b00020;
 }
-.note{color:#ddd;font-size:13px;line-height:1.7}
-@media(max-width:380px){
- .container{padding:13px}
- .date-row{gap:5px}
- .date-part label{font-size:11px}
+
+.camera-help{
+    margin-top:10px;
+    font-size:12px;
+    color:#666;
+}
+
+/* COURSES */
+
+.course-list{
+    border:1px solid #d6ded8;
+    border-radius:10px;
+    background:#f8fbf9;
+    padding:12px;
+}
+
+.course-item{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:9px 4px;
+    border-bottom:1px solid #e5ebe7;
+    font-weight:normal;
+    margin:0;
+}
+
+.course-item:last-child{
+    border-bottom:0;
+}
+
+.course-item input{
+    width:auto;
+    margin-top:3px;
+}
+
+/* AGREEMENT */
+
+.agreement{
+    margin-top:25px;
+    padding:17px;
+    background:#f2f8f3;
+    border:1px solid #cce0d0;
+    border-radius:10px;
+    line-height:1.7;
+    font-size:14px;
+}
+
+.agreement-check{
+    display:flex;
+    align-items:flex-start;
+    gap:9px;
+    margin-top:12px;
+}
+
+.agreement-check input{
+    width:auto;
+    margin-top:5px;
+}
+
+/* SUBMIT */
+
+.submit-btn{
+    width:100%;
+    margin-top:22px;
+    padding:14px;
+    border:0;
+    border-radius:9px;
+    background:#087f23;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.submit-btn:hover{
+    background:#05661c;
+}
+
+.submit-btn:disabled{
+    background:#888;
+    cursor:not-allowed;
+}
+
+/* MESSAGE */
+
+.message{
+    display:none;
+    margin-top:15px;
+    padding:13px;
+    border-radius:8px;
+    text-align:center;
+    font-weight:bold;
+    line-height:1.5;
+}
+
+.success{
+    background:#dff5e5;
+    color:#126629;
+}
+
+.error{
+    background:#fde3e3;
+    color:#a00000;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+    padding:18px;
+    font-size:12px;
+    color:#66736b;
+    border-top:1px solid #edf0ee;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .page{
+        padding:10px;
+    }
+
+    .header{
+        padding:25px 15px;
+    }
+
+    .header h1{
+        font-size:23px;
+    }
+
+    .header h2{
+        font-size:17px;
+    }
+
+    .form-area{
+        padding:20px 16px;
+    }
+
+    .date-row{
+        grid-template-columns:1fr 1fr 1fr;
+    }
 }
 </style>
 </head>
 
 <body>
-<div class="container">
 
-<h1>جامعہ فاروقیہ</h1>
-<p class="subtitle">Online Quran Academy — Lahore, Pakistan</p>
+<div class="page">
 
-<h2>Student / Parents Registration Form</h2>
-<h2>طلبہ / والدین کا داخلہ فارم</h2>
+<div class="card">
 
-<form id="studentForm">
+    <!-- HEADER -->
 
-<!-- Registration Date -->
-<label>Registration Date / تاریخِ رجسٹریشن *</label>
-<div class="date-row">
- <div class="date-part">
-  <label>Day / دن</label>
-  <input type="number" id="regDay" min="1" max="31" placeholder="15" required>
- </div>
- <div class="date-part">
-  <label>Month / مہینہ</label>
-  <input type="number" id="regMonth" min="1" max="12" placeholder="12" required>
- </div>
- <div class="date-part">
-  <label>Year / سال</label>
-  <input type="number" id="regYear" min="1900" max="2100" placeholder="2026" required>
- </div>
+    <div class="header">
+
+        <img
+            src="logo.png"
+            class="logo"
+            alt="Jamia Farooqia Logo"
+        >
+
+        <h1>جامعہ فاروقیہ</h1>
+
+        <h2>
+            JAMIA FAROOQIA ONLINE QURAN ACADEMY
+        </h2>
+
+        <p>
+            Student / Parents Registration Form
+        </p>
+
+    </div>
+
+
+    <!-- FORM -->
+
+    <div class="form-area">
+
+        <form id="studentForm">
+
+
+            <!-- BASIC INFORMATION -->
+
+            <div class="section-title">
+                Student Information / طالب علم کی معلومات
+            </div>
+
+
+            <!-- REGISTRATION DATE -->
+
+            <label>
+                Registration Date / رجسٹریشن کی تاریخ
+                <span class="required">*</span>
+            </label>
+
+            <div class="date-row">
+
+                <input
+                    type="number"
+                    id="regDay"
+                    placeholder="Day"
+                    min="1"
+                    max="31"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="regMonth"
+                    placeholder="Month"
+                    min="1"
+                    max="12"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="regYear"
+                    placeholder="Year"
+                    min="1900"
+                    max="2100"
+                    required
+                >
+
+            </div>
+
+
+            <!-- PHOTO -->
+
+            <label>
+                Student Image / طالب علم کی تصویر
+                <span class="required">*</span>
+            </label>
+
+            <div class="photo-box">
+
+                <video
+                    id="camera"
+                    autoplay
+                    playsinline
+                ></video>
+
+                <img
+                    id="photoPreview"
+                    alt="Student Photo"
+                >
+
+                <div class="camera-buttons">
+
+                    <button
+                        type="button"
+                        class="camera-btn"
+                        id="openCameraBtn"
+                    >
+                        📷 Open Camera
+                    </button>
+
+                    <button
+                        type="button"
+                        class="camera-btn"
+                        id="captureBtn"
+                        style="display:none;"
+                    >
+                        📸 Take Photo
+                    </button>
+
+                    <button
+                        type="button"
+                        class="camera-btn secondary"
+                        id="retakeBtn"
+                        style="display:none;"
+                    >
+                        🔄 Retake
+                    </button>
+
+                </div>
+
+                <label style="margin-top:15px;">
+                    Or Select Photo from Gallery
+                </label>
+
+                <input
+                    type="file"
+                    id="studentImage"
+                    accept="image/jpeg,image/png,image/webp"
+                >
+
+                <div class="camera-help">
+                    JPG, PNG or WEBP — Maximum 5 MB
+                </div>
+
+            </div>
+
+
+            <!-- NAME -->
+
+            <label>
+                Student Name / طالب علم کا نام
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="text"
+                id="studentName"
+                maxlength="100"
+                placeholder="Enter Student Name"
+                required
+            >
+
+
+            <!-- GENDER -->
+
+            <label>
+                Gender / جنس
+                <span class="required">*</span>
+            </label>
+
+            <select id="gender" required>
+
+                <option value="">
+                    Select Gender / جنس منتخب کریں
+                </option>
+
+                <option value="Male">
+                    Male / مرد
+                </option>
+
+                <option value="Female">
+                    Female / عورت
+                </option>
+
+            </select>
+
+
+            <!-- DOB -->
+
+            <label>
+                Date of Birth / تاریخ پیدائش
+                <span class="required">*</span>
+            </label>
+
+            <div class="date-row">
+
+                <input
+                    type="number"
+                    id="dobDay"
+                    placeholder="Day"
+                    min="1"
+                    max="31"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="dobMonth"
+                    placeholder="Month"
+                    min="1"
+                    max="12"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="dobYear"
+                    placeholder="Year"
+                    min="1900"
+                    max="2100"
+                    required
+                >
+
+            </div>
+
+
+            <!-- FATHER -->
+
+            <label>
+                Father Name / والد کا نام
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="text"
+                id="fatherName"
+                maxlength="100"
+                placeholder="Enter Father Name"
+                required
+            >
+
+
+            <!-- COURSE -->
+
+            <label>
+                Course / کورس
+                <span class="required">*</span>
+            </label>
+
+            <div class="course-list">
+
+                <label class="course-item">
+                    <input
+                        type="checkbox"
+                        name="course"
+                        value="Noorani Qaida (Tajweed)"
+                    >
+                    <span>
+                        Noorani Qaida (Tajweed)
+                    </span>
+                </label>
+
+                <label class="course-item">
+                    <input
+                        type="checkbox"
+                        name="course"
+                        value="Nazra Quran (Tajweed)"
+                    >
+                    <span>
+                        Nazra Quran (Tajweed)
+                    </span>
+                </label>
+
+                <label class="course-item">
+                    <input
+                        type="checkbox"
+                        name="course"
+                        value="How to Perform Salah"
+                    >
+                    <span>
+                        How to Perform Salah
+                    </span>
+                </label>
+
+                <label class="course-item">
+                    <input
+                        type="checkbox"
+                        name="course"
+                        value="How to Perform Ghusl"
+                    >
+                    <span>
+                        How to Perform Ghusl
+                    </span>
+                </label>
+
+                <label class="course-item">
+                    <input
+                        type="checkbox"
+                        name="course"
+                        value="How to Perform Wudu"
+                    >
+                    <span>
+                        How to Perform Wudu
+                    </span>
+                </label>
+
+                <label class="course-item">
+                    <input
+                        type="checkbox"
+                        name="course"
+                        value="Six Kalimas"
+                    >
+                    <span>
+                        Six Kalimas
+                    </span>
+                </label>
+
+                <label class="course-item">
+                    <input
+                        type="checkbox"
+                        name="course"
+                        value="Ayat-ul-Kursi"
+                    >
+                    <span>
+                        Ayat-ul-Kursi
+                    </span>
+                </label>
+
+                <label class="course-item">
+                    <input
+                        type="checkbox"
+                        name="course"
+                        value="Funeral Prayer"
+                    >
+                    <span>
+                        Funeral Prayer
+                    </span>
+                </label>
+
+                <label class="course-item">
+                    <input
+                        type="checkbox"
+                        name="course"
+                        value="Dua-e-Qunoot"
+                    >
+                    <span>
+                        Dua-e-Qunoot
+                    </span>
+                </label>
+
+                <label class="course-item">
+                    <input
+                        type="checkbox"
+                        name="course"
+                        value="Qualities of Faith"
+                    >
+                    <span>
+                        Qualities of Faith
+                    </span>
+                </label>
+
+                <label class="course-item">
+                    <input
+                        type="checkbox"
+                        name="course"
+                        value="Adhan"
+                    >
+                    <span>
+                        Adhan
+                    </span>
+                </label>
+
+                <label class="course-item">
+                    <input
+                        type="checkbox"
+                        name="course"
+                        value="Masnoon Duas"
+                    >
+                    <span>
+                        Masnoon Duas
+                    </span>
+                </label>
+
+                <label class="course-item">
+                    <input
+                        type="checkbox"
+                        name="course"
+                        value="Hifz-ul-Quran (Tajweed)"
+                    >
+                    <span>
+                        Hifz-ul-Quran (Tajweed)
+                    </span>
+                </label>
+
+                <label class="course-item">
+                    <input
+                        type="checkbox"
+                        name="course"
+                        value="Quran Translation & Tafseer"
+                    >
+                    <span>
+                        Quran Translation & Tafseer
+                    </span>
+                </label>
+
+            </div>
+
+
+            <!-- JOINING -->
+
+            <label>
+                Date of Joining / شمولیت کی تاریخ
+                <span class="required">*</span>
+            </label>
+
+            <div class="date-row">
+
+                <input
+                    type="number"
+                    id="joinDay"
+                    placeholder="Day"
+                    min="1"
+                    max="31"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="joinMonth"
+                    placeholder="Month"
+                    min="1"
+                    max="12"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="joinYear"
+                    placeholder="Year"
+                    min="1900"
+                    max="2100"
+                    required
+                >
+
+            </div>
+
+
+            <!-- FEES -->
+
+            <label>
+                Monthly Fees / ماہانہ فیس
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="number"
+                id="monthlyFee"
+                min="0"
+                max="1000000"
+                placeholder="Enter Monthly Fees"
+                required
+            >
+
+
+            <!-- LOCATION -->
+
+            <div class="section-title">
+                Contact Information / رابطے کی معلومات
+            </div>
+
+
+            <label>
+                City / شہر
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="text"
+                id="city"
+                maxlength="80"
+                placeholder="Enter City"
+                required
+            >
+
+
+            <label>
+                Country / ملک
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="text"
+                id="country"
+                maxlength="80"
+                value="Pakistan"
+                required
+            >
+
+
+            <label>
+                Parents Gmail / والدین کی Gmail
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="email"
+                id="parentEmail"
+                maxlength="120"
+                placeholder="example@gmail.com"
+                required
+            >
+
+
+            <label>
+                Parents WhatsApp / والدین کا WhatsApp
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="tel"
+                id="parentWhatsApp"
+                maxlength="25"
+                placeholder="+92..."
+                required
+            >
+
+
+            <label>
+                Student WhatsApp / طالب علم کا WhatsApp
+            </label>
+
+            <input
+                type="tel"
+                id="studentWhatsApp"
+                maxlength="25"
+                placeholder="+92..."
+            >
+
+
+            <!-- AGREEMENT -->
+
+            <div class="agreement">
+
+                <strong>
+                    Agreement / اقرار
+                </strong>
+
+                <p>
+                    I confirm that the information provided in this
+                    registration form is true and correct.
+                </p>
+
+                <p dir="rtl">
+                    میں تصدیق کرتا/کرتی ہوں کہ اس رجسٹریشن فارم میں
+                    فراہم کردہ تمام معلومات درست اور صحیح ہیں۔
+                </p>
+
+                <div class="agreement-check">
+
+                    <input
+                        type="checkbox"
+                        id="agreement"
+                        required
+                    >
+
+                    <span>
+                        I Agree ✓ / میں اتفاق کرتا/کرتی ہوں ✓
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="submit-btn"
+                id="submitBtn"
+            >
+                Submit Registration / رجسٹریشن جمع کریں
+            </button>
+
+
+            <div
+                id="message"
+                class="message"
+            ></div>
+
+        </form>
+
+    </div>
+
+
+    <div class="footer">
+        © 2026 Jamia Farooqia Online Quran Academy
+    </div>
+
 </div>
 
-<label>Student Image / طالب علم کی تصویر *</label>
-<input type="file" id="studentPhoto" accept="image/*" required>
-<p class="note">تصویر JPG، PNG یا دوسری عام Image ہونی چاہیے۔ تصویر خودکار طور پر چھوٹی کی جائے گی۔</p>
 
-<label>Student Name / طالب علم کا نام *</label>
-<input type="text" id="studentName" maxlength="100" required>
+<!-- Firebase SDK -->
 
-<!-- Date of Birth -->
-<label>Date of Birth / تاریخِ پیدائش *</label>
-<div class="date-row">
- <div class="date-part">
-  <label>Day / دن</label>
-  <input type="number" id="dobDay" min="1" max="31" placeholder="15" required>
- </div>
- <div class="date-part">
-  <label>Month / مہینہ</label>
-  <input type="number" id="dobMonth" min="1" max="12" placeholder="12" required>
- </div>
- <div class="date-part">
-  <label>Year / سال</label>
-  <input type="number" id="dobYear" min="1900" max="2100" placeholder="1990" required>
- </div>
-</div>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
 
-<label>Father / Guardian Name / والد یا سرپرست کا نام *</label>
-<input type="text" id="guardianName" maxlength="100" required>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
 
-<!-- Date of Joining -->
-<label>Date of Joining / تاریخِ داخلہ *</label>
-<div class="date-row">
- <div class="date-part">
-  <label>Day / دن</label>
-  <input type="number" id="joinDay" min="1" max="31" placeholder="15" required>
- </div>
- <div class="date-part">
-  <label>Month / مہینہ</label>
-  <input type="number" id="joinMonth" min="1" max="12" placeholder="12" required>
- </div>
- <div class="date-part">
-  <label>Year / سال</label>
-  <input type="number" id="joinYear" min="1900" max="2100" placeholder="2026" required>
- </div>
-</div>
-
-<label>City / شہر *</label>
-<input type="text" id="city" maxlength="80" required>
-
-<label>Country / ملک *</label>
-<input type="text" id="country" maxlength="80" required>
-
-<label>Parents Gmail / والدین کا Gmail *</label>
-<input type="email" id="parentEmail" maxlength="120" required>
-
-<label>Parents WhatsApp Number / والدین کا واٹس ایپ نمبر *</label>
-<input type="tel" id="parentWhatsApp" maxlength="25" required>
-
-<label>Student WhatsApp Number / طالب علم کا واٹس ایپ نمبر *</label>
-<input type="tel" id="studentWhatsApp" maxlength="25" required>
-
-<label>Monthly Fee / ماہانہ فیس (والدین اپنی استطاعت کے مطابق منتخب کریں) *</label>
-<input type="number" id="monthlyFee" min="1" max="1000000" step="1" required>
-
-<!-- Standard Courses -->
-<div class="section">
-<h3>تمام طلبہ کے لازمی مضامین / Compulsory Courses for All Students</h3>
-<p class="note">
-یہ تمام مضامین ایک ہی ماہانہ فیس میں شامل ہیں۔
-All students will study all these courses under one monthly fee.
-</p>
-
-<div class="course">
-1. نورانی قاعدہ (تجوید)
-<span class="english">Noorani Qaida (Tajweed)</span>
-</div>
-
-<div class="course">
-2. ناظرہ قرآن (تجوید)
-<span class="english">Nazra Quran (Tajweed)</span>
-</div>
-
-<div class="course">
-3. نماز کا طریقہ
-<span class="english">How to Perform Salah</span>
-</div>
-
-<div class="course">
-4. غسل کا طریقہ
-<span class="english">How to Perform Ghusl</span>
-</div>
-
-<div class="course">
-5. غسل کے فرائض
-<span class="english">Obligations of Ghusl</span>
-</div>
-
-<div class="course">
-6. وضو کا طریقہ
-<span class="english">How to Perform Wudu</span>
-</div>
-
-<div class="course">
-7. وضو کے فرائض
-<span class="english">Obligations of Wudu</span>
-</div>
-
-<div class="course">
-8. نماز
-<span class="english">Salah (Prayer)</span>
-</div>
-
-<div class="course">
-9. 6 کلمے
-<span class="english">Six Kalimas</span>
-</div>
-
-<div class="course">
-10. آیت الکرسی
-<span class="english">Ayat-ul-Kursi</span>
-</div>
-
-<div class="course">
-11. نماز جنازہ
-<span class="english">Funeral Prayer</span>
-</div>
-
-<div class="course">
-12. دعائے قنوت
-<span class="english">Dua-e-Qunoot</span>
-</div>
-
-<div class="course">
-13. ایمان کی صفات
-<span class="english">Qualities of Faith</span>
-</div>
-
-<div class="course">
-14. آذان
-<span class="english">Adhan (Call to Prayer)</span>
-</div>
-
-<div class="course">
-15. مسنون دعائیں
-<span class="english">Masnoon Duas</span>
-</div>
-</div>
-
-<!-- Optional Courses -->
-<div class="section">
-<h3>اختیاری اضافی کورسز / Optional Additional Courses</h3>
-
-<p class="note">
-ان کورسز کی اضافی فیس Main Admin مقرر کرے گا۔
-Additional fees will be decided by the Main Admin.
-</p>
-
-<div class="course">
-<label>
-<input type="checkbox" id="optionalHifz">
-حفظ قرآن (تجوید)
-<span class="english">Hifz-ul-Quran (Tajweed)</span>
-</label>
-</div>
-
-<div class="course">
-<label>
-<input type="checkbox" id="optionalTranslation">
-قرآن مجید ترجمہ، تفسیر
-<span class="english">Quran Translation & Tafseer</span>
-</label>
-</div>
-
-<p class="note">
-قرآن مجید ترجمہ و تفسیر کے لیے الگ خاتون ٹیچر مقرر ہوگی۔
-A separate female teacher will teach Quran Translation & Tafseer.
-</p>
-</div>
-
-<!-- Agreement -->
-<div class="section agree">
-<label>
-<input type="checkbox" id="agreement" required>
-I Agree / میں اتفاق کرتا ہوں ✓
-</label>
-<p>
-I am filling out this form voluntarily, and all the information I have provided is true and correct.
-</p>
-<p dir="rtl">
-میں اپنی مرضی سے یہ فارم پُر کر رہا/رہی ہوں، اور میری فراہم کردہ تمام معلومات درست ہیں۔
-</p>
-</div>
-
-<button type="submit" id="submitBtn">
-Submit Registration / داخلہ درخواست جمع کروائیں
-</button>
-
-<div id="message" role="status"></div>
-
-</form>
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
 
 <script>
+
+/* =====================================================
+   FIREBASE CONFIG
+   ===================================================== */
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBCckWkgz1TJIhsIYTojdRf9BJ4MQ8v0Ho",
-  authDomain: "jamia-farooqia-academy.firebaseapp.com",
-  databaseURL: "https://jamia-farooqia-academy-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "jamia-farooqia-academy",
-  storageBucket: "jamia-farooqia-academy.firebasestorage.app",
-  messagingSenderId: "125948984898",
-  appId: "1:125948984898:web:54586c1467f0ec131f37db"
+
+    apiKey:
+        "AIzaSyBCckWkgz1JIhsIYTojdRf9BJ4MQ8v0Ho",
+
+    authDomain:
+        "jamia-farooqia-academy.firebaseapp.com",
+
+    databaseURL:
+        "https://jamia-farooqia-academy-default-rtdb.asia-southeast1.firebasedatabase.app",
+
+    projectId:
+        "jamia-farooqia-academy",
+
+    storageBucket:
+        "jamia-farooqia-academy.firebasestorage.app",
+
+    messagingSenderId:
+        "125948984898",
+
+    appId:
+        "1:125948984898:web:54586c1467f0ec131f37db"
 };
 
+
 firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
 
-function setToday(){
- const now = new Date();
- document.getElementById("regDay").value = now.getDate();
- document.getElementById("regMonth").value = now.getMonth()+1;
- document.getElementById("regYear").value = now.getFullYear();
-}
-setToday();
+const database = firebase.database();
 
-// Convert Day / Month / Year into YYYY-MM-DD
-function getDateValue(dayId, monthId, yearId){
- const day = Number(document.getElementById(dayId).value);
- const month = Number(document.getElementById(monthId).value);
- const year = Number(document.getElementById(yearId).value);
 
- if(!day || !month || !year){
-  throw new Error("براہ کرم تاریخ کے تینوں خانے مکمل کریں۔");
- }
+/* =====================================================
+   REGISTRATION DATE
+   ===================================================== */
 
- const date = new Date(Date.UTC(year,month-1,day));
+const today = new Date();
 
- if(
-  date.getUTCFullYear() !== year ||
-  date.getUTCMonth() !== month-1 ||
-  date.getUTCDate() !== day
- ){
-  throw new Error("تاریخ درست نہیں۔ براہ کرم Day، Month اور Year چیک کریں۔");
- }
+document.getElementById("regDay").value =
+    today.getDate();
 
- return String(year).padStart(4,"0")+"-"+
-        String(month).padStart(2,"0")+"-"+
-        String(day).padStart(2,"0");
+document.getElementById("regMonth").value =
+    today.getMonth() + 1;
+
+document.getElementById("regYear").value =
+    today.getFullYear();
+
+
+/* =====================================================
+   DATE FUNCTION
+   ===================================================== */
+
+function makeDate(day, month, year){
+
+    return (
+        year + "-" +
+        String(month).padStart(2,"0") + "-" +
+        String(day).padStart(2,"0")
+    );
 }
 
-function compressImage(file){
- return new Promise((resolve,reject)=>{
-  if(!file || !file.type.startsWith("image/")){
-   reject(new Error("براہ کرم درست تصویر منتخب کریں۔"));
-   return;
-  }
 
-  const reader = new FileReader();
+function validDate(day, month, year){
 
-  reader.onload = function(){
-   const img = new Image();
+    const date =
+        new Date(year, month - 1, day);
 
-   img.onload = function(){
-    const canvas = document.createElement("canvas");
-    const max = 500;
-    let w = img.width;
-    let h = img.height;
+    return (
+        date.getFullYear() == year &&
+        date.getMonth() == month - 1 &&
+        date.getDate() == day
+    );
+}
 
-    if(w > h && w > max){
-     h = Math.round(h * max / w);
-     w = max;
-    }else if(h > max){
-     w = Math.round(w * max / h);
-     h = max;
+
+/* =====================================================
+   PHOTO / CAMERA
+   ===================================================== */
+
+let cameraStream = null;
+let capturedPhoto = null;
+
+const camera =
+    document.getElementById("camera");
+
+const photoPreview =
+    document.getElementById("photoPreview");
+
+const openCameraBtn =
+    document.getElementById("openCameraBtn");
+
+const captureBtn =
+    document.getElementById("captureBtn");
+
+const retakeBtn =
+    document.getElementById("retakeBtn");
+
+
+/* OPEN CAMERA */
+
+openCameraBtn.addEventListener(
+    "click",
+    async function(){
+
+        try{
+
+            if(
+                !navigator.mediaDevices ||
+                !navigator.mediaDevices.getUserMedia
+            ){
+
+                throw new Error(
+                    "Camera is not supported."
+                );
+            }
+
+
+            cameraStream =
+                await navigator.mediaDevices.getUserMedia({
+
+                    video:{
+                        facingMode:"user"
+                    },
+
+                    audio:false
+                });
+
+
+            camera.srcObject =
+                cameraStream;
+
+            camera.style.display =
+                "block";
+
+            captureBtn.style.display =
+                "inline-block";
+
+            openCameraBtn.style.display =
+                "none";
+
+
+        }catch(error){
+
+            console.error(error);
+
+            alert(
+                "Camera could not be opened. Please allow camera permission or select a photo from Gallery."
+            );
+        }
+
     }
+);
 
-    canvas.width = w;
-    canvas.height = h;
 
-    const ctx = canvas.getContext("2d");
-    ctx.drawImage(img,0,0,w,h);
+/* CAPTURE PHOTO */
 
-    const result = canvas.toDataURL("image/jpeg",0.65);
+captureBtn.addEventListener(
+    "click",
+    function(){
 
-    if(result.length > 480000){
-     reject(new Error("تصویر کا سائز زیادہ ہے۔ براہ کرم چھوٹی تصویر منتخب کریں۔"));
-     return;
+        if(!camera.videoWidth){
+
+            alert(
+                "Camera is not ready. Please wait."
+            );
+
+            return;
+        }
+
+
+        const canvas =
+            document.createElement("canvas");
+
+
+        let width =
+            camera.videoWidth;
+
+        let height =
+            camera.videoHeight;
+
+
+        const maxSize = 700;
+
+
+        if(
+            width > maxSize ||
+            height > maxSize
+        ){
+
+            const ratio =
+                Math.min(
+                    maxSize / width,
+                    maxSize / height
+                );
+
+            width =
+                Math.round(width * ratio);
+
+            height =
+                Math.round(height * ratio);
+        }
+
+
+        canvas.width =
+            width;
+
+        canvas.height =
+            height;
+
+
+        const ctx =
+            canvas.getContext("2d");
+
+
+        ctx.drawImage(
+            camera,
+            0,
+            0,
+            width,
+            height
+        );
+
+
+        capturedPhoto =
+            canvas.toDataURL(
+                "image/jpeg",
+                0.65
+            );
+
+
+        photoPreview.src =
+            capturedPhoto;
+
+        photoPreview.style.display =
+            "block";
+
+        camera.style.display =
+            "none";
+
+        captureBtn.style.display =
+            "none";
+
+        retakeBtn.style.display =
+            "inline-block";
+
+
+        stopCamera();
     }
+);
 
-    resolve(result);
-   };
 
-   img.onerror = ()=>reject(new Error("تصویر کھل نہیں سکی۔"));
-   img.src = reader.result;
-  };
+/* RETAKE */
 
-  reader.onerror = ()=>reject(new Error("تصویر پڑھنے میں مسئلہ ہوا۔"));
-  reader.readAsDataURL(file);
- });
+retakeBtn.addEventListener(
+    "click",
+    async function(){
+
+        capturedPhoto = null;
+
+        photoPreview.src = "";
+
+        photoPreview.style.display =
+            "none";
+
+        retakeBtn.style.display =
+            "none";
+
+        openCameraBtn.style.display =
+            "inline-block";
+    }
+);
+
+
+/* STOP CAMERA */
+
+function stopCamera(){
+
+    if(cameraStream){
+
+        cameraStream
+            .getTracks()
+            .forEach(
+                track => track.stop()
+            );
+
+        cameraStream = null;
+    }
 }
 
-const form = document.getElementById("studentForm");
-const message = document.getElementById("message");
-const submitBtn = document.getElementById("submitBtn");
 
-form.addEventListener("submit", async function(e){
- e.preventDefault();
+/* =====================================================
+   GALLERY PHOTO
+   ===================================================== */
 
- if(!form.reportValidity()) return;
+document.getElementById("studentImage")
+.addEventListener(
+    "change",
+    function(event){
 
- submitBtn.disabled = true;
- submitBtn.textContent = "Submitting... / جمع ہو رہا ہے...";
- message.textContent = "";
+        const file =
+            event.target.files[0];
 
- try{
-  const registrationDate = getDateValue("regDay","regMonth","regYear");
-  const dateOfBirth = getDateValue("dobDay","dobMonth","dobYear");
-  const joiningDate = getDateValue("joinDay","joinMonth","joinYear");
+        if(!file){
+            return;
+        }
 
-  const file = document.getElementById("studentPhoto").files[0];
-  const photo = await compressImage(file);
 
-  const application = {
-   registrationDate: registrationDate,
-   studentPhoto: photo,
-   studentName: document.getElementById("studentName").value.trim(),
-   dateOfBirth: dateOfBirth,
-   guardianName: document.getElementById("guardianName").value.trim(),
-   joiningDate: joiningDate,
-   city: document.getElementById("city").value.trim(),
-   country: document.getElementById("country").value.trim(),
-   parentEmail: document.getElementById("parentEmail").value.trim(),
-   parentWhatsApp: document.getElementById("parentWhatsApp").value.trim(),
-   studentWhatsApp: document.getElementById("studentWhatsApp").value.trim(),
-   monthlyFee: Number(document.getElementById("monthlyFee").value),
-   standardCoursesIncluded: true,
-   optionalHifz: document.getElementById("optionalHifz").checked,
-   optionalTranslationTafseer: document.getElementById("optionalTranslation").checked,
-   agreement: true,
-   status: "Pending",
-   submittedAt: Date.now()
-  };
+        if(file.size > 5 * 1024 * 1024){
 
-  const newApplication = db.ref("studentApplications").push();
-  await newApplication.set(application);
+            alert(
+                "Image size must be less than 5 MB."
+            );
 
-  message.style.color = "#7fffa0";
-  message.textContent = "الحمدللہ! آپ کی درخواست کامیابی سے جمع ہوگئی ہے۔ Admin کی منظوری کا انتظار کریں۔";
+            event.target.value = "";
 
-  form.reset();
-  setToday();
+            return;
+        }
 
- }catch(error){
-  console.error(error);
-  message.style.color = "#ff8585";
-  message.textContent = "درخواست جمع نہیں ہوئی: " + (error.message || "براہ کرم دوبارہ کوشش کریں۔");
- }finally{
-  submitBtn.disabled = false;
-  submitBtn.textContent = "Submit Registration / داخلہ درخواست جمع کروائیں";
- }
-});
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function(e){
+
+                capturedPhoto =
+                    e.target.result;
+
+                photoPreview.src =
+                    capturedPhoto;
+
+                photoPreview.style.display =
+                    "block";
+
+            };
+
+
+        reader.readAsDataURL(file);
+    }
+);
+
+
+/* =====================================================
+   MESSAGE
+   ===================================================== */
+
+function showMessage(text,type){
+
+    const message =
+        document.getElementById("message");
+
+    message.textContent =
+        text;
+
+    message.className =
+        "message " + type;
+
+    message.style.display =
+        "block";
+}
+
+
+/* =====================================================
+   FORM SUBMIT
+   ===================================================== */
+
+document.getElementById("studentForm")
+.addEventListener(
+    "submit",
+    async function(event){
+
+        event.preventDefault();
+
+
+        const submitBtn =
+            document.getElementById("submitBtn");
+
+
+        submitBtn.disabled =
+            true;
+
+        submitBtn.textContent =
+            "Submitting...";
+
+
+        showMessage(
+            "Please wait... / براہ کرم انتظار کریں...",
+            "success"
+        );
+
+
+        try{
+
+            /* REGISTRATION DATE */
+
+            const regDay =
+                Number(
+                    document.getElementById(
+                        "regDay"
+                    ).value
+                );
+
+            const regMonth =
+                Number(
+                    document.getElementById(
+                        "regMonth"
+                    ).value
+                );
+
+            const regYear =
+                Number(
+                    document.getElementById(
+                        "regYear"
+                    ).value
+                );
+
+
+            /* DOB */
+
+            const dobDay =
+                Number(
+                    document.getElementById(
+                        "dobDay"
+                    ).value
+                );
+
+            const dobMonth =
+                Number(
+                    document.getElementById(
+                        "dobMonth"
+                    ).value
+                );
+
+            const dobYear =
+                Number(
+                    document.getElementById(
+                        "dobYear"
+                    ).value
+                );
+
+
+            /* JOINING DATE */
+
+            const joinDay =
+                Number(
+                    document.getElementById(
+                        "joinDay"
+                    ).value
+                );
+
+            const joinMonth =
+                Number(
+                    document.getElementById(
+                        "joinMonth"
+                    ).value
+                );
+
+            const joinYear =
+                Number(
+                    document.getElementById(
+                        "joinYear"
+                    ).value
+                );
+
+
+            /* DATE VALIDATION */
+
+            if(
+                !validDate(
+                    regDay,
+                    regMonth,
+                    regYear
+                )
+            ){
+
+                throw new Error(
+                    "Registration date is invalid."
+                );
+            }
+
+
+            if(
+                !validDate(
+                    dobDay,
+                    dobMonth,
+                    dobYear
+                )
+            ){
+
+                throw new Error(
+                    "Date of birth is invalid."
+                );
+            }
+
+
+            if(
+                !validDate(
+                    joinDay,
+                    joinMonth,
+                    joinYear
+                )
+            ){
+
+                throw new Error(
+                    "Joining date is invalid."
+                );
+            }
+
+
+            /* PHOTO */
+
+            if(!capturedPhoto){
+
+                throw new Error(
+                    "Student image is required."
+                );
+            }
+
+
+            /* COURSES */
+
+            const selectedCourses =
+                Array.from(
+                    document.querySelectorAll(
+                        'input[name="course"]:checked'
+                    )
+                ).map(
+                    item => item.value
+                );
+
+
+            if(
+                selectedCourses.length === 0
+            ){
+
+                throw new Error(
+                    "Please select at least one course."
+                );
+            }
+
+
+            /* VALUES */
+
+            const studentName =
+                document.getElementById(
+                    "studentName"
+                ).value.trim();
+
+            const gender =
+                document.getElementById(
+                    "gender"
+                ).value;
+
+            const fatherName =
+                document.getElementById(
+                    "fatherName"
+                ).value.trim();
+
+            const monthlyFee =
+                Number(
+                    document.getElementById(
+                        "monthlyFee"
+                    ).value
+                );
+
+            const city =
+                document.getElementById(
+                    "city"
+                ).value.trim();
+
+            const country =
+                document.getElementById(
+                    "country"
+                ).value.trim();
+
+            const parentEmail =
+                document.getElementById(
+                    "parentEmail"
+                ).value.trim();
+
+            const parentWhatsApp =
+                document.getElementById(
+                    "parentWhatsApp"
+                ).value.trim();
+
+            const studentWhatsApp =
+                document.getElementById(
+                    "studentWhatsApp"
+                ).value.trim();
+
+
+            /* BASIC VALIDATION */
+
+            if(!studentName){
+
+                throw new Error(
+                    "Student name is required."
+                );
+            }
+
+
+            if(!gender){
+
+                throw new Error(
+                    "Gender is required."
+                );
+            }
+
+
+            if(!fatherName){
+
+                throw new Error(
+                    "Father name is required."
+                );
+            }
+
+
+            if(
+                !monthlyFee &&
+                monthlyFee !== 0
+            ){
+
+                throw new Error(
+                    "Monthly fee is required."
+                );
+            }
+
+
+            if(!city){
+
+                throw new Error(
+                    "City is required."
+                );
+            }
+
+
+            if(!country){
+
+                throw new Error(
+                    "Country is required."
+                );
+            }
+
+
+            if(!parentEmail){
+
+                throw new Error(
+                    "Parents Gmail is required."
+                );
+            }
+
+
+            if(!parentWhatsApp){
+
+                throw new Error(
+                    "Parents WhatsApp is required."
+                );
+            }
+
+
+            if(
+                !document.getElementById(
+                    "agreement"
+                ).checked
+            ){
+
+                throw new Error(
+                    "Please accept the agreement."
+                );
+            }
+
+
+            /* APPLICATION */
+
+            const application = {
+
+                registrationDate:
+                    makeDate(
+                        regDay,
+                        regMonth,
+                        regYear
+                    ),
+
+                studentPhoto:
+                    capturedPhoto,
+
+                studentName:
+                    studentName,
+
+                gender:
+                    gender,
+
+                dateOfBirth:
+                    makeDate(
+                        dobDay,
+                        dobMonth,
+                        dobYear
+                    ),
+
+                fatherName:
+                    fatherName,
+
+                courses:
+                    selectedCourses,
+
+                joiningDate:
+                    makeDate(
+                        joinDay,
+                        joinMonth,
+                        joinYear
+                    ),
+
+                monthlyFee:
+                    monthlyFee,
+
+                city:
+                    city,
+
+                country:
+                    country,
+
+                parentEmail:
+                    parentEmail,
+
+                parentWhatsApp:
+                    parentWhatsApp,
+
+                studentWhatsApp:
+                    studentWhatsApp,
+
+                agreement:
+                    true,
+
+                status:
+                    "Pending",
+
+                submittedAt:
+                    firebase.database
+                        .ServerValue
+                        .TIMESTAMP
+            };
+
+
+            /* SAVE */
+
+            const newApplication =
+                database
+                    .ref(
+                        "studentApplications"
+                    )
+                    .push();
+
+
+            await newApplication.set(
+                application
+            );
+
+
+            /* SUCCESS */
+
+            showMessage(
+                "Registration submitted successfully. Your application is Pending Admin Approval. / رجسٹریشن کامیابی سے جمع ہوگئی ہے۔ آپ کی درخواست Admin کی منظوری کے لیے Pending ہے۔",
+                "success"
+            );
+
+
+            /* RESET */
+
+            document.getElementById(
+                "studentForm"
+            ).reset();
+
+
+            capturedPhoto = null;
+
+            photoPreview.src = "";
+
+            photoPreview.style.display =
+                "none";
+
+            openCameraBtn.style.display =
+                "inline-block";
+
+            captureBtn.style.display =
+                "none";
+
+            retakeBtn.style.display =
+                "none";
+
+
+            /* COUNTRY */
+
+            document.getElementById(
+                "country"
+            ).value =
+                "Pakistan";
+
+
+            /* REGISTRATION DATE */
+
+            document.getElementById(
+                "regDay"
+            ).value =
+                today.getDate();
+
+            document.getElementById(
+                "regMonth"
+            ).value =
+                today.getMonth() + 1;
+
+            document.getElementById(
+                "regYear"
+            ).value =
+                today.getFullYear();
+
+
+        }catch(error){
+
+            console.error(
+                "Registration Error:",
+                error
+            );
+
+
+            showMessage(
+                error.message,
+                "error"
+            );
+
+        }finally{
+
+            submitBtn.disabled =
+                false;
+
+            submitBtn.textContent =
+                "Submit Registration / رجسٹریشن جمع کریں";
+        }
+
+    }
+);
+
+
+/* =====================================================
+   PAGE CLOSE
+   ===================================================== */
+
+window.addEventListener(
+    "beforeunload",
+    function(){
+
+        stopCamera();
+
+    }
+);
+
 </script>
 
 </body>
