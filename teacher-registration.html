@@ -7,788 +7,695 @@
 <title>Teacher Registration - Jamia Farooqia</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{
+    box-sizing:border-box;
 }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f3f8f4;
-  color: #222;
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f1f6f3;
+    color:#222;
 }
 
-.container {
-  max-width: 700px;
-  margin: 25px auto;
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 3px 15px rgba(0,0,0,0.12);
+.header{
+    background:linear-gradient(135deg,#075c3b,#0b7a50);
+    color:white;
+    padding:22px 15px;
+    text-align:center;
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
 }
 
-.logo {
-  text-align: center;
-  margin-bottom: 10px;
+.header img{
+    width:75px;
+    height:75px;
+    object-fit:contain;
+    background:white;
+    border-radius:50%;
+    padding:6px;
+    margin-bottom:8px;
 }
 
-.logo img {
-  width: 95px;
-  height: 95px;
-  object-fit: contain;
+.header h1{
+    margin:4px 0;
+    font-size:24px;
 }
 
-h1 {
-  text-align: center;
-  color: #087f23;
-  margin-bottom: 5px;
+.header p{
+    margin:5px 0 0;
+    font-size:14px;
+    opacity:.9;
 }
 
-.subtitle {
-  text-align: center;
-  color: #555;
-  margin-bottom: 25px;
+.container{
+    width:95%;
+    max-width:950px;
+    margin:25px auto;
 }
 
-.section-title {
-  background: #087f23;
-  color: white;
-  padding: 10px;
-  border-radius: 7px;
-  margin-top: 20px;
-  margin-bottom: 15px;
-  text-align: center;
+.form-card{
+    background:white;
+    border-radius:16px;
+    padding:25px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
 }
 
-label {
-  display: block;
-  font-weight: bold;
-  margin-top: 15px;
-  margin-bottom: 6px;
+.form-title{
+    text-align:center;
+    color:#075c3b;
+    margin-top:0;
+    margin-bottom:25px;
+    font-size:23px;
+}
+
+.section-title{
+    color:#075c3b;
+    font-size:17px;
+    font-weight:bold;
+    margin:25px 0 15px;
+    padding-bottom:8px;
+    border-bottom:2px solid #e5eee9;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+}
+
+.field.full{
+    grid-column:1 / -1;
+}
+
+label{
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:7px;
+    color:#333;
+}
+
+.required{
+    color:#d60000;
 }
 
 input,
-select {
-  width: 100%;
-  padding: 11px;
-  border: 1px solid #bbb;
-  border-radius: 6px;
-  font-size: 15px;
+select,
+textarea{
+    width:100%;
+    padding:12px 13px;
+    border:1px solid #cfd9d4;
+    border-radius:9px;
+    font-size:15px;
+    outline:none;
+    background:#fff;
+    transition:.2s;
 }
 
-.date-row {
-  display: flex;
-  gap: 8px;
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#08764c;
+    box-shadow:0 0 0 3px rgba(8,118,76,.10);
 }
 
-.date-row input {
-  flex: 1;
+textarea{
+    min-height:100px;
+    resize:vertical;
 }
 
-.help {
-  font-size: 12px;
-  color: #666;
-  margin-top: 4px;
+input[readonly]{
+    background:#f3f5f4;
+    cursor:not-allowed;
 }
 
-.agreement {
-  margin-top: 25px;
-  padding: 15px;
-  background: #f0f7f1;
-  border: 1px solid #c7dfca;
-  border-radius: 8px;
-  line-height: 1.7;
+/* Camera */
+.camera-box{
+    border:2px dashed #9db8aa;
+    border-radius:14px;
+    padding:15px;
+    text-align:center;
+    background:#f8fbf9;
 }
 
-.agreement label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 10px;
+video,
+#photoPreview{
+    width:100%;
+    max-width:430px;
+    height:280px;
+    object-fit:cover;
+    border-radius:12px;
+    background:#111;
+    display:block;
+    margin:0 auto 12px;
 }
 
-.agreement input {
-  width: auto;
+#photoPreview{
+    display:none;
 }
 
-button {
-  width: 100%;
-  margin-top: 20px;
-  padding: 13px;
-  background: #087f23;
-  color: white;
-  border: none;
-  border-radius: 7px;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
+.camera-buttons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
 }
 
-button:hover {
-  background: #05661c;
+.btn{
+    border:none;
+    border-radius:8px;
+    padding:11px 17px;
+    font-size:14px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-button:disabled {
-  background: #888;
-  cursor: not-allowed;
+.btn-camera{
+    background:#075c3b;
+    color:white;
 }
 
-.message {
-  display: none;
-  margin-top: 15px;
-  padding: 12px;
-  border-radius: 7px;
-  text-align: center;
-  font-weight: bold;
+.btn-capture{
+    background:#0b7a50;
+    color:white;
 }
 
-.success {
-  background: #d9f3df;
-  color: #116b27;
+.btn-gallery{
+    background:#e9efec;
+    color:#164c38;
 }
 
-.error {
-  background: #fde0e0;
-  color: #a30000;
+.btn-retake{
+    background:#fff0f0;
+    color:#b00000;
 }
 
-.required {
-  color: red;
+.btn:hover{
+    opacity:.9;
+}
+
+#galleryInput{
+    display:none;
+}
+
+.photo-status{
+    font-size:13px;
+    margin-top:10px;
+    color:#666;
+}
+
+/* Payment */
+.payment-options{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.payment-option{
+    position:relative;
+}
+
+.payment-option input{
+    position:absolute;
+    opacity:0;
+}
+
+.payment-option label{
+    display:block;
+    text-align:center;
+    padding:12px;
+    border:1px solid #cfd9d4;
+    border-radius:9px;
+    cursor:pointer;
+    margin:0;
+    font-weight:bold;
+    background:#fff;
+}
+
+.payment-option input:checked + label{
+    background:#075c3b;
+    color:white;
+    border-color:#075c3b;
+}
+
+/* Agreement */
+.agreement{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin-top:25px;
+    padding:14px;
+    background:#f5faf7;
+    border-radius:10px;
+}
+
+.agreement input{
+    width:18px;
+    height:18px;
+    margin-top:2px;
+}
+
+.agreement label{
+    margin:0;
+    font-weight:normal;
+    line-height:1.5;
+}
+
+/* Submit */
+.submit-btn{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,#075c3b,#0b7a50);
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.submit-btn:hover{
+    opacity:.92;
+}
+
+.submit-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.message{
+    display:none;
+    padding:13px;
+    border-radius:9px;
+    margin-top:18px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.success{
+    background:#e7f7ed;
+    color:#126b3f;
+}
+
+.error{
+    background:#ffecec;
+    color:#b00000;
+}
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#666;
+    font-size:13px;
+}
+
+/* Mobile */
+@media(max-width:700px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-card{
+        padding:17px;
+    }
+
+    .header h1{
+        font-size:21px;
+    }
+
+    .payment-options{
+        grid-template-columns:1fr;
+    }
+
+    video,
+    #photoPreview{
+        height:240px;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<header class="header">
+
+    <img src="logo.png" alt="Jamia Farooqia Logo">
+
+    <h1>Jamia Farooqia Online Quran Academy</h1>
+
+    <p>Teacher Registration Form</p>
+
+</header>
+
+
 <div class="container">
 
-  <div class="logo">
-    <!-- Apni academy logo file ka naam yahan rakhein -->
-    <img src="logo.png" alt="Jamia Farooqia Logo">
-  </div>
+<div class="form-card">
 
-  <h1>جامعہ فاروقیہ</h1>
-  <div class="subtitle">
-    Online Quran Academy — Lahore, Pakistan
-  </div>
+<h2 class="form-title">Teacher Registration</h2>
 
-  <div class="section-title">
-    Teacher Registration / استاد رجسٹریشن
-  </div>
+<form id="teacherForm">
 
-  <form id="teacherForm">
+<!-- ================= BASIC INFORMATION ================= -->
 
-    <!-- Registration Date -->
-    <label>
-      Registration Date / رجسٹریشن کی تاریخ
-      <span class="required">*</span>
-    </label>
+<div class="section-title">
+    Basic Information
+</div>
 
-    <div class="date-row">
-      <input type="number" id="regDay" placeholder="Day / دن"
-             min="1" max="31" required>
+<div class="grid">
 
-      <input type="number" id="regMonth" placeholder="Month / ماہ"
-             min="1" max="12" required>
-
-      <input type="number" id="regYear" placeholder="Year / سال"
-             min="1900" max="2100" required>
+    <div class="field">
+        <label>Registration Date <span class="required">*</span></label>
+        <input type="date" id="registrationDate" required>
     </div>
 
-    <!-- Teacher Image -->
-    <label>
-      Teacher Image / استاد کی تصویر
-      <span class="required">*</span>
-    </label>
+    <div class="field">
+        <label>Job Type <span class="required">*</span></label>
 
-    <input type="file"
-           id="teacherImage"
-           accept="image/jpeg,image/png,image/webp"
-           required>
-
-    <div class="help">
-      JPG, PNG or WEBP — clear teacher photo
+        <select id="jobType" required>
+            <option value="">Select Job Type</option>
+            <option value="Full Time">Full Time</option>
+            <option value="Part Time">Part Time</option>
+        </select>
     </div>
-
-    <!-- Job Type -->
-    <label>
-      Job Type / ملازمت کی قسم
-      <span class="required">*</span>
-    </label>
-
-    <select id="jobType" required>
-      <option value="">Select / منتخب کریں</option>
-      <option value="Part Time">Part Time / جز وقتی</option>
-      <option value="Full Time">Full Time / کل وقتی</option>
-    </select>
-
-    <!-- Teacher Name -->
-    <label>
-      Teacher Name / استاد کا نام
-      <span class="required">*</span>
-    </label>
-
-    <input type="text"
-           id="teacherName"
-           maxlength="100"
-           required>
-
-    <!-- Date of Birth -->
-    <label>
-      Date of Birth / تاریخ پیدائش
-      <span class="required">*</span>
-    </label>
-
-    <div class="date-row">
-      <input type="number" id="dobDay" placeholder="Day / دن"
-             min="1" max="31" required>
-
-      <input type="number" id="dobMonth" placeholder="Month / ماہ"
-             min="1" max="12" required>
-
-      <input type="number" id="dobYear" placeholder="Year / سال"
-             min="1900" max="2100" required>
-    </div>
-
-    <!-- NIC -->
-    <label>
-      NIC / شناختی کارڈ نمبر
-      <span class="required">*</span>
-    </label>
-
-    <input type="text"
-           id="nic"
-           maxlength="25"
-           placeholder="e.g. 35202-1234567-1"
-           required>
-
-    <!-- Father Name -->
-    <label>
-      Father Name / والد کا نام
-      <span class="required">*</span>
-    </label>
-
-    <input type="text"
-           id="fatherName"
-           maxlength="100"
-           required>
-
-    <!-- Joining Date -->
-    <label>
-      Date of Joining / شمولیت کی تاریخ
-      <span class="required">*</span>
-    </label>
-
-    <div class="date-row">
-      <input type="number" id="joinDay" placeholder="Day / دن"
-             min="1" max="31" required>
-
-      <input type="number" id="joinMonth" placeholder="Month / ماہ"
-             min="1" max="12" required>
-
-      <input type="number" id="joinYear" placeholder="Year / سال"
-             min="1900" max="2100" required>
-    </div>
-
-    <!-- City -->
-    <label>
-      City / شہر
-      <span class="required">*</span>
-    </label>
-
-    <input type="text"
-           id="city"
-           maxlength="80"
-           required>
-
-    <!-- Country -->
-    <label>
-      Country / ملک
-      <span class="required">*</span>
-    </label>
-
-    <input type="text"
-           id="country"
-           maxlength="80"
-           value="Pakistan"
-           required>
-
-    <!-- Gmail -->
-    <label>
-      Gmail / جی میل
-      <span class="required">*</span>
-    </label>
-
-    <input type="email"
-           id="gmail"
-           maxlength="120"
-           required>
-
-    <!-- Mobile -->
-    <label>
-      Mobile Number / موبائل نمبر
-      <span class="required">*</span>
-    </label>
-
-    <input type="tel"
-           id="mobile"
-           maxlength="25"
-           required>
-
-    <!-- WhatsApp -->
-    <label>
-      WhatsApp / واٹس ایپ
-      <span class="required">*</span>
-    </label>
-
-    <input type="tel"
-           id="whatsapp"
-           maxlength="25"
-           required>
-
-    <!-- Experience -->
-    <label>
-      Teaching Experience / تدریسی تجربہ
-      <span class="required">*</span>
-    </label>
-
-    <input type="text"
-           id="experience"
-           maxlength="100"
-           placeholder="e.g. 5 Years"
-           required>
-
-    <!-- Salary -->
-    <label>
-      Monthly Salary / ماہانہ تنخواہ
-      <span class="required">*</span>
-    </label>
-
-    <input type="number"
-           id="monthlySalary"
-           min="1"
-           max="1000000"
-           required>
-
-    <!-- Payment Method -->
-    <label>
-      Salary Payment Method / تنخواہ وصول کرنے کا طریقہ
-      <span class="required">*</span>
-    </label>
-
-    <select id="paymentMethod" required>
-      <option value="">Select / منتخب کریں</option>
-      <option value="JazzCash">JazzCash</option>
-      <option value="EasyPaisa">EasyPaisa</option>
-      <option value="Bank">Bank</option>
-    </select>
-
-    <!-- Agreement -->
-    <div class="agreement">
-
-      <strong>
-        Agreement / اقرار
-      </strong>
-
-      <p>
-        I am filling out this form voluntarily, and all the information
-        I have provided is true and correct.
-      </p>
-
-      <p dir="rtl">
-        میں یہ فارم اپنی رضامندی سے پُر کر رہا/رہی ہوں، اور میری فراہم کردہ
-        تمام معلومات درست اور صحیح ہیں۔
-      </p>
-
-      <label>
-        <input type="checkbox" id="agreement" required>
-        I Agree ✓ / میں اتفاق کرتا/کرتی ہوں ✓
-      </label>
-
-    </div>
-
-    <button type="submit" id="submitBtn">
-      Submit Registration / رجسٹریشن جمع کریں
-    </button>
-
-    <div id="message" class="message"></div>
-
-  </form>
 
 </div>
 
 
-<!-- Firebase Compat SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
-<script>
+<!-- ================= TEACHER PHOTO ================= -->
 
-/* Firebase Configuration */
-const firebaseConfig = {
-  apiKey: "AIzaSyBCckWkgz1TJIhsIYTojdRf9BJ4MQ8v0Ho",
-  authDomain: "jamia-farooqia-academy.firebaseapp.com",
-  databaseURL: "https://jamia-farooqia-academy-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "jamia-farooqia-academy",
-  storageBucket: "jamia-farooqia-academy.firebasestorage.app",
-  messagingSenderId: "125948984898",
-  appId: "1:125948984898:web:54586c1467f0ec131f37db"
-};
+<div class="section-title">
+    Teacher Image
+</div>
 
-firebase.initializeApp(firebaseConfig);
+<div class="camera-box">
 
-const database = firebase.database();
+    <video id="camera" autoplay playsinline></video>
 
+    <img id="photoPreview" alt="Teacher Photo Preview">
 
-/* Today's Date */
-const today = new Date();
+    <canvas id="canvas" style="display:none;"></canvas>
 
-document.getElementById("regDay").value = today.getDate();
-document.getElementById("regMonth").value = today.getMonth() + 1;
-document.getElementById("regYear").value = today.getFullYear();
+    <div class="camera-buttons">
 
+        <button type="button"
+                class="btn btn-camera"
+                id="startCameraBtn">
+            📷 Start Camera
+        </button>
 
-/* Create YYYY-MM-DD Date */
-function makeDate(day, month, year) {
+        <button type="button"
+                class="btn btn-capture"
+                id="captureBtn">
+            📸 Capture Photo
+        </button>
 
-  const d = String(day).padStart(2, "0");
-  const m = String(month).padStart(2, "0");
+        <button type="button"
+                class="btn btn-gallery"
+                id="galleryBtn">
+            🖼 Choose From Gallery
+        </button>
 
-  return `${year}-${m}-${d}`;
-}
+        <button type="button"
+                class="btn btn-retake"
+                id="retakeBtn"
+                style="display:none;">
+            🔄 Retake
+        </button>
 
+    </div>
 
-/* Validate Date */
-function validDate(day, month, year) {
+    <input
+        type="file"
+        id="galleryInput"
+        accept="image/*">
 
-  const date = new Date(year, month - 1, day);
+    <div class="photo-status" id="photoStatus">
+        Teacher photo is required.
+    </div>
 
-  return (
-    date.getFullYear() == year &&
-    date.getMonth() == month - 1 &&
-    date.getDate() == day
-  );
-}
+</div>
 
 
-/* Compress Teacher Image */
-function compressImage(file) {
+<!-- ================= PERSONAL INFORMATION ================= -->
 
-  return new Promise((resolve, reject) => {
+<div class="section-title">
+    Personal Information
+</div>
 
-    const reader = new FileReader();
+<div class="grid">
 
-    reader.onload = function(event) {
+    <div class="field">
+        <label>Teacher Name <span class="required">*</span></label>
+        <input
+            type="text"
+            id="teacherName"
+            placeholder="Enter teacher full name"
+            required>
+    </div>
 
-      const img = new Image();
 
-      img.onload = function() {
+    <div class="field">
+        <label>Gender <span class="required">*</span></label>
 
-        const canvas = document.createElement("canvas");
+        <select id="gender" required>
 
-        const maxWidth = 700;
-        const maxHeight = 700;
+            <option value="">Select Gender</option>
 
-        let width = img.width;
-        let height = img.height;
+            <option value="Male">
+                Male
+            </option>
 
-        if (width > maxWidth || height > maxHeight) {
+            <option value="Female">
+                Female
+            </option>
 
-          const ratio = Math.min(
-            maxWidth / width,
-            maxHeight / height
-          );
+        </select>
+    </div>
 
-          width = Math.round(width * ratio);
-          height = Math.round(height * ratio);
-        }
 
-        canvas.width = width;
-        canvas.height = height;
+    <!-- MARITAL STATUS DIRECTLY BELOW GENDER -->
 
-        const ctx = canvas.getContext("2d");
+    <div class="field">
+        <label>Marital Status <span class="required">*</span></label>
 
-        ctx.drawImage(img, 0, 0, width, height);
+        <select id="maritalStatus" required>
 
-        const base64 = canvas.toDataURL(
-          "image/jpeg",
-          0.65
-        );
+            <option value="">Select Marital Status</option>
 
-        resolve(base64);
-      };
+            <option value="Single">
+                Single / Unmarried
+            </option>
 
-      img.onerror = reject;
+            <option value="Married">
+                Married
+            </option>
 
-      img.src = event.target.result;
-    };
+            <option value="Divorced">
+                Divorced
+            </option>
 
-    reader.onerror = reject;
+            <option value="Widowed">
+                Widowed
+            </option>
 
-    reader.readAsDataURL(file);
-  });
-}
+        </select>
+    </div>
 
 
-/* Message */
-function showMessage(text, type) {
+    <div class="field">
+        <label>Date of Birth <span class="required">*</span></label>
 
-  const message = document.getElementById("message");
+        <input
+            type="date"
+            id="dateOfBirth"
+            required>
+    </div>
 
-  message.textContent = text;
 
-  message.className = "message " + type;
+    <div class="field">
+        <label>Age</label>
 
-  message.style.display = "block";
-}
+        <input
+            type="text"
+            id="age"
+            placeholder="Automatic"
+            readonly>
+    </div>
 
 
-/* Form Submit */
-document.getElementById("teacherForm").addEventListener(
-  "submit",
-  async function(event) {
+    <div class="field">
+        <label>CNIC <span class="required">*</span></label>
 
-    event.preventDefault();
+        <input
+            type="text"
+            id="cnic"
+            placeholder="XXXXX-XXXXXXX-X"
+            maxlength="15"
+            required>
+    </div>
 
-    const submitBtn = document.getElementById("submitBtn");
 
-    submitBtn.disabled = true;
+    <div class="field">
+        <label>Father Name <span class="required">*</span></label>
 
-    showMessage(
-      "Please wait... / براہ کرم انتظار کریں...",
-      "success"
-    );
+        <input
+            type="text"
+            id="fatherName"
+            placeholder="Enter father name"
+            required>
+    </div>
 
+</div>
 
-    try {
 
-      /* Dates */
-      const regDay =
-        Number(document.getElementById("regDay").value);
+<!-- ================= JOINING & LOCATION ================= -->
 
-      const regMonth =
-        Number(document.getElementById("regMonth").value);
+<div class="section-title">
+    Joining & Address
+</div>
 
-      const regYear =
-        Number(document.getElementById("regYear").value);
+<div class="grid">
 
+    <div class="field">
+        <label>Date of Joining <span class="required">*</span></label>
 
-      const dobDay =
-        Number(document.getElementById("dobDay").value);
+        <input
+            type="date"
+            id="joiningDate"
+            required>
+    </div>
 
-      const dobMonth =
-        Number(document.getElementById("dobMonth").value);
 
-      const dobYear =
-        Number(document.getElementById("dobYear").value);
+    <div class="field">
+        <label>City <span class="required">*</span></label>
 
+        <input
+            type="text"
+            id="city"
+            placeholder="Enter city"
+            required>
+    </div>
 
-      const joinDay =
-        Number(document.getElementById("joinDay").value);
 
-      const joinMonth =
-        Number(document.getElementById("joinMonth").value);
+    <div class="field">
+        <label>Country <span class="required">*</span></label>
 
-      const joinYear =
-        Number(document.getElementById("joinYear").value);
+        <input
+            type="text"
+            id="country"
+            value="Pakistan"
+            required>
+    </div>
 
 
-      /* Date Validation */
+    <div class="field full">
+        <label>Complete Address <span class="required">*</span></label>
 
-      if (!validDate(regDay, regMonth, regYear)) {
-        throw new Error(
-          "Registration date is invalid."
-        );
-      }
+        <textarea
+            id="address"
+            placeholder="Enter complete residential address"
+            required></textarea>
+    </div>
 
-      if (!validDate(dobDay, dobMonth, dobYear)) {
-        throw new Error(
-          "Date of birth is invalid."
-        );
-      }
+</div>
 
-      if (!validDate(joinDay, joinMonth, joinYear)) {
-        throw new Error(
-          "Joining date is invalid."
-        );
-      }
 
+<!-- ================= CONTACT ================= -->
 
-      /* Image */
-      const imageFile =
-        document.getElementById("teacherImage").files[0];
+<div class="section-title">
+    Contact Information
+</div>
 
-      if (!imageFile) {
-        throw new Error(
-          "Teacher image is required."
-        );
-      }
+<div class="grid">
 
+    <div class="field">
+        <label>Gmail <span class="required">*</span></label>
 
-      /* Image Size */
-      if (imageFile.size > 5 * 1024 * 1024) {
-        throw new Error(
-          "Image size must be less than 5 MB."
-        );
-      }
+        <input
+            type="email"
+            id="gmail"
+            placeholder="example@gmail.com"
+            required>
+    </div>
 
 
-      /* Compress Image */
-      const teacherPhoto =
-        await compressImage(imageFile);
+    <div class="field">
+        <label>Mobile Number <span class="required">*</span></label>
 
+        <input
+            type="tel"
+            id="mobile"
+            placeholder="03XXXXXXXXX"
+            maxlength="11"
+            required>
+    </div>
 
-      /* Create Application */
-      const application = {
 
-        registrationDate:
-          makeDate(regDay, regMonth, regYear),
+    <div class="field">
+        <label>WhatsApp Number <span class="required">*</span></label>
 
-        teacherPhoto:
-          teacherPhoto,
+        <input
+            type="tel"
+            id="whatsapp"
+            placeholder="03XXXXXXXXX"
+            maxlength="11"
+            required>
+    </div>
 
-        jobType:
-          document.getElementById("jobType").value,
+</div>
 
-        teacherName:
-          document.getElementById("teacherName").value.trim(),
 
-        dateOfBirth:
-          makeDate(dobDay, dobMonth, dobYear),
+<!-- ================= EXPERIENCE & SALARY ================= -->
 
-        nic:
-          document.getElementById("nic").value.trim(),
+<div class="section-title">
+    Teaching & Salary Information
+</div>
 
-        fatherName:
-          document.getElementById("fatherName").value.trim(),
+<div class="grid">
 
-        joiningDate:
-          makeDate(joinDay, joinMonth, joinYear),
+    <div class="field">
+        <label>Teaching Experience <span class="required">*</span></label>
 
-        city:
-          document.getElementById("city").value.trim(),
+        <input
+            type="text"
+            id="teachingExperience"
+            placeholder="e.g. 5 Years"
+            required>
+    </div>
 
-        country:
-          document.getElementById("country").value.trim(),
 
-        gmail:
-          document.getElementById("gmail").value.trim(),
+    <div class="field">
+        <label>Monthly Salary <span class="required">*</span></label>
 
-        mobile:
-          document.getElementById("mobile").value.trim(),
+        <input
+            type="number"
+            id="monthlySalary"
+            placeholder="Enter monthly salary"
+            min="0"
+            required>
+    </div>
 
-        whatsapp:
-          document.getElementById("whatsapp").value.trim(),
+</div>
 
-        teachingExperience:
-          document.getElementById("experience").value.trim(),
 
-        monthlySalary:
-          Number(
-            document.getElementById("monthlySalary").value
-          ),
+<!-- ================= PAYMENT ================= -->
 
-        salaryPaymentMethod:
-          document.getElementById("paymentMethod").value,
+<div class="section-title">
+    Payment Method
+</div>
 
-        agreement:
-          document.getElementById("agreement").checked,
+<div class="payment-options">
 
-        status:
-          "Pending",
+    <div class="payment-option">
 
-        submittedAt:
-          firebase.database.ServerValue.TIMESTAMP
-      };
-
-
-      /* Basic Checks */
-
-      if (!application.teacherName) {
-        throw new Error("Teacher name is required.");
-      }
-
-      if (!application.fatherName) {
-        throw new Error("Father name is required.");
-      }
-
-      if (!application.city) {
-        throw new Error("City is required.");
-      }
-
-      if (!application.gmail) {
-        throw new Error("Gmail is required.");
-      }
-
-      if (!application.mobile) {
-        throw new Error("Mobile number is required.");
-      }
-
-      if (!application.whatsapp) {
-        throw new Error("WhatsApp number is required.");
-      }
-
-      if (!application.agreement) {
-        throw new Error(
-          "Please accept the agreement."
-        );
-      }
-
-
-      /* Firebase Database */
-
-      const newApplication =
-        database.ref("teacherApplications").push();
-
-      await newApplication.set(application);
-
-
-      /* Success */
-
-      showMessage(
-        "Teacher Registration submitted successfully. Your application is Pending Admin Approval. / استاد کی رجسٹریشن کامیابی سے جمع ہوگئی ہے۔ آپ کی درخواست Admin کی منظوری کے لیے Pending ہے۔",
-        "success"
-      );
-
-
-      document.getElementById("teacherForm").reset();
-
-
-      /* Restore Country */
-      document.getElementById("country").value =
-        "Pakistan";
-
-
-      /* Restore Registration Date */
-      document.getElementById("regDay").value =
-        today.getDate();
-
-      document.getElementById("regMonth").value =
-        today.getMonth() + 1;
-
-      document.getElementById("regYear").value =
-        today.getFullYear();
-
-
-    } catch (error) {
-
-  console.error(error);
-
-  showMessage(
-    "Firebase Error: " + error.message,
-    "error"
-  );
-
-} finally {
-
-      submitBtn.disabled = false;
-    }
-
-  }
-);
-
-</script>
-
-</body>
-</html>
-
+        <input
+            type="radio"
+            id="jazzcash"
+            name="paymentMethod"
+            value="JazzCash"
