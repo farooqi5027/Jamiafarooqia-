@@ -15,11 +15,13 @@ button{width:100%;padding:14px;margin-top:14px;background:#17633b;color:#fff;bor
 .btn2{background:#8a6d1a}
 #message{margin-top:15px;text-align:center;font-weight:bold;line-height:1.6}
 .note{color:#ddd;font-size:13px;line-height:1.7;text-align:center}
-a{color:#e2c15a}
+a{color:#e2c15a;text-decoration:none}
+.top-link{display:block;text-align:center;margin-bottom:10px}
 </style>
 </head>
 <body>
 <div class="container">
+<a class="top-link" href="index.html">← Wapis Home Page par jayein</a>
 <h1>جامعہ فاروقیہ</h1>
 <h2>Login / لاگ ان</h2>
 <p class="note">Apna Mobile Number aur Password likhein.<br>1 Number se 1 hi banda Login ho sakta hai.</p>
@@ -41,27 +43,28 @@ a{color:#e2c15a}
 <button id="logoutBtn" style="background:#5a1a1a;display:none">Logout / لاگ آؤٹ</button>
 
 <div id="message"></div>
-<p class="note"><a href="jamia-farooqia-admission.html">← Wapis Admission Page par jayein</a></p>
+<p class="note"><a href="index.html">← Wapis Home Page par jayein</a><br><a href="admission.html">Admission Form Bharain →</a></p>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
 <script>
+// === APNI FIREBASE CONFIG YAHAN LAGAYEIN ===
+// Firebase Console > Project Settings > Web App se copy karke yahan paste karein
 const firebaseConfig = {
-  apiKey: "AIzaSyBCckWkgz1TJIhsIYTojdRf9BJ4MQ8v0Ho",
-  authDomain: "jamia-farooqia-academy.firebaseapp.com",
-  databaseURL: "https://jamia-farooqia-academy-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "jamia-farooqia-academy",
-  storageBucket: "jamia-farooqia-academy.firebasestorage.app",
-  messagingSenderId: "125948984898",
-  appId: "1:125948984898:web:54586c1467f0ec131f37db"
+  apiKey: "APNI_API_KEY_YAHAN_LIKHEIN",
+  authDomain: "APNA_PROJECT.firebaseapp.com",
+  databaseURL: "https://APNA_PROJECT-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "APNA_PROJECT",
+  storageBucket: "APNA_PROJECT.firebasestorage.app",
+  messagingSenderId: "APNA_SENDER_ID",
+  appId: "APNA_APP_ID"
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 const msg = document.getElementById("message");
 function show(t,c){ msg.style.color=c; msg.innerHTML=t; }
 
-// NEW ACCOUNT BANANA - Student Khud Banayega, Aapko Firebase me Add Nahi Karna
 document.getElementById("signupBtn").onclick = async ()=>{
   const phone=document.getElementById("phone").value.trim();
   const pass=document.getElementById("password").value;
@@ -75,7 +78,6 @@ document.getElementById("signupBtn").onclick = async ()=>{
   show("Mubarak! Account ban gaya.<br>Ab Admin ke Approve ka wait karein.<br>Approve ke baad Login hoga.","#7fffa0");
 };
 
-// LOGIN - 1 Number = 1 Banda
 document.getElementById("loginBtn").onclick = async ()=>{
   const phone=document.getElementById("phone").value.trim();
   const pass=document.getElementById("password").value;
@@ -85,25 +87,20 @@ document.getElementById("loginBtn").onclick = async ()=>{
   const u = snap.val();
   if(u.password !== pass){ show("Password ghalat hai.","#ff8585"); return; }
   if(u.status !== "approved"){ show("Aapka Account abhi Pending hai.<br>Admin ke Approve ka wait karein.","#ffcc00"); return; }
-
-  // *** SAKHT WALA RULE ***
   if(u.isOnline === true){
-    show("⚠️ Ye Number pehle se Login hai.<br>Dusra banda is Number se Login nahi kar sakta.<br>Pehle us Mobile se Logout karwayein.","#ff8585");
+    show("⚠️ Ye Number pehle se Login hai.<br>Pehle us Mobile se Logout karwayein.","#ff8585");
     return;
   }
-
-  // Login kar do aur Lock laga do
   const sessionId = Date.now()+"_"+Math.random().toString(36).slice(2);
   await ref.update({isOnline:true, sessionId:sessionId, lastLogin:Date.now()});
   localStorage.setItem("jamia_phone", phone);
   localStorage.setItem("jamia_session", sessionId);
   localStorage.setItem("jamia_role", u.role);
-  show("Login ho gaya! Aap andar hain...","#7fffa0");
+  show("Login ho gaya! Home Page par ja rahe hain...","#7fffa0");
   document.getElementById("logoutBtn").style.display="block";
   setTimeout(()=>{ window.location.href="index.html"; }, 1000);
 };
 
-// LOGOUT - Lock Kholo
 document.getElementById("logoutBtn").onclick = async ()=>{
   const phone = localStorage.getItem("jamia_phone");
   if(phone) await db.ref("users/"+phone).update({isOnline:false, sessionId:""});
@@ -111,7 +108,6 @@ document.getElementById("logoutBtn").onclick = async ()=>{
   show("Logout ho gaya.","#7fffa0");
 };
 
-// Agar pehle se Login hai to Logout button dikhao
 if(localStorage.getItem("jamia_phone")) document.getElementById("logoutBtn").style.display="block";
 </script>
 </body>
