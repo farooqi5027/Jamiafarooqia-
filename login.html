@@ -1,423 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Login - Jamia Farooqia</title>
-
 <style>
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    background: #f2f5f2;
-}
-
-.container {
-    max-width: 450px;
-    margin: 60px auto;
-    padding: 25px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
-}
-
-h1,
-h2 {
-    text-align: center;
-    color: #17633b;
-}
-
-label {
-    display: block;
-    margin-top: 18px;
-    font-weight: bold;
-}
-
-input {
-    width: 100%;
-    padding: 12px;
-    margin-top: 7px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 15px;
-}
-
-button {
-    width: 100%;
-    margin-top: 25px;
-    padding: 13px;
-    background: #17633b;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 17px;
-    cursor: pointer;
-}
-
-button:disabled {
-    background: #999;
-    cursor: not-allowed;
-}
-
-.back {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    color: #17633b;
-    text-decoration: none;
-}
-
-#message {
-    margin-top: 15px;
-    text-align: center;
-    font-weight: bold;
-    line-height: 1.5;
-}
+*{box-sizing:border-box}
+body{margin:0;padding:15px;background:#080d09;color:#fff;font-family:Arial,sans-serif}
+.container{max-width:450px;margin:auto;background:#111b14;border:2px solid #d4af37;border-radius:12px;padding:22px}
+h1,h2{text-align:center;color:#e2c15a;margin:5px}
+label{display:block;margin:15px 0 6px;font-weight:bold;color:#f0d77e}
+input,select{width:100%;padding:13px;border:1px solid #b99a39;border-radius:7px;font-size:16px;background:#fff;color:#111}
+button{width:100%;padding:14px;margin-top:14px;background:#17633b;color:#fff;border:0;border-radius:7px;font-size:18px;font-weight:bold;cursor:pointer}
+.btn2{background:#8a6d1a}
+#message{margin-top:15px;text-align:center;font-weight:bold;line-height:1.6}
+.note{color:#ddd;font-size:13px;line-height:1.7;text-align:center}
+a{color:#e2c15a}
 </style>
-
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-
 </head>
-
 <body>
-
 <div class="container">
+<h1>جامعہ فاروقیہ</h1>
+<h2>Login / لاگ ان</h2>
+<p class="note">Apna Mobile Number aur Password likhein.<br>1 Number se 1 hi banda Login ho sakta hai.</p>
 
-    <h1>Jamia Farooqia</h1>
+<label>I am / میں ہوں *</label>
+<select id="role">
+<option value="student">Student / Parents</option>
+<option value="teacher">Teacher</option>
+</select>
 
-    <h2>Admin Login</h2>
+<label>Mobile Number / موبائل نمبر *</label>
+<input type="tel" id="phone" placeholder="03001234567" maxlength="11">
 
-    <form id="loginForm">
+<label>Password / پاسورڈ *</label>
+<input type="password" id="password" placeholder="Apna Password">
 
-        <label for="email">
-            Academy Email / ID:
-        </label>
+<button id="loginBtn">Login / لاگ ان کریں</button>
+<button id="signupBtn" class="btn2">New Account Banayein / نیا اکاؤنٹ بنائیں</button>
+<button id="logoutBtn" style="background:#5a1a1a;display:none">Logout / لاگ آؤٹ</button>
 
-        <input
-            type="email"
-            id="email"
-            placeholder="Enter Academy Email"
-            autocomplete="username"
-            required
-        >
-
-        <label for="password">
-            Password:
-        </label>
-
-        <input
-            type="password"
-            id="password"
-            placeholder="Enter Password"
-            autocomplete="current-password"
-            required
-        >
-
-        <button type="submit" id="loginButton">
-            Login
-        </button>
-
-        <div id="message"></div>
-
-    </form>
-
-    <a
-        class="back"
-        href="jamia%20Farooqia%20admissions.html"
-    >
-        Back to Admission Page
-    </a>
-
+<div id="message"></div>
+<p class="note"><a href="jamia-farooqia-admission.html">← Wapis Admission Page par jayein</a></p>
 </div>
 
-
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
 <script>
-
-/* =====================================================
-   FIREBASE CONFIG
-   ===================================================== */
-
 const firebaseConfig = {
+  apiKey: "AIzaSyBCckWkgz1TJIhsIYTojdRf9BJ4MQ8v0Ho",
+  authDomain: "jamia-farooqia-academy.firebaseapp.com",
+  databaseURL: "https://jamia-farooqia-academy-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "jamia-farooqia-academy",
+  storageBucket: "jamia-farooqia-academy.firebasestorage.app",
+  messagingSenderId: "125948984898",
+  appId: "1:125948984898:web:54586c1467f0ec131f37db"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+const msg = document.getElementById("message");
+function show(t,c){ msg.style.color=c; msg.innerHTML=t; }
 
-    apiKey:
-        "AIzaSyBCckWkgz1TJIhsIYTojdRf9BJ4MQ8v0Ho",
-
-    authDomain:
-        "jamia-farooqia-academy.firebaseapp.com",
-
-    databaseURL:
-        "https://jamia-farooqia-academy-default-rtdb.asia-southeast1.firebasedatabase.app",
-
-    projectId:
-        "jamia-farooqia-academy",
-
-    storageBucket:
-        "jamia-farooqia-academy.firebasestorage.app",
-
-    messagingSenderId:
-        "125948984898",
-
-    appId:
-        "1:125948984898:web:54586c1467f0ec131f37db"
+// NEW ACCOUNT BANANA - Student Khud Banayega, Aapko Firebase me Add Nahi Karna
+document.getElementById("signupBtn").onclick = async ()=>{
+  const phone=document.getElementById("phone").value.trim();
+  const pass=document.getElementById("password").value;
+  const role=document.getElementById("role").value;
+  if(phone.length!==11 || !phone.startsWith("03")){ show("Sahi 11 wala Mobile Number likhein. Jaise 03001234567","#ff8585"); return; }
+  if(pass.length<4){ show("Password kam se kam 4 harf ka ho.","#ff8585"); return; }
+  const ref = db.ref("users/"+phone);
+  const snap = await ref.get();
+  if(snap.exists()){ show("Ye Number pehle se bana hua hai. Ab Login dabayein.","#ff8585"); return; }
+  await ref.set({phone, password:pass, role, status:"pending", isOnline:false, createdAt:Date.now()});
+  show("Mubarak! Account ban gaya.<br>Ab Admin ke Approve ka wait karein.<br>Approve ke baad Login hoga.","#7fffa0");
 };
 
-
-/* =====================================================
-   INITIALIZE FIREBASE
-   ===================================================== */
-
-firebase.initializeApp(firebaseConfig);
-
-const auth = firebase.auth();
-
-const db = firebase.database();
-
-
-/* =====================================================
-   ELEMENTS
-   ===================================================== */
-
-const loginForm =
-    document.getElementById("loginForm");
-
-const loginButton =
-    document.getElementById("loginButton");
-
-const message =
-    document.getElementById("message");
-
-
-/* =====================================================
-   LOGIN
-   ===================================================== */
-
-loginForm.addEventListener(
-    "submit",
-    async function(event) {
-
-        event.preventDefault();
-
-        const email =
-            document.getElementById("email")
-            .value
-            .trim();
-
-        const password =
-            document.getElementById("password")
-            .value;
-
-
-        if (!email || !password) {
-
-            showMessage(
-                "Please enter Email and Password.",
-                "red"
-            );
-
-            return;
-        }
-
-
-        loginButton.disabled = true;
-
-        loginButton.innerText =
-            "Checking...";
-
-        showMessage(
-            "Login checking...",
-            "#17633b"
-        );
-
-
-        try {
-
-            /* =========================================
-               FIREBASE AUTHENTICATION
-               ========================================= */
-
-            const userCredential =
-                await auth.signInWithEmailAndPassword(
-                    email,
-                    password
-                );
-
-
-            const user =
-                userCredential.user;
-
-
-            /* =========================================
-               ADMIN UID CHECK
-               ========================================= */
-
-            const adminSnapshot =
-                await db
-                    .ref("admins/" + user.uid)
-                    .once("value");
-
-
-            const isAdmin =
-                adminSnapshot.val() === true;
-
-
-            /* =========================================
-               MAIN ADMIN
-               ========================================= */
-
-            if (isAdmin === true) {
-
-                showMessage(
-                    "Login successful. Opening Admin Panel...",
-                    "green"
-                );
-
-
-                setTimeout(function() {
-
-                    window.location.href =
-                        "Admin.html";
-
-                }, 800);
-
-            }
-
-
-            /* =========================================
-               NOT ADMIN
-               ========================================= */
-
-            else {
-
-                await auth.signOut();
-
-                showMessage(
-                    "Access Denied. This account is not Main Admin.",
-                    "red"
-                );
-
-                loginButton.disabled = false;
-
-                loginButton.innerText =
-                    "Login";
-            }
-
-        }
-
-
-        /* =============================================
-           LOGIN ERROR
-           ============================================= */
-
-        catch (error) {
-
-            console.error(
-                "Firebase Login Error:",
-                error
-            );
-
-
-            let errorMessage =
-                "Login failed. Please try again.";
-
-
-            if (
-                error.code ===
-                "auth/invalid-credential"
-            ) {
-
-                errorMessage =
-                    "Email or Password is incorrect.";
-
-            }
-
-            else if (
-                error.code ===
-                "auth/user-not-found"
-            ) {
-
-                errorMessage =
-                    "This Academy account does not exist.";
-
-            }
-
-            else if (
-                error.code ===
-                "auth/wrong-password"
-            ) {
-
-                errorMessage =
-                    "Password is incorrect.";
-
-            }
-
-            else if (
-                error.code ===
-                "auth/invalid-email"
-            ) {
-
-                errorMessage =
-                    "Please enter a valid Email.";
-
-            }
-
-            else if (
-                error.code ===
-                "auth/too-many-requests"
-            ) {
-
-                errorMessage =
-                    "Too many login attempts. Please try again later.";
-
-            }
-
-            else if (
-                error.code ===
-                "auth/network-request-failed"
-            ) {
-
-                errorMessage =
-                    "Internet connection problem.";
-
-            }
-
-
-            showMessage(
-                errorMessage,
-                "red"
-            );
-
-
-            loginButton.disabled = false;
-
-            loginButton.innerText =
-                "Login";
-        }
-
-    }
-);
-
-
-/* =====================================================
-   MESSAGE FUNCTION
-   ===================================================== */
-
-function showMessage(text, color) {
-
-    message.innerText = text;
-
-    message.style.color = color;
-}
-
+// LOGIN - 1 Number = 1 Banda
+document.getElementById("loginBtn").onclick = async ()=>{
+  const phone=document.getElementById("phone").value.trim();
+  const pass=document.getElementById("password").value;
+  const ref = db.ref("users/"+phone);
+  const snap = await ref.get();
+  if(!snap.exists()){ show("Ye Number bana hi nahi hua. Pehle New Account Banayein.","#ff8585"); return; }
+  const u = snap.val();
+  if(u.password !== pass){ show("Password ghalat hai.","#ff8585"); return; }
+  if(u.status !== "approved"){ show("Aapka Account abhi Pending hai.<br>Admin ke Approve ka wait karein.","#ffcc00"); return; }
+
+  // *** SAKHT WALA RULE ***
+  if(u.isOnline === true){
+    show("⚠️ Ye Number pehle se Login hai.<br>Dusra banda is Number se Login nahi kar sakta.<br>Pehle us Mobile se Logout karwayein.","#ff8585");
+    return;
+  }
+
+  // Login kar do aur Lock laga do
+  const sessionId = Date.now()+"_"+Math.random().toString(36).slice(2);
+  await ref.update({isOnline:true, sessionId:sessionId, lastLogin:Date.now()});
+  localStorage.setItem("jamia_phone", phone);
+  localStorage.setItem("jamia_session", sessionId);
+  localStorage.setItem("jamia_role", u.role);
+  show("Login ho gaya! Aap andar hain...","#7fffa0");
+  document.getElementById("logoutBtn").style.display="block";
+  setTimeout(()=>{ window.location.href="index.html"; }, 1000);
+};
+
+// LOGOUT - Lock Kholo
+document.getElementById("logoutBtn").onclick = async ()=>{
+  const phone = localStorage.getItem("jamia_phone");
+  if(phone) await db.ref("users/"+phone).update({isOnline:false, sessionId:""});
+  localStorage.clear();
+  show("Logout ho gaya.","#7fffa0");
+};
+
+// Agar pehle se Login hai to Logout button dikhao
+if(localStorage.getItem("jamia_phone")) document.getElementById("logoutBtn").style.display="block";
 </script>
-
 </body>
 </html>
