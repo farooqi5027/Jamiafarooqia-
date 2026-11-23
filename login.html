@@ -1,162 +1,71 @@
 <!DOCTYPE html>
-<html lang="ur">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Login - Jamia Farooqia</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#eef5ef}
-.card{max-width:420px;margin:45px auto;background:white;border-radius:15px;padding:28px;box-shadow:0 5px 20px rgba(0,0,0,.1);text-align:center}
-.card h1{color:#0a5c36;font-size:32px}
-.card h2{color:#0a5c36;margin-top:18px;font-size:26px}
-label{display:block;text-align:left;margin:16px 0 6px;font-weight:bold;font-size:15px}
-input{width:100%;padding:13px;border:1px solid #ddd;border-radius:8px;font-size:15px;background:#fff}
-button{width:100%;padding:14px;margin-top:20px;background:#0a5c36;color:#fff;border:0;border-radius:8px;font-size:16px;font-weight:bold;cursor:pointer}
-button.gold{background:#c9a227;color:#000}
-a{display:block;margin-top:14px;color:#0a5c36;text-decoration:none;font-size:14px}
-#message{margin-top:14px;font-weight:bold;line-height:1.6}
-</style>
-</head>
-
-<body>
-
-<div class="card">
-
-<h1>Jamia Farooqia</h1>
-<h2>Login</h2>
-
-<label>Academy Email / ID:</label>
-<input type="email" id="email" placeholder="Enter Academy Email">
-
-<label>Password:</label>
-<input type="password" id="password" placeholder="Enter Password">
-
-<button id="loginBtn">Login</button>
-<button class="gold" id="signupBtn">New Account Banayein</button>
-
-<div id="message"></div>
-
-<a href="admission.html">Back to Admission Page</a>
-<a href="index.html">← Back to Home Page</a>
-
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
-
-<script>
-const firebaseConfig = {
-  apiKey: "APNI_API_KEY_YAHAN_LIKHEIN",
-  authDomain: "APNA_PROJECT.firebaseapp.com",
-  databaseURL: "https://APNA_PROJECT-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "APNA_PROJECT",
-  storageBucket: "APNA_PROJECT.firebasestorage.app",
-  messagingSenderId: "APNA_SENDER_ID",
-  appId: "APNA_APP_ID"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-
-const msg = document.getElementById("message");
-
-function show(t,c){
-  msg.style.color=c;
-  msg.innerHTML=t;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
 }
 
-function makeKey(e){
-  return e.toLowerCase().trim().replace(/[.#$[\]]/g,"_");
+body{
+    background:#eef5ef;
+    padding:20px;
 }
 
-document.getElementById("signupBtn").onclick = async ()=>{
-  const email=document.getElementById("email").value.trim().toLowerCase();
-  const pass=document.getElementById("password").value;
+.card{
+    max-width:420px;
+    margin:40px auto;
+    background:white;
+    padding:28px;
+    border-radius:16px;
+    box-shadow:0 5px 20px rgba(0,0,0,.10);
+}
 
-  if(!email.includes("@")){
-    show("Sahi Gmail likhein. Jaise apni@gmail.com","red");
-    return;
-  }
+h1{
+    text-align:center;
+    color:#0a5c36;
+    margin-bottom:8px;
+}
 
-  if(pass.length<4){
-    show("Password kam se kam 4 harf ka ho.","red");
-    return;
-  }
+h2{
+    text-align:center;
+    color:#333;
+    margin-bottom:25px;
+}
 
-  const key=makeKey(email);
-  const snap=await db.ref("users/"+key).get();
+label{
+    display:block;
+    margin:15px 0 6px;
+    font-weight:bold;
+}
 
-  if(snap.exists()){
-    show("Ye Gmail pehle se bana hua hai. Login dabayein.","red");
-    return;
-  }
+input{
+    width:100%;
+    padding:13px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
 
-  await db.ref("users/"+key).set({
-    email:email,
-    password:pass,
-    role:"admin",
-    status:"pending",
-    isOnline:false,
-    createdAt:Date.now()
-  });
+button{
+    width:100%;
+    padding:14px;
+    margin-top:20px;
+    border:0;
+    border-radius:8px;
+    background:#0a5c36;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
 
-  show("Account ban gaya.<br>Ab Approve ka wait karein.","green");
-};
-
-document.getElementById("loginBtn").onclick = async ()=>{
-  const email=document.getElementById("email").value.trim().toLowerCase();
-  const pass=document.getElementById("password").value;
-
-  if(!email.includes("@")){
-    show("Sahi Gmail likhein.","red");
-    return;
-  }
-
-  const snap=await db.ref("users/"+makeKey(email)).get();
-
-  if(!snap.exists()){
-    show("Ye Gmail bana hi nahi hua. Pehle New Account Banayein.","red");
-    return;
-  }
-
-  const u=snap.val();
-
-  if(u.password !== pass){
-    show("Password ghalat hai.","red");
-    return;
-  }
-
-  if(u.status !== "approved"){
-    show("Aapka Account abhi Pending hai.<br>Approve ka wait karein.","#b77900");
-    return;
-  }
-
-  if(u.isOnline === true){
-    show("Ye Gmail pehle se Login hai.<br>Pehle us Mobile se Logout karwayein.","red");
-    return;
-  }
-
-  const sessionId=Date.now()+"_"+Math.random().toString(36).slice(2);
-
-  await db.ref("users/"+makeKey(email)).update({
-    isOnline:true,
-    sessionId:sessionId,
-    lastLogin:Date.now()
-  });
-
-  localStorage.setItem("jamia_email",email);
-  localStorage.setItem("jamia_session",sessionId);
-  localStorage.setItem("jamia_role",u.role);
-
-  show("Login ho gaya! Home Page par ja rahe hain...","green");
-
-  setTimeout(()=>{
-    window.location.href="index.html";
-  },1000);
-};
-</script>
-
-</body>
-</html>
+button.signup{
+    background:#c9a227;
