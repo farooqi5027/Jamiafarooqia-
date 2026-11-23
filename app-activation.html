@@ -3,116 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>App Activation - Jamia Farooqia</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f3f8f4;color:#222}
-.container{max-width:600px;margin:25px auto;background:white;padding:25px;border-radius:12px;box-shadow:0 3px 15px rgba(0,0,0,.12)}
-h1{text-align:center;color:#087f23}
-.subtitle{text-align:center;color:#555;margin-bottom:20px}
-.bank-box{background:#f0f7f1;border:1px solid #c7dfca;padding:15px;border-radius:8px;line-height:1.8;margin:15px 0}
-.bank-box b{color:#087f23}
-label{display:block;font-weight:bold;margin-top:15px;margin-bottom:6px}
-input{width:100%;padding:11px;border:1px solid #bbb;border-radius:6px;font-size:15px}
-button{width:100%;margin-top:20px;padding:13px;background:#087f23;color:white;border:none;border-radius:7px;font-size:17px;font-weight:bold;cursor:pointer}
-.message{display:none;margin-top:15px;padding:12px;border-radius:7px;text-align:center;font-weight:bold}
-.success{background:#d9f3df;color:#116b27}
-.error{background:#fde0e0;color:#a30000}
-.code-box{margin-top:25px;padding:15px;background:#fff8e1;border:1px solid #f0d27a;border-radius:8px}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#eef5ef;
+    padding:20px;
+}
+
+.card{
+    max-width:500px;
+    margin:40px auto;
+    background:white;
+    padding:28px;
+    border-radius:16px;
+    box-shadow:0 5px 20px rgba(0,0,0,.10);
+}
+
+h1{
+    text-align:center;
+    color:#0a5c36;
+    margin-bottom:8px;
+}
+
+h2{
+    text-align:center;
+    color:#333;
+    margin-bottom:25px;
+}
+
+.info{
+    background:#eef5ef;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:20px;
+    line-height:1.7;
+}
+
+label{
+    display:block;
+    margin:15px 0 6px;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:13px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:20px;
+    border:0;
+    border-radius:8px;
+    background:#0a5c36;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button.logout{
+    background:#9b2226;
+}
+
+#message{
+    text-align:center;
+    margin-top:15px;
+    font-weight:bold;
+    line-height:1.6;
+}
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:18px;
+    color:#0a5c36;
+    text-decoration:none;
+}
 </style>
 </head>
+
 <body>
-<div class="container">
-<h1>جامعہ فاروقیہ</h1>
-<div class="subtitle">App Activation - ایپ ایکٹیویشن</div>
 
-<p style="text-align:center"><b>App use karne ke liye 20$ One-Time Fee ada karen.</b><br>ایپ استعمال کرنے کے لیے 20 ڈالر ایک بار ادا کریں۔</p>
-
-<div class="bank-box">
-<b>Bank Name / بینک کا نام:</b> Askari Bank<br>
-<b>Account Title / اکاؤنٹ ٹائٹل:</b> Abid Hussain Farooqi<br>
-<b>IBAN / اکاؤنٹ نمبر:</b> PK73ASCM0003203230003328<br>
-<b>Amount / رقم:</b> 20$ One-Time
-</div>
-
-<h3 style="text-align:center;color:#087f23">Step 1: Payment Proof Bhejen</h3>
-<form id="payForm">
-<label>Your Name / آپ کا نام *</label>
-<input type="text" id="pName" required>
-<label>Your Mobile / WhatsApp *</label>
-<input type="tel" id="pMobile" required>
-<label>Payment Screenshot / ادائیگی کا اسکرین شاٹ *</label>
-<input type="file" id="pShot" accept="image/*" required>
-<button type="submit">Submit Payment Proof / ثبوت بھیجیں</button>
-<div id="msg1" class="message"></div>
-</form>
-
-<div class="code-box">
-<h3 style="text-align:center;color:#087f23">Step 2: Activation Code Dalen</h3>
-<p style="text-align:center;font-size:13px">Admin se milne wala Code yahan dalen. Admin aapke payment check karke Code dega.</p>
-<label>Activation Code *</label>
-<input type="text" id="actCode" placeholder="e.g. JF-2026-1234">
-<button onclick="checkCode()">Activate App / ایپ چالو کریں</button>
-<div id="msg2" class="message"></div>
-</div>
-
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
-<script>
-const firebaseConfig = {
-  apiKey: "AIzaSyBCckWkgz1TJIhsIYTojdRf9BJ4MQ8v0Ho",
-  authDomain: "jamia-farooqia-academy.firebaseapp.com",
-  databaseURL: "https://jamia-farooqia-academy-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "jamia-farooqia-academy",
-  storageBucket: "jamia-farooqia-academy.firebasestorage.app",
-  messagingSenderId: "125948984898",
-  appId: "1:125948984898:web:54586c1467f0ec131f37db"
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-
-function show(id,text,type){const m=document.getElementById(id);m.textContent=text;m.className="message "+type;m.style.display="block";}
-
-// Screenshot ko chota karna
-function compress(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=e=>{const img=new Image();img.onload=()=>{const c=document.createElement("canvas");let w=img.width,h=img.height;const mx=700;if(w>mx||h>mx){const ratio=Math.min(mx/w,mx/h);w=Math.round(w*ratio);h=Math.round(h*ratio);}c.width=w;c.height=h;c.getContext("2d").drawImage(img,0,0,w,h);res(c.toDataURL("image/jpeg",0.65));};img.onerror=rej;img.src=e.target.result;};r.onerror=rej;r.readAsDataURL(file);});}
-
-document.getElementById("payForm").addEventListener("submit",async e=>{
- e.preventDefault();
- try{
-  const file=document.getElementById("pShot").files[0];
-  if(!file) throw new Error("Screenshot zaroori hai");
-  const photo=await compress(file);
-  await db.ref("activationRequests").push().set({
-    name:document.getElementById("pName").value.trim(),
-    mobile:document.getElementById("pMobile").value.trim(),
-    proof:photo,
-    amount:"20$",
-    status:"Pending",
-    submittedAt:firebase.database.ServerValue.TIMESTAMP
-  });
-  show("msg1","Payment Proof bhej diya gaya! Admin check karke aapko Activation Code dega. / ثبوت بھیج دیا گیا ہے۔","success");
-  document.getElementById("payForm").reset();
- }catch(err){show("msg1","Error: "+err.message,"error");}
-});
-
-async function checkCode(){
- const code=document.getElementById("actCode").value.trim();
- if(!code){show("msg2","Code likhen!","error");return;}
- // Admin ne jo code banaya hoga wo activationCodes me hoga
- const snap=await db.ref("activationCodes/"+code).once("value");
- if(snap.exists() && snap.val().used!==true){
-   // Code ko used kar do taake dobara na chale
-   await db.ref("activationCodes/"+code).update({used:true, usedAt:firebase.database.ServerValue.TIMESTAMP});
-   localStorage.setItem("jamia_activated","yes");
-   localStorage.setItem("jamia_code",code);
-   show("msg2","App Activated! Ab aap App use kar sakte hain. / ایپ چالو ہو گئی ہے۔","success");
-   setTimeout(()=>{window.location.href="translator.html";},1500);
- } else {
-   show("msg2","Ghalat ya pehle se istemal shuda Code! Admin se rabta karen.","error");
- }
-}
-</script>
-</body>
-</html>
+<div class="card
