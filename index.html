@@ -9,20 +9,23 @@
 body{background:#f0f7f0;color:#111}
 .top{background:#0a5c36;color:white;text-align:center;padding:30px 15px}
 .top h1{font-size:32px}
-.top p{margin-top:6px;font-size:16px;opacity:.9}
-.wrap{max-width:520px;margin:20px auto;padding:0 15px}
-.card{background:white;border-radius:15px;padding:24px;box-shadow:0 5px 20px rgba(0,0,0,.1);text-align:center}
-.card h2{color:#0a5c36;font-size:24px}
-.card p{margin-top:8px;line-height:1.6;color:#444}
+.top p{margin-top:6px;font-size:15px;opacity:.9}
+.wrap{max-width:560px;margin:18px auto;padding:0 14px}
+.card-main{background:white;border-radius:15px;padding:22px;box-shadow:0 5px 20px rgba(0,0,0,.1);text-align:center}
+.card-main h2{color:#0a5c36;font-size:23px}
+.card-main p{margin-top:8px;line-height:1.6;color:#444;font-size:14px}
 .btn{display:block;background:#0a5c36;color:white;text-decoration:none;padding:14px;border-radius:10px;margin-top:12px;font-weight:bold;font-size:16px}
 .btn.gold{background:#c9a227;color:#000}
-.btn.outline{background:white;color:#0a5c36;border:2px solid #0a5c36}
 .btn.dark{background:#111b14}
+.btn.outline{background:white;color:#0a5c36;border:2px solid #0a5c36}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
-.box{background:#f0f7f0;padding:14px;border-radius:12px;text-align:left}
-.box b{display:block;color:#0a5c36;margin-bottom:4px}
-.box span{font-size:13px;color:#555;line-height:1.5}
-.footer{background:#0a5c36;color:white;text-align:center;padding:14px;font-size:13px;margin-top:20px}
+.box{background:#f0f7f0;padding:14px;border-radius:12px;text-align:left;text-decoration:none;display:block}
+.box b{display:block;color:#0a5c36;margin-bottom:4px;font-size:14px}
+.box span{font-size:12px;color:#555;line-height:1.5}
+.box.big{grid-column:span 2;background:#0a5c36;color:white;text-align:center}
+.box.big b{color:#fff;font-size:16px}
+.box.big span{color:#e0e0e0}
+.footer{background:#0a5c36;color:white;text-align:center;padding:14px;font-size:13px;margin-top:20px;line-height:1.6}
 </style>
 </head>
 <body>
@@ -33,27 +36,40 @@ body{background:#f0f7f0;color:#111}
 </div>
 
 <div class="wrap">
-<div class="card">
+<div class="card-main">
 <h2>Welcome / Khush Aamdeed</h2>
-<p>Jamia Farooqia Online Quran Academy me Bachon aur Baro ke liye Tajweed ke sath Quran ki Taleem.</p>
+<p>Jamia Farooqia Online Quran Academy me Bachon aur Baro ke liye Tajweed ke sath Quran ki Taleem. Neeche se apna Course chunein ya Dakhla lein.</p>
 
-<!-- SAHI LINKS - AB LOOP NAHI HOGA -->
-<a class="btn gold" href="admission.html">📝 Admission Form Bharain</a>
+<a class="btn gold" href="admission.html">📝 Dakhla / Admission Lein</a>
 <a class="btn" href="login.html">🔐 Login / Account Banayein</a>
 <a class="btn outline" href="https://wa.me/923025289361">💬 WhatsApp Par Rabta Karain</a>
 
 <div class="grid">
-<div class="box"><b>📖 Nazra Quran</b><span>Tajweed ke sath Mukammal Nazra</span></div>
-<div class="box"><b>📖 Hifz-e-Quran</b><span>Mukammal Hifz + Revision</span></div>
-<div class="box"><b>📖 Noorani Qaida</b><span>Bachon ke liye Bunyadi Qaida</span></div>
-<div class="box"><b>🕌 Namaz / Kalma</b><span>Namaz, Kalma, Duain, Masail</span></div>
+<!-- 1 SE 14 TAK - SAB COURSES -->
+<a class="box" href="admission.html"><b>1 - 📖 Nazra Quran</b><span>Tajweed ke sath Mukammal Nazra</span></a>
+<a class="box" href="admission.html"><b>2 - 📖 Hifz-e-Quran</b><span>Mukammal Hifz + Roz Revision</span></a>
+<a class="box" href="admission.html"><b>3 - 📖 Noorani Qaida</b><span>Bachon ke liye Bunyadi Qaida</span></a>
+<a class="box" href="admission.html"><b>4 - 🕌 Namaz / Kalma</b><span>Namaz, Kalma, Duain, Masail</span></a>
+<a class="box" href="admission.html"><b>5 - 🎙️ Tajweed Course</b><span>Quran ko Sahi Makhraj se Parhna</span></a>
+<a class="box" href="admission.html"><b>6 - 📚 Tafseer Quran</b><span>Quran ka Tarjuma aur Tafseer</span></a>
+<a class="box" href="admission.html"><b>7 - 📚 Hadith Course</b><span>Bunyadi Ahadith aur Sunnat</span></a>
+<a class="box" href="admission.html"><b>8 - 🌙 Seerat-e-Nabi ﷺ</b><span>Nabi Pak ﷺ ki Zindagi</span></a>
+<a class="box" href="admission.html"><b>9 - 🔤 Arabic Language</b><span>Arabi Seekhna - Bolna + Parhna</span></a>
+<a class="box" href="admission.html"><b>10 - 👧 Bachon ki Class</b><span>5 se 12 Saal ke Bachon ke liye</span></a>
+<a class="box" href="admission.html"><b>11 - 👩 Female Teacher</b><span>Bachiyon aur Khawateen ke liye</span></a>
+<a class="box" href="admission.html"><b>12 - 👨‍🏫 Teacher Training</b><span>Teacher Banne ke liye Training</span></a>
+<a class="box" href="admission.html"><b>13 - 💻 Online Class</b><span>Zoom / WhatsApp / Google Meet</span></a>
+<a class="box" href="admission.html"><b>14 - 🕋 Islamic Studies</b><span>Deen ki Bunyadi Taleem</span></a>
+
+<!-- 15 NUMBER WALA - DAKHLA PROFILE - YEHI TUMNE MANGA THA -->
+<a class="box big" href="admission.html"><b>15 - 📝 Jamia Farooqia Admission</b><span>Dakhla Profile Kholein - Student / Teacher / Login</span></a>
 </div>
 
-<p style="margin-top:16px;font-size:13px;color:#666;">Timing: Subah 7 se Raat 10 tak<br>Class: Online - Zoom / WhatsApp / Google Meet</p>
+<p style="margin-top:16px;font-size:13px;color:#666;">Timing: Subah 7 se Raat 10 tak<br>Class: Online - Ghar Bethe</p>
 </div>
 </div>
 
-<div class="footer">© 2026 Jamia Farooqia Online Quran Academy - hafizabid.com</div>
+<div class="footer">© 2026 Jamia Farooqia Online Quran Academy<br>hafizabid.com</div>
 
 </body>
 </html>
