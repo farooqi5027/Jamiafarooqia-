@@ -1,23 +1,23 @@
 {
   "name": "Jamia Farooqia Online Quran Academy",
   "short_name": "Jamia Farooqia",
-  "description": "Online Quran Academy - Learn Quran Online",
-  "start_url": "jamia-farooqia-admission.html",
+  "description": "Jamia Farooqia Online Quran Academy",
+  "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#0b5d3a",
-  "theme_color": "#0b5d3a",
+  "background_color": "#eef5ef",
+  "theme_color": "#0a5c36",
+  "orientation": "portrait",
+  "lang": "en",
   "icons": [
     {
       "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
       "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }
